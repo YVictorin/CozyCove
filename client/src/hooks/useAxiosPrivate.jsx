@@ -1,4 +1,4 @@
-//this hook will actually attach the axios interceptors: which are like vanilla javscript event listeners
+//this hook will actually attach the axios interceptors: which are like Vanilla JavaScript event listeners
 //interceptors are also used to handle jwt tokens and their data, also handles re-trying logic for getting a new access token
 
 import { axiosPrivate } from "../api/axios";
