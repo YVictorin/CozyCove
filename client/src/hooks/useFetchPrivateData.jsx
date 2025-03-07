@@ -41,4 +41,4 @@ const useFetchPrivateData = (endpoint) => {
 export default useFetchPrivateData;
 
 // Example usage: Fetching user account details with authentication
-// const { data, error, refresh } = useFetchPrivateData('/api/users');
+// const { data, error, refresh } = useFetchPrivateData('/api/secretInfo');
