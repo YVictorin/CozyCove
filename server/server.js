@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import corsOptions from "./src/config/corsOptions.js";
+import corsOptions from "./src/config/security/allowedOrigins.js";
 import credentials from "./src/middleware/credentials.js";
 
 import verifyJWT from "./src/middleware/verifyJWT.js";

@@ -1,4 +1,4 @@
-import allowedOrigins from "./allowedOrigins.js";
+import allowedOrigins from "./security/allowedOrigins.js";
 
 //used for security as to not allow people who are not coming from the allowedOrigins to make request to our server
 const corsOptions = {
