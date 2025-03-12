@@ -1,4 +1,3 @@
-
 import { Button } from "react-bootstrap"
 
 export default function MenuScreen({ onRoutineClick, onBadgesClick, onSafeSpaceClick }) {

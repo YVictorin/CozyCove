@@ -1,9 +1,9 @@
-import React from 'react';
+import MultiStepForm from '../components/forms/MultiStepForm';
 
 const Register = () => {
     return (
         <div>
-            Register
+            <MultiStepForm/>
         </div>
     );
 }
