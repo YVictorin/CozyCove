@@ -6,7 +6,7 @@ export default function GamesPage() {
     const [showGame, setShowGame] = useState(false);
 
     const handleRoutineGameClick = () => {
-        setShowGame(true); // Show the game when a card is clicked
+        setShowGame(true); 
     };
 
     return (
