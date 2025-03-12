@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react"
 import EatLunchGame from "../tasks/afternoon/EatLunchGame"
-import PlaytimeGame from "../tasks/afternoon/PlaytimeGame"
+import PlaytimeGame from "../tasks/afternoon/PlayTimeGame"
 import RestTimeGame from "../tasks/afternoon/RestTimeGame"
 import TidyUpGame from "../tasks/afternoon/TidyUpGame"
 

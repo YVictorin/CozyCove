@@ -1,9 +1,9 @@
 
 import { useState, useEffect } from "react"
-import BrushTeethGame from "../tasks/morning/brushTeethGame"
-import EatBreakfastGame from "../tasks/morning/eatBreakfastGame"
-import GetDressedGame from "../tasks/morning/getDressedGame"
-import GoOutsideGame from "../tasks/morning/goOutsideGame"
+import BrushTeethGame from "../tasks/morning/BrushTeethGame"
+import EatBreakfastGame from "../tasks/morning/EatBreakfastGame"
+import GetDressedGame from "../tasks/morning/GetDressedGame"
+import GoOutsideGame from "../tasks/morning/GoOutsideGame"
 
 export default function MorningRoutine({ task, onCompleteTask }) {
   const [gameActive, setGameActive] = useState(true)

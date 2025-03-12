@@ -1,9 +1,9 @@
 
 import { useState, useEffect } from "react"
-import BrushTeethNightGame from "../tasks/night/brushTeethNightGame"
-import ChangeClothesGame from "../tasks/night/changeClothesGame"
-import StoryTimeGame from "../tasks/night/storyTimeGame"
-import SleepGame from "../tasks/night/sleepGame"
+import BrushTeethNightGame from "../tasks/night/BrushTeethNightGame"
+import ChangeClothesGame from "../tasks/night/ChangeClothesGame"
+import StoryTimeGame from "../tasks/night/StoryTimeGame"
+import SleepGame from "../tasks/night/SleepGame"
 
 export default function NightRoutine({ task, onCompleteTask }) {
   const [gameActive, setGameActive] = useState(true)

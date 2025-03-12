@@ -1,6 +1,6 @@
 
 import { Button } from "react-bootstrap"
-import { routines, getTextColor, getBackgroundColor } from "../gameUtils"
+import { routines, getTextColor, getBackgroundColor } from "../GameUtils"
 import MorningRoutine from "../routines/morningRoutine"
 import AfternoonRoutine from "../routines/afternoonRoutine"
 import NightRoutine from "../routines/nightRoutine"

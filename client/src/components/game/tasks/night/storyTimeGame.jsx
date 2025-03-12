@@ -1,6 +1,6 @@
 "use client"
 
-import { bedtimeStories } from "../../gameUtils"
+import { bedtimeStories } from "../../GameUtils"
 
 export default function StoryTimeGame({ onCompleteTask }) {
   return (

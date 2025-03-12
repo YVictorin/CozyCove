@@ -4,7 +4,7 @@ import BadgeScreen from "./screens/badgeScreen"
 import BadgesCollectionScreen from "./screens/badgesCollectionScreen"
 import SafeSpaceScreen from "./screens/safeSpaceScreen"
 import RoutineScreen from "./screens/routineScreen"
-import { routines } from "./gameUtils"
+import { routines } from "./GameUtils"
 
 export default function GameContent() {
   const [currentScreen, setCurrentScreen] = useState("menu")

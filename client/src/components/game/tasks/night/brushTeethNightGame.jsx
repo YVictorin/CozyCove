@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { brushTeethQuestions } from "../../gameUtils"
+import { brushTeethQuestions } from "../../GameUtils"
 
 export default function BrushTeethNightGame({ onCompleteTask }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
