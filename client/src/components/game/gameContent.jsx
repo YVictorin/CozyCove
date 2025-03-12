@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
-import MenuScreen from "./screens/menuScreen"
-import BadgeScreen from "./screens/badgeScreen"
-import BadgesCollectionScreen from "./screens/badgesCollectionScreen"
-import SafeSpaceScreen from "./screens/safeSpaceScreen"
-import RoutineScreen from "./screens/routineScreen"
+import MenuScreen from "./screens/MenuScreen"
+import BadgeScreen from "./screens/BadgeScreen"
+import BadgesCollectionScreen from "./screens/BadgesCollectionScreen"
+import SafeSpaceScreen from "./screens/SafeSpaceScreen"
+import RoutineScreen from "./screens/RoutineScreen"
 import { routines } from "./GameUtils"
 
 export default function GameContent() {
