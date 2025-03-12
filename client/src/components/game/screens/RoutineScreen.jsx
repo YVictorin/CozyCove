@@ -1,9 +1,9 @@
 
 import { Button } from "react-bootstrap"
 import { routines, getTextColor, getBackgroundColor } from "../GameUtils"
-import MorningRoutine from "../routines/morningRoutine"
-import AfternoonRoutine from "../routines/afternoonRoutine"
-import NightRoutine from "../routines/nightRoutine"
+import MorningRoutine from "../routines/MorningRoutine"
+import AfternoonRoutine from "../routines/AfternoonRoutine"
+import NightRoutine from "../routines/NightRoutine"
 
 export default function RoutineScreen({ routine, currentTask, taskCompleted, onBackClick, onCompleteTask }) {
   const renderTaskGame = () => {
