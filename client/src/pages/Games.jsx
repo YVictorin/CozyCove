@@ -1,6 +1,6 @@
 import { useState } from "react";
 import GameCard from "../components/GameCard";
-import Game from "../components/game/mainGame";
+import Game from "../components/game/MainGame";
 
 export default function GamesPage() {
     const [showGame, setShowGame] = useState(false);
