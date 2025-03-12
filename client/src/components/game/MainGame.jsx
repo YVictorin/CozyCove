@@ -5,7 +5,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import { Volume2, VolumeX } from "lucide-react";
 
 // Dynamically import the game content using React.lazy
-const GameContent = lazy(() => import("./gameContent"));
+const GameContent = lazy(() => import("./GameContent"));
 
 export default function Game() {
   const [isMuted, setIsMuted] = useState(false);
