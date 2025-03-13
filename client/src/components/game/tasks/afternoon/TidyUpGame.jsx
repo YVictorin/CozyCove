@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react"
 import { Button } from "react-bootstrap"
 
+import ToyBox from "../../../../assets/images/toyBox.png"
+
+
 export default function TidyUpGame({ onCompleteTask }) {
   const [toyPositions, setToyPositions] = useState([])
   const [toyBoxPosition] = useState({ x: 50, y: 80 })
@@ -65,9 +68,6 @@ export default function TidyUpGame({ onCompleteTask }) {
         Time: {timeLeft}s
       </div>
 
-      <div className="absolute text-center w-full bottom-2 text-purple-600 text-sm">
-        Click on the toys to put them away before time runs out!
-      </div>
 
       {/* Toy box */}
       <div
@@ -79,7 +79,7 @@ export default function TidyUpGame({ onCompleteTask }) {
         }}
       >
         <img
-          src="/placeholder.svg?height=80&width=96&text=toy-box"
+          src={ToyBox}
           alt="Toy Box"
           className="w-full h-full object-contain"
           style={{ filter: "hue-rotate(40deg)" }}
@@ -102,10 +102,9 @@ export default function TidyUpGame({ onCompleteTask }) {
           onClick={() => handleToyClick(index)}
         >
           <img
-            src={`/placeholder.svg?height=48&width=48&text=${toy.type}`}
+            src={`/src/assets/images/${toy.type}.svg`}
             alt={toy.type}
             className="w-full h-full object-contain"
-            style={{ filter: `hue-rotate(${index * 40}deg)` }}
           />
         </div>
       ))}

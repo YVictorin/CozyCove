@@ -49,9 +49,7 @@ export default function GetDressedGame({ onCompleteTask }) {
 
   return (
     <div className="relative w-full h-full">
-      <div className="absolute text-center w-full bottom-2 text-blue-600 text-sm">
-        Click on matching clothes to get dressed!
-      </div>
+    
 
       {/* Clothes grid */}
       <div className="grid grid-cols-4 gap-2 p-4 h-full">
@@ -64,7 +62,7 @@ export default function GetDressedGame({ onCompleteTask }) {
             onClick={() => handleClothesClick(item.id)}
           >
             <img
-              src={`/placeholder.svg?height=48&width=48&text=${item.type}`}
+              src={`/src/assets/images/clothes-${item.type}.svg`}
               alt={item.type}
               className={`w-12 h-12 object-contain ${item.matched ? "opacity-100" : "opacity-80"}`}
               style={{ filter: `hue-rotate(${item.id * 30}deg)` }}

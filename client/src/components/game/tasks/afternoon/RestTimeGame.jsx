@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react"
 
+import Excited from "../../../../assets/images/excited.svg"
+import Sleepy from "../../../../assets/images/sleepy.svg"
+
 export default function RestTimeGame({ onCompleteTask }) {
   const [bedJumps, setBedJumps] = useState(0)
   const [bedPosition, setBedPosition] = useState({ y: 50 })
@@ -57,7 +60,7 @@ export default function RestTimeGame({ onCompleteTask }) {
         onClick={handleBedClick}
       >
         <img
-          src="/placeholder.svg?height=96&width=160&text=bed"
+          src="/src/assets/images/bed.svg"
           alt="Bed"
           className="w-full h-full object-contain"
           style={{ filter: "hue-rotate(240deg)" }}
@@ -65,7 +68,11 @@ export default function RestTimeGame({ onCompleteTask }) {
 
         {/* Bed face */}
         <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl">
-          {bedJumping ? "😜" : "😴"}
+        {bedJumping ? (
+            <img src={Excited} alt="Excited" className="w-10 h-10" />
+          ) : (
+            <img src={Excited} alt="Sleepy" className="w-10 h-10" />
+          )}
         </div>
       </div>
 

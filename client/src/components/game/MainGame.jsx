@@ -67,14 +67,9 @@ export default function Game() {
             <h2 className="text-xl font-bold text-blue-800">{currentRoutine}</h2>
             <ProgressBar value={progress} className="w-64 h-2 mt-1" />
           </div>
-          <div className="flex gap-2">
-            <Button
-              onClick={toggleCalmingMode}
-              variant="outline"
-              className="bg-purple-100 hover:bg-purple-200 text-purple-800 border-purple-300"
-            >
-              Calm Me Down
-            </Button>
+
+          {/* wip sound system for Main Menu */}
+          {/* <div className="flex gap-2">
             <Button
               onClick={toggleMute}
               variant="outline"
@@ -83,7 +78,7 @@ export default function Game() {
             >
               {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
             </Button>
-          </div>
+          </div> */}
         </div>
         <div className="w-full h-[600px] bg-white">
           <Suspense
@@ -100,7 +95,7 @@ export default function Game() {
 
       <Card className="p-4 mt-4 w-full max-w-4xl bg-yellow-50 border-yellow-200">
         <h3 className="font-bold text-yellow-800 mb-2">Parent Info</h3>
-        <p className="text-sm text-yellow-700">
+        <p className="text-sm text-yellow-700" style={{color: "oklch(0.554 0.135 66.442)"}}>
           Cozy Routines helps children build consistent daily routines through fun gameplay.
           Track your child's progress and customize their experience in the Parent Dashboard.
         </p>

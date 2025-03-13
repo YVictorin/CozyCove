@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from "react"
+import Plate from "../../../../assets/images/plate.png"
+import Sandwich from "../../../../assets/images/sandwich.svg"
 
 export default function EatLunchGame({ onCompleteTask }) {
   const [sandwichBalance, setSandwichBalance] = useState(50)
@@ -61,7 +63,7 @@ export default function EatLunchGame({ onCompleteTask }) {
   return (
     <div className="relative w-full h-full">
       <div className="absolute text-center w-full bottom-2 text-purple-600 text-sm">
-        Click to balance the sandwich! Keep it centered for 3 seconds.
+        Keep clicking to balance the sandwich for 3 seconds!
       </div>
 
       {/* Balance meter */}
@@ -75,10 +77,10 @@ export default function EatLunchGame({ onCompleteTask }) {
       {/* Plate */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-40 h-10">
         <img
-          src="/placeholder.svg?height=40&width=160&text=plate"
+          src={Plate}
           alt="Plate"
           className="w-full h-full object-contain"
-          style={{ filter: "hue-rotate(180deg)" }}
+          style={{ filter: "hue-rotate(180deg)", scale: "5" }}
         />
       </div>
 
@@ -93,10 +95,10 @@ export default function EatLunchGame({ onCompleteTask }) {
         onClick={handleSandwichClick}
       >
         <img
-          src="/placeholder.svg?height=80&width=80&text=sandwich"
+          src={Sandwich}
           alt="Sandwich"
           className="w-full h-full object-contain"
-          style={{ filter: "hue-rotate(30deg)" }}
+          style={{scale: "0.7"}}
         />
       </div>
     </div>

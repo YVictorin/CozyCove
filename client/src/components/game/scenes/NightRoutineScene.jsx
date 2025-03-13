@@ -92,7 +92,7 @@ export default class NightRoutineScene extends Phaser.Scene {
     })
   }
 
-  showPlaceholderTask(taskName: string) {
+  showPlaceholderTask(taskName) {
     const { width, height } = this.cameras.main
 
     // Clear existing UI

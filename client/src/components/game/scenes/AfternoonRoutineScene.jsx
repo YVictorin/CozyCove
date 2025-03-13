@@ -135,6 +135,7 @@ export default class AfternoonRoutineScene extends Phaser.Scene {
     const completeButton = this.add
       .rectangle(width / 2, height - 100, 200, 60, 0x10b981)
       .setInteractive({ useHandCursor: true })
+   
     this.add
       .text(width / 2, height - 100, "Complete Task", {
         fontFamily: "Arial",

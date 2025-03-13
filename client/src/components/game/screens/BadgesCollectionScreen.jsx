@@ -12,9 +12,11 @@ export default function BadgesCollectionScreen({ onBackClick }) {
   return (
     <div className="flex flex-col items-center w-full">
       <div className="flex justify-between w-full mb-6">
-        <Button variant="destructive" onClick={onBackClick}>
+      <div className="bg-red-500 pl-5 pr-5 pt-3 pb-3 rounded-md cursor-pointer">
+        <Button variant="destructive" onClick={onBackClick} style={{ cursor: "pointer", color: "white" }}>
           Back
         </Button>
+        </div>
         <h2 className="text-2xl font-bold text-yellow-600">Your Badges</h2>
         <div className="w-20"></div> {/* Spacer for alignment */}
       </div>
@@ -29,7 +31,7 @@ export default function BadgesCollectionScreen({ onBackClick }) {
               className={`w-16 h-16 rounded-full ${badge.earned ? "bg-yellow-400" : "bg-gray-300"} flex items-center justify-center mb-2`}
             >
               <img
-                src={`/placeholder.svg?height=40&width=40&text=${badge.image}`}
+                src={`/src/assets/images/${badge.image}.svg`}
                 alt={badge.name}
                 className={`w-10 h-10 object-contain ${badge.earned ? "opacity-100" : "opacity-50"}`}
                 style={{ filter: badge.earned ? `hue-rotate(${index * 40}deg)` : "grayscale(1)" }}

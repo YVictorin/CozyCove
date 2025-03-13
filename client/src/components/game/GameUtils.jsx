@@ -50,8 +50,8 @@ export const routines = {
       correct: 1,
     },
     {
-      question: "How many times a day should we brush?",
-      options: ["Once a month", "Once a week", "At least twice a day"],
+      question: "How often should we brush teeth?",
+      options: ["Once a month", "Twice a day", "Once a week" ],
       correct: 2,
     },
   ]
