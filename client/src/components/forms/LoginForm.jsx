@@ -1,19 +1,21 @@
 import { useState } from 'react';
-import { Facebook, Mail, ArrowLeft, Eye, EyeOff, Link } from 'lucide-react';
-
-import { NavLink } from "react-router-dom"
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import loginSchema from '../../validation/loginSchema';
+import { Facebook, Mail, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { NavLink } from "react-router-dom";
 
 function LoginForm() {
   const [step, setStep] = useState('initial');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
 
-  const handleEmailSignIn = (e) => {
-    e.preventDefault();
-    // Handle email sign in logic here
-    console.log('Signing in with:', { email, password, rememberMe });
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const onSubmit = (data) => {
+    console.log('Signing in with:', data);
+    // Handle sign-in logic here
   };
 
   if (step === 'email') {
@@ -30,7 +32,7 @@ function LoginForm() {
 
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Sign in with Email</h2>
           
-          <form onSubmit={handleEmailSignIn} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email Address
@@ -38,12 +40,15 @@ function LoginForm() {
               <input
                 id="email"
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                {...register('email')}
+                className={`w-full px-4 py-3 rounded-lg border ${
+                  errors.email ? 'border-red-500' : 'border-gray-300'
+                } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                 placeholder="Enter your email"
-                required
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+              )}
             </div>
 
             <div>
@@ -54,11 +59,11 @@ function LoginForm() {
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  {...register('password')}
+                  className={`w-full px-4 py-3 rounded-lg border ${
+                    errors.password ? 'border-red-500' : 'border-gray-300'
+                  } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                   placeholder="Enter your password"
-                  required
                 />
                 <button
                   type="button"
@@ -68,14 +73,16 @@ function LoginForm() {
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+              )}
             </div>
 
             <div className="flex items-center justify-between">
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
+                  {...register('rememberMe')}
                   className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="ml-2 text-sm text-gray-600">Remember me</span>
@@ -163,6 +170,7 @@ function LoginForm() {
       </div>
     </div>
   );
+
 }
 
 export default LoginForm;
