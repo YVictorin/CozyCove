@@ -1,0 +1,114 @@
+/* Footer container */
+.footer {
+  background-image: linear-gradient(#fbedca, #26a5b3);
+  padding: 3rem 1.5rem;
+  position: relative;
+}
+
+.footer-container {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+/* Footer main section */
+.footer-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+/*footer logo */
+.footer-logo img {
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-link {
+  background-color: #fbedca;
+  padding: 0.75rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  color: #26a5b3;
+  font-size: 20px;
+}
+
+.social-link:hover {
+  background-color: #c7fcfb;
+}
+
+.social-link i {
+  font-size: 28px;
+}
+
+/* Subscribe Button */
+.subscribe-button {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.subscribe-text {
+  font-weight: 500;
+  color: #26a5b3;
+}
+/* Copyright */
+.copyright {
+  color: white;
+  font-size: 0.875rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Footer Links */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  background-color: #fbedca;
+  padding: 0.75rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+  background-color: #c7fcfb;
+}
+
+.back-to-top-icon {
+  color: #26a5b3;
+}
