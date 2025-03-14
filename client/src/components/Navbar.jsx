@@ -25,9 +25,9 @@ export default function Navbar() {
                 {/* Navigation Links */}
                 <nav className="flex items-center space-x-6">
                     <NavLink to="/" text="Home" />
-                    <NavLink to="/make" text="Make" />
-                    <NavLink to="/play" text="Play" />
-                    <NavLink to="/resources" text="Resources" />
+                    <NavLink to="/Products" text="Products" />
+                    <NavLink to="/Games" text="Games" />
+                    <NavLink to="/Explore" text="Explore" />
 
                     {/* User Account Links */}
                     <div className="relative group">
