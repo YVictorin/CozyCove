@@ -1,6 +1,6 @@
 import { useRef } from "react"
 
-import Bed from "../../../../assets/images/Bed.svg"
+import Bed from "../../../../assets/images/bed.svg"
 
 export default function SleepGame({ onCompleteTask }) {
   const gameAreaRef = useRef(null)
