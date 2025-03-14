@@ -1,15 +1,18 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-import Home from "./pages/Home"
 import Account from "./pages/Account";
 import Explore from "./pages/Explore";
 import Products from "./pages/Products";
 import Games from "./pages/Games";
+import EmotionDrawing from "./components/game/draw/EmotionDrawing"; // <-- new import
+
+// import './styles/Resource.css';
 
 import Unauthorized from "./components/Unauthorized"
 import Admin from "./pages/Admin";
@@ -30,18 +33,20 @@ function App() {
         <Route path="games" element={<Games />}/>
         <Route path="explore" element={<Explore />}/>
         <Route path="unauthorized" element={<Unauthorized/>}></Route>
-
-        {/* Protected Routes */}
-            <Route path="admin" element={<Admin/>}/>
         
-            <Route path="account" element={<Account />} />
+      <Route path="games/emotions-artist" element={<EmotionDrawing/>}></Route>
+        {/* Protected Routes */}
+          <Route path="admin" element={<Admin/>}/>
+      
+          <Route path="account" element={<Account />} />
 =
         {/* Catch-All Route */}
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
