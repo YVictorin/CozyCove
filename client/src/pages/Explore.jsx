@@ -42,18 +42,18 @@ const Explore = () => {
     }, []);
 
     return (
-        <div className="bg-[#FFF9F0]">
-            {/* Header Section */}
-            <div className="bg-[#FBEDCA] py-16 text-center mb-10 rounded-3xl shadow-lg relative overflow-hidden">
-                <div className="absolute w-40 h-40 bg-[#FD975F] rounded-full blur-2xl top-10 left-10"></div>
-                <div className="absolute w-40 h-40 bg-[#F7D41E] rounded-full blur-2xl bottom-10 right-10"></div>
-                <div className="relative z-10 max-w-4xl mx-auto px-4">
-                    <h1 className="text-5xl font-bold text-[#FA507E] mb-5 text-shadow-md">GROWN-UPS</h1>
-                    <p className="text-xl mb-8 text-[#666666]">
-                        Supporting parents, caregivers, and educators with tools, strategies, and a community to help your child thrive.
-                    </p>
-                </div>
-            </div>
+<div className="bg-[#FFF9F0]">
+    <div className="bg-[#FBEDCA] py-16 text-center mb-10 rounded-3xl shadow-lg relative overflow-hidden w-full mt-64"> 
+        <div className="absolute w-40 h-40 bg-[#FD975F] rounded-full blur-2xl top-10 left-10"></div>
+        <div className="absolute w-40 h-40 bg-[#F7D41E] rounded-full blur-2xl bottom-10 right-10"></div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4">
+            <h1 className="text-5xl font-bold text-[#FA507E] mb-5 text-shadow-md">GROWN-UPS</h1>
+            <p className="text-xl mb-8 text-[#666666]">
+                Supporting parents, caregivers, and educators with tools, strategies, and a community to help your child thrive.
+            </p>
+        </div>
+    </div>
+
 
             {/* Main Content Area */}
             <main className="max-w-6xl mx-auto px-4 py-8">
@@ -131,7 +131,8 @@ const Explore = () => {
                 </section>
       </main>
       <SupportBot />
-//     </div>
+     </div>
+
   );
 };
 
