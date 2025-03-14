@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-@import "tailwindcss";
-=======
 @import "tailwindcss";
 
 @theme {
     --font-primary: "Varela Round", sans-serif; 
 }
->>>>>>> dev
