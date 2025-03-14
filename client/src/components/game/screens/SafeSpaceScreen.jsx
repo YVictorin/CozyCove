@@ -14,9 +14,11 @@ export default function SafeSpaceScreen({ onBackClick }) {
   return (
     <div className="flex flex-col items-center w-full">
       <div className="flex justify-between w-full mb-6">
-        <Button variant="destructive" onClick={onBackClick}>
+      <div className="bg-red-500 pl-5 pr-5 pt-3 pb-3 rounded-md cursor-pointer">
+        <Button variant="destructive" onClick={onBackClick} style={{ cursor: "pointer", color: "white" }}>
           Back
         </Button>
+        </div>
         <h2 className="text-2xl font-bold text-teal-600">Safe Space Builder</h2>
         <div className="w-20"></div> {/* Spacer for alignment */}
       </div>

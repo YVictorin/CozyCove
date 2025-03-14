@@ -1,7 +1,7 @@
-"use client"
-
 import { useState } from "react"
 import { brushTeethQuestions } from "../../GameUtils"
+
+import toothbrush from '../../../../assets/images/toothbrush.svg'
 
 export default function BrushTeethNightGame({ onCompleteTask }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -38,15 +38,15 @@ export default function BrushTeethNightGame({ onCompleteTask }) {
       {/* Toothbrush character */}
       <div className="w-16 h-16 mb-4">
         <img
-          src="/placeholder.svg?height=64&width=64&text=toothbrush"
+          src={toothbrush}
           alt="Toothbrush"
           className="w-full h-full object-contain"
-          style={{ filter: "hue-rotate(100deg)" }}
+          style={{ filter: "hue-rotate(100deg)", opacity: 0 }}
         />
       </div>
 
       {/* Question */}
-      <div className="bg-indigo-800 p-4 rounded-lg mb-6 w-full max-w-xs">
+      <div className="bg-indigo-800 p-4 rounded-lg mb-6 w-full max-w-xs text-nowrap">
         <p className="text-indigo-100 text-center font-bold">{brushTeethQuestions[currentQuestion].question}</p>
       </div>
 

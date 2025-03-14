@@ -14,11 +14,11 @@ import AuthProvider from './context/AuthProvider.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
         <ErrorBoundary fallback={<ErrorFallback/>}>
-          <App />
+        <AuthProvider>
+             <App />
+          </AuthProvider>
         </ErrorBoundary>
-      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )
