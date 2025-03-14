@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -8,6 +8,9 @@ import Account from "./pages/Account";
 import Explore from "./pages/Explore";
 import Products from "./pages/Products";
 import Games from "./pages/Games";
+import EmotionDrawing from "./components/game/draw/EmotionDrawing"; // <-- new import
+
+// import './styles/Resource.css';
 
 function App() {
   return (
@@ -18,14 +21,16 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="account" element={<Account />} />
-          <Route path="*" element={<NotFound />} />
           <Route path="products" element={<Products />} />
-          <Route path="games" element={<Games />} />
           <Route path="explore" element={<Explore />} />
+          <Route path="games" element={<Games />} />
+          <Route path="games/emotions-artist" element={<EmotionDrawing />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
