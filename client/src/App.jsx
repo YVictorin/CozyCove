@@ -16,7 +16,6 @@ import Admin from "./pages/Admin";
 import RequireAuth from "./components/RequireAuth";
 
 
-import './styles/Resource.css';
 
 
 function App() {
