@@ -10,7 +10,7 @@ import Products from "./pages/Products";
 import Games from "./pages/Games";
 import EmotionDrawing from "./components/game/draw/EmotionDrawing"; // <-- new import
 
-import './styles/Resource.css';
+// import './styles/Resource.css';
 
 function App() {
   return (
