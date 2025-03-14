@@ -1,6 +1,6 @@
 /* Footer container */
 .footer {
-  background-color: #26a5b3;
+  background-image: linear-gradient(#fbedca, #26a5b3);
   padding: 3rem 1.5rem;
   position: relative;
 }
