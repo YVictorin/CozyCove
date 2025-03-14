@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react"
-import EatLunchGame from "../tasks/afternoon/eatLunchGame"
-import PlaytimeGame from "../tasks/afternoon/playtimeGame"
-import RestTimeGame from "../tasks/afternoon/restTimeGame"
-import TidyUpGame from "../tasks/afternoon/tidyUpGame"
+import EatLunchGame from "../tasks/afternoon/EatLunchGame"
+import PlaytimeGame from "../tasks/afternoon/PlaytimeGame"
+import RestTimeGame from "../tasks/afternoon/RestTimeGame"
+import TidyUpGame from "../tasks/afternoon/TidyUpGame"
 
 export default function AfternoonRoutine({ task, onCompleteTask, onTaskFailure }) {
   const [gameActive, setGameActive] = useState(true)
