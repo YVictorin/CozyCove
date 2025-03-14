@@ -8,17 +8,19 @@ import { Volume2, VolumeX } from "lucide-react";
 const GameContent = lazy(() => import("./GameContent"));
 
 export default function Game() {
-  const [isMuted, setIsMuted] = useState(false);
   const [isCalming, setIsCalming] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentRoutine, setCurrentRoutine] = useState("Morning Routine");
 
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-    window.dispatchEvent(
-      new CustomEvent("game-mute-toggle", { detail: { muted: !isMuted } })
-    );
-  };
+  {/* wip sound system for Main Menu */}
+  
+  // const [isMuted, setIsMuted] = useState(false);
+  // const toggleMute = () => {
+  //   setIsMuted(!isMuted);
+  //   window.dispatchEvent(
+  //     new CustomEvent("game-mute-toggle", { detail: { muted: !isMuted } })
+  //   );
+  // };
 
   const toggleCalmingMode = () => {
     setIsCalming(!isCalming);

@@ -43,19 +43,16 @@ export default function AllFavoritesTable() {
             <tr>
               <th className="p-4 text-left border-b border-gray-200 text-gray-500 font-semibold">Title</th>
               <th className="p-4 text-left border-b border-gray-200 text-gray-500 font-semibold">Type</th>
-              <th className="p-4 text-left border-b border-gray-200 text-gray-500 font-semibold">Category</th>
               <th className="p-4 text-left border-b border-gray-200 text-gray-500 font-semibold">Added Date</th>
-              <th className="p-4 text-left border-b border-gray-200 text-gray-500 font-semibold">Likes</th>
+              <th className="p-4 text-left border-b border-gray-200 text-gray-500 font-semibold">Favorites</th>
               <th className="p-4 text-left border-b border-gray-200 text-gray-500 font-semibold">Featured</th>
-              <th className="p-4 text-left border-b border-gray-200 text-gray-500 font-semibold">Actions</th>
             </tr>
           </thead>
           <tbody>
             {favorites.map((item, index) => (
               <tr key={index} className="hover:bg-gray-50">
-                <td className="p-4 border-b border-gray-200">{item.title}</td>
+                <td className="p-4 border-b border-gray-200">{index + 1 + ". " }{item.title}</td>
                 <td className="p-4 border-b border-gray-200">{item.type}</td>
-                <td className="p-4 border-b border-gray-200">{item.category}</td>
                 <td className="p-4 border-b border-gray-200">{item.date}</td>
                 <td className="p-4 border-b border-gray-200">{item.likes}</td>
                 <td className="p-4 border-b border-gray-200">
@@ -64,14 +61,6 @@ export default function AllFavoritesTable() {
                       Featured
                     </span>
                   )}
-                </td>
-                <td className="p-4 border-b border-gray-200">
-                  <div className="flex gap-2">
-                    <ActionButton icon="fa-edit" />
-                    <ActionButton icon="fa-eye" />
-                    <ActionButton icon="fa-star" />
-                    <ActionButton icon="fa-trash" danger />
-                  </div>
                 </td>
               </tr>
             ))}

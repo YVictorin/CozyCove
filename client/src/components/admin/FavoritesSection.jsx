@@ -8,25 +8,14 @@ export default function FavoritesSection() {
     const [activeTab, setActiveTab] = useState('all-favorites');
     
     const tabs = [
-      { id: 'all-favorites', label: 'All Favorites' },
-      { id: 'diy-favorites', label: 'DIY Favorites' },
-      { id: 'content-favorites', label: 'Content Favorites' }
+      { id: 'all-favorites', label: 'Most Favorited' },
+      //todo add more options for tab switching
     ];
   
     return (
       <div className="bg-white rounded-lg p-6 shadow-sm mb-8">
         <div className="flex justify-between items-center mb-6">
-          <div className="text-xl font-bold">Most Favorites Management</div>
-          <div className="flex gap-4">
-            <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-500 text-blue-500 font-semibold transition-all hover:bg-blue-50">
-              <i className="fas fa-sync-alt"></i>
-              <span>Refresh List</span>
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500 text-white font-semibold transition-all hover:bg-red-600">
-              <i className="fas fa-trash"></i>
-              <span>Clear All Favorites</span>
-            </button>
-          </div>
+          <div className="text-xl font-bold">Most Popular Sensory Boxes</div>
         </div>
         
         <div className="flex border-b border-gray-200 mb-6">
@@ -45,9 +34,9 @@ export default function FavoritesSection() {
           ))}
         </div>
         
+        {/* handling the component that will show up on click */}
         {activeTab === 'all-favorites' && <AllFavoritesTable />}
-        {activeTab === 'diy-favorites' && <DIYFavoritesTable />}
-        {activeTab === 'content-favorites' && <ContentFavoritesTable />}
+      
       </div>
     );
   }

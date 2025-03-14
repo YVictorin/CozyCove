@@ -18,10 +18,6 @@ export default function FallbackGame() {
     )
   }
 
-  const handleBackClick = () => {
-    setCurrentScreen("menu")
-  }
-
   return (
     <div className="w-full h-full flex flex-col items-center justify-center bg-blue-50 p-4">
       {currentScreen === "menu" && (

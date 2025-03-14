@@ -4,10 +4,12 @@ import DIYSuggestions from '../components/account/DIYSuggestions';
 import ProfileSection from '../components/account/ProfileSection';
 import SavedBoxes from '../components/account/SavedBoxes';
 import Activities from '../components/account/Activities';
+import { useBadges } from '../hooks/useBadges'; // Import the badge hook
 
-const App = () => {
+const Account = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [showDIYSuggestions, setShowDIYSuggestions] = useState(true);
+  const { addBadge } = useBadges(); // Use the badge hook
 
   // Sample user data
   const user = {
@@ -49,8 +51,23 @@ const App = () => {
     },
   ];
 
+  // Sample badges to add for testing
+  const sampleBadges = [
+    { name: "Morning Star", icon: "🌟", color: "#FBEDCA" },
+    { name: "Bedtime Hero", icon: "😴", color: "#D3FFFE" },
+    { name: "Routine Master", icon: "📅", color: "#F2E2B8" },
+    { name: "Helper", icon: "🙌", color: "#C7FCFB" }
+  ];
+
   const removeFavorite = (id) => {
     alert(`Removed box #${id} from favorites`);
+  };
+
+  // Function to add a sample badge
+  const handleAddSampleBadge = () => {
+    const randomBadge = sampleBadges[Math.floor(Math.random() * sampleBadges.length)];
+    addBadge(randomBadge);
+    alert(`Added "${randomBadge.name}" badge!`);
   };
 
   return (
@@ -61,19 +78,17 @@ const App = () => {
         setActiveTab={setActiveTab}
       />
 
-      <div className="flex-1 p-8">
-        {showDIYSuggestions && (
-          <DIYSuggestions
-            suggestions={diySuggestions}
-            onDismiss={() => setShowDIYSuggestions(false)}
-          />
+      <div className="flex-1 p-8"> 
+        {activeTab === 'profile' && (
+          <>
+            <ProfileSection user={user} />
+          </>
         )}
-          {activeTab === 'profile' && <ProfileSection user={user} />}
-          {activeTab === 'saved' && <SavedBoxes boxes={savedBoxes} onRemove={removeFavorite} />}
-          {activeTab === 'activities' && <Activities />}      
+        {activeTab === 'saved' && <SavedBoxes boxes={savedBoxes} onRemove={removeFavorite} />}
+        {activeTab === 'activities' && <Activities />}      
       </div>
     </div>
   );
 };
 
-export default App;
+export default Account;

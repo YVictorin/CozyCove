@@ -14,7 +14,7 @@ export default function RestTimeGame({ onCompleteTask }) {
 
     if (bedJumping) {
       interval = setInterval(() => {
-        setBedPosition((prev) => {
+        setBedPosition(() => {
           // Animate bed jumping
           const time = Date.now() / 300
           const newY = 50 + Math.sin(time) * 20

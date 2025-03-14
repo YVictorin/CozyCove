@@ -1,4 +1,5 @@
 import React from 'react';
+import RecentBadges from './RecentBadges';
 
 const ProfileSection = ({ user }) => {
   return (
@@ -43,46 +44,11 @@ const ProfileSection = ({ user }) => {
             </div>
           ))}
         </div>
-        <div className="mt-6">
-          <button 
-            className="font-bold py-2 px-6 rounded-xl text-white"
-            style={{ backgroundColor: "#24B2C2" }}
-          >
-            Edit Profile
-          </button>
-        </div>
+        <div className="mt-6"></div>
       </div>
       
-      <div 
-        className="rounded-2xl shadow-md p-6"
-        style={{ backgroundColor: "white" }}
-      >
-        <h2 
-          className="text-xl font-bold mb-4"
-          style={{ color: "#24B2C2" }}
-        >
-          Account Settings
-        </h2>
-        <div className="space-y-4">
-          {[
-            { title: 'Password', description: 'Last changed 3 months ago', action: 'Change' },
-            { title: 'Notifications', description: 'Manage email and app notifications', action: 'Configure' },
-            { title: 'Privacy Settings', description: 'Manage your data and privacy preferences', action: 'Review' }
-          ].map((setting, index) => (
-            <div 
-              key={index}
-              className="flex items-center justify-between p-3 border rounded-lg"
-              style={{ borderColor: "#C7FCFB" }}
-            >
-              <div>
-                <h3 className="font-semibold" style={{ color: "#4A8278" }}>{setting.title}</h3>
-                <p className="text-sm" style={{ color: "#999999" }}>{setting.description}</p>
-              </div>
-              <button style={{ color: "#33A5CE" }}>{setting.action}</button>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Add Recent Badges section */}
+      <RecentBadges />
     </div>
   );
 };

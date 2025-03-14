@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect, useRef } from "react"
 import EatLunchGame from "../tasks/afternoon/eatLunchGame"
 import PlaytimeGame from "../tasks/afternoon/playtimeGame"

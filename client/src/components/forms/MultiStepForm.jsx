@@ -389,6 +389,38 @@ const MultiStepForm = () => {
                     </div>
                 </div>
             </div>
+
+            <style jsx>{`
+        .slide-in {
+          animation: slideIn 0.3s forwards;
+        }
+        
+        .slide-out {
+          animation: slideOut 0.3s forwards;
+        }
+        
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slideOut {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+        }
+      `}</style>
         </div>
     );
 };

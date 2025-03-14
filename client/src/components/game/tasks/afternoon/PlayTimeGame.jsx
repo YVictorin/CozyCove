@@ -39,9 +39,8 @@ export default function PlaytimeGame({ onCompleteTask }) {
     }
   }, [toyPositions, onCompleteTask])
 
-  // Handle toy click with logging
+  // Handle toy click 
   const handleToyClick = (index) => {
-    console.log(`Toy clicked: ${index}`)
 
     setToyPositions((prev) => {
       const newPositions = [...prev]
@@ -50,13 +49,6 @@ export default function PlaytimeGame({ onCompleteTask }) {
     })
   }
 
-  // Add component lifecycle logging
-  useEffect(() => {
-    console.log("PlaytimeGame mounted")
-    return () => {
-      console.log("PlaytimeGame unmounted")
-    }
-  }, [])
 
   return (
     <div className="relative w-full h-full">
