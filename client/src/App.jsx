@@ -8,8 +8,10 @@ import Account from "./pages/Account";
 import Explore from "./pages/Explore";
 import Products from "./pages/Products";
 import Games from "./pages/Games";
+import SupportBot from "./components/SupportBot";
+import VisualSchedule from "./components/VisualSchedule";
 
-import './styles/Resource.css';
+import './global.css';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="products" element={<Products />}/>
         <Route path="games" element={<Games />}/>
         <Route path="explore" element={<Explore />}/>
+        <Route path="support" element={<SupportBot />}/>
+        <Route path="visual" element={<VisualSchedule />}/>
       </Route>
     </Routes>
     </>
