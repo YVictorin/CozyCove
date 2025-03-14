@@ -1,4 +1,4 @@
-export default function MenuItem({ icon, label, active, onClick }) {
+export default function MenuItem({ label, active, onClick }) {
   return (
     <div 
       className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all ${

@@ -11,7 +11,7 @@ const AddSensoryBox = () => {
   });
   
   const [uploadedImages, setUploadedImages] = useState([]);
-  const [currentUpload, setCurrentUpload] = useState(null);
+  const [currentUpload, _ ] = useState(null);
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
