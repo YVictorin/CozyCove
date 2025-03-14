@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,26 +12,29 @@ import SupportBot from "./components/SupportBot";
 import VisualSchedule from "./components/VisualSchedule";
 
 import './global.css';
+import EmotionDrawing from "./components/game/draw/EmotionDrawing"; // <-- new import
+
+// import './styles/Resource.css';
 
 function App() {
   return (
     <>
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="register" element={<Register />} />
-        <Route path="login" element={<Login />} />
-        <Route path="account" element={<Account />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="products" element={<Products />}/>
-        <Route path="games" element={<Games />}/>
-        <Route path="explore" element={<Explore />}/>
-        <Route path="support" element={<SupportBot />}/>
-        <Route path="visual" element={<VisualSchedule />}/>
-      </Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="account" element={<Account />} />
+          <Route path="products" element={<Products />} />
+          <Route path="explore" element={<Explore />} />
+          <Route path="games" element={<Games />} />
+          <Route path="games/emotions-artist" element={<EmotionDrawing />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
