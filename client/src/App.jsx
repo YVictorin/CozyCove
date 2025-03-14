@@ -8,6 +8,10 @@ import Account from "./pages/Account";
 import Explore from "./pages/Explore";
 import Products from "./pages/Products";
 import Games from "./pages/Games";
+import SupportBot from "./components/SupportBot";
+import VisualSchedule from "./components/VisualSchedule";
+
+import './global.css';
 import EmotionDrawing from "./components/game/draw/EmotionDrawing"; // <-- new import
 
 // import './styles/Resource.css';
