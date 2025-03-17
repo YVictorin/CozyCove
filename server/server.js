@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import corsOptions from "./src/config/security/corsOptions.js";
 import credentials from "./src/middleware/credentials.js";
+import allowedOrigins from "./src/config/security/allowedOrigins.js";
 
 import homeRouter from "./src/routes/home.js";
 import loginRoute from "./src/routes/login.js";
