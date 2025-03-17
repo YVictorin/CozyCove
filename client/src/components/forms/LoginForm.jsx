@@ -27,6 +27,13 @@ function LoginForm() {
         withCredentials: true
       });
 
+      // const response = await fetch('http://localhost:3001/api/login', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   credentials: 'include',  
+      //   body: JSON.stringify(data),
+      // });
+
       const result = await response.data;
       
       if (!response.ok) {
