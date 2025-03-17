@@ -10,4 +10,14 @@ console.log("🔑 VITE_API_KEY:", process.env.VITE_API_KEY);
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://cozycove-server.vercel.app',
+        changeOrigin: true,
+        secure: true, 
+        rewrite: (path) => path.replace(/^\/api/, '') // Adjust if needed
+      }
+    }
+  }
 })
