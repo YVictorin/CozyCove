@@ -36,6 +36,10 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 
+
+app.options('*', cors(corsOptions));  // Allows preflight checks
+
+
 // Public routes below (no auth required)
 app.use('/api/home', homeRouter);
 
