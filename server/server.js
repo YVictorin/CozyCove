@@ -26,7 +26,11 @@ import './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(credentials);       // Handle CORS preflight requests - this middleware must run before cors()
+
+//handles checking of options before CORS and makes sure there is fetch cookies credentials: true requirement
+app.use(credentials) 
+
+// CORS would throw an error without the line above
 app.use(cors(corsOptions)); 
 
 //middleware for cookies
@@ -53,6 +57,10 @@ app.use('/api/refreshToken', refreshTokenRouter);
 
 app.use('/api/logout', logoutRouter);
 app.use('/api/account', accountRoute);
+
+// // Preflight cache configuration
+// app.options('*', cors(corsOptions));
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

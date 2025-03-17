@@ -106,7 +106,7 @@ const MultiStepForm = () => {
     setError(null);
     setSuccess(null);
     try {
-      const response = await fetch('https://lowes-capstone-server-yonjous-projects.vercel.app/api/register', {
+      const response = await fetch('https://cozycove-server.vercel.app/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',  

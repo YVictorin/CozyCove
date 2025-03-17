@@ -23,10 +23,13 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('https://cozycove.vercel.app/api/login', {
+     const response = await fetch('https://cozycove-server.vercel.app/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',  
         body: JSON.stringify(data),
       });
-      
+
       const result = await response.json();
       
       if (!response.ok) {
