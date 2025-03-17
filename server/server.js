@@ -43,7 +43,14 @@ app.use('/api/home', homeRouter);
 // app.use('/api/login', validateRequest(loginSchema), loginRoute);
 // app.use('/api/register', validateRequest(registerSchema), registerRoute);
 app.use('/api/login',  loginRoute);
-app.use('/api/register', registerRoute);
+
+app.use('/api/register', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    next();
+  }, registerRoute);
+  
 
 // Token refresh must be public
 app.use('/api/refreshToken', refreshTokenRouter);  
