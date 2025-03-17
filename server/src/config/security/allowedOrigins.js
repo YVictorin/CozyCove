@@ -12,7 +12,11 @@ const allowedOrigins = [
     'http://localhost:5175/login',
 
     'https://cozycove.vercel.app',
-    'https://cozycove-server.vercel.app'
+    'https://cozycove-server.vercel.app',
+    'https://cozycove-git-yvpages-yonjous-projects.vercel.app',
+
+    'https://cozycove-server.vercel.app/api/register',
+    'https://cozycove-server.vercel.app/api/login'
 ]
 
 export default allowedOrigins;
