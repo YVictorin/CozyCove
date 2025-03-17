@@ -7,7 +7,7 @@ if (allowedOrigins.length === 0) {
     'http://localhost:5173',
     'http://localhost:5174',
     'http://localhost:5175',
-    'https://cozycove.vercel.app',
+    'https://*.vercel.app',
     'https://cozycove-server.vercel.app',
     'https://cozycove-git-yvpages-yonjous-projects.vercel.app'
   );
