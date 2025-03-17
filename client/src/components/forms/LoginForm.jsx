@@ -23,13 +23,11 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-     const response = await fetch('https://cozycove-server.vercel.app/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+      const response = await axios.post('/api/login', data, {
+        withCredentials: true
       });
 
-      const result = await response.json();
+      const result = await response.data;
       
       if (!response.ok) {
         console.error(result.error || 'Login failed.');
