@@ -13,7 +13,8 @@ const allowedOrigins = [
     'https://cozycove.vercel.app',
     'https://cozycove-git-yvpages-yonjous-projects.vercel.app',
     'https://lowes-capstone-server-git-yvpages-yonjous-projects.vercel.app',
-    'https://lowes-capstone-server-yonjous-projects.vercel.app'
+    'https://lowes-capstone-server-yonjous-projects.vercel.app',
+    'https://lowes-capstone-server-git-yvpages-yonjous-projects.vercel.app'
 ]
 
 export default allowedOrigins;
