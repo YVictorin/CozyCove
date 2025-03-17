@@ -7,6 +7,9 @@ import corsOptions from "./src/config/security/allowedOrigins.js";
 import credentials from "./src/middleware/credentials.js";
 import verifyJWT from "./src/middleware/verifyJWT.js";
 import refreshTokenRouter from "./src/routes/refreshToken.js";
+import validateRequest from "./src/middleware/validateRequest.js";
+import { loginSchema, registerSchema } from "./src/schemas/authSchemas.js";
+
 import homeRouter from "./src/routes/home.js";
 import loginRoute from "./src/routes/login.js";
 import logoutRouter from "./src/routes/logout.js";
@@ -33,11 +36,17 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 
-// Public routes (no auth required)
+// Public routes below (no auth required)
 app.use('/api/home', homeRouter);
-app.use('/api/login', loginRoute);
+
+//Routes needing Joi validation
+// app.use('/api/login', validateRequest(loginSchema), loginRoute);
+// app.use('/api/register', validateRequest(registerSchema), registerRoute);
+app.use('/api/login',  loginRoute);
 app.use('/api/register', registerRoute);
-app.use('/api/refreshToken', refreshTokenRouter);  // Token refresh must be public
+
+// Token refresh must be public
+app.use('/api/refreshToken', refreshTokenRouter);  
 
 // Protected routes below (will require JWT)
 // app.use(verifyJWT); 

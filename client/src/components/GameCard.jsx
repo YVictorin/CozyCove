@@ -1,6 +1,6 @@
-export default function GameCard({ title = "Unknown Title" }) {
+export default function GameCard({ title = "Unknown Title", onClick }) {
     return (
-        <div 
+    <div onClick={onClick} 
             className="w-[40rem] h-[30rem] rounded-xl overflow-hidden 
             transition-transform duration-300 hover:scale-105 cursor-pointer"
         >

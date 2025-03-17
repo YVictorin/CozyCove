@@ -1,6 +1,6 @@
-"use client"
-
 import { useRef } from "react"
+
+import Bed from "../../../../assets/images/bed.svg"
 
 export default function SleepGame({ onCompleteTask }) {
   const gameAreaRef = useRef(null)
@@ -23,7 +23,7 @@ export default function SleepGame({ onCompleteTask }) {
       {/* Bed */}
       <div className="w-40 h-24 mb-8">
         <img
-          src="/placeholder.svg?height=96&width=160&text=bed"
+          src={Bed}
           alt="Bed"
           className="w-full h-full object-contain"
           style={{ filter: "hue-rotate(240deg)" }}
@@ -31,7 +31,7 @@ export default function SleepGame({ onCompleteTask }) {
       </div>
 
       {/* Light switch */}
-      <button className="p-4 bg-yellow-400 hover:bg-yellow-300 rounded-full shadow-lg" onClick={handleLightSwitch}>
+      <button className="p-4 bg-yellow-400 hover:bg-yellow-300 rounded-full shadow-lg cursor-pointer" onClick={handleLightSwitch}>
         <svg
           className="w-8 h-8 text-yellow-800"
           fill="none"

@@ -1,4 +1,6 @@
 import { useState, useRef } from "react"
+import Door from "../../../../assets/images/door.svg"
+import Key from "../../../../assets/images/key.svg"
 
 export default function GoOutsideGame({ onCompleteTask }) {
   const [keyFound, setKeyFound] = useState(false)
@@ -43,18 +45,18 @@ export default function GoOutsideGame({ onCompleteTask }) {
       {/* Hidden key */}
       {!keyFound && (
         <div
-          className="absolute w-6 h-6 opacity-20 hover:opacity-100 transition-opacity"
+          className="absolute w-6 h-6 opacity-20 hover:opacity-100 transition-opacity cursor-pointer"
           style={{
             left: `${keyPosition.x}%`,
             top: `${keyPosition.y}%`,
+            scale: "3",
             transform: "translate(-50%, -50%)",
           }}
         >
           <img
-            src="/placeholder.svg?height=24&width=24&text=key"
             alt="Key"
-            className="w-full h-full object-contain"
-            style={{ filter: "hue-rotate(40deg)" }}
+            className="w-full h-full object-contain cursor-pointer"
+            style={{ filter: "hue-rotate(40deg)", opacity: "0" }}
           />
         </div>
       )}
@@ -63,10 +65,9 @@ export default function GoOutsideGame({ onCompleteTask }) {
       {keyFound && (
         <div className="absolute top-4 left-4 flex items-center gap-2 bg-white p-2 rounded-lg">
           <img
-            src="/placeholder.svg?height=24&width=24&text=key"
+            src={Key}
             alt="Key"
             className="w-6 h-6 object-contain"
-            style={{ filter: "hue-rotate(40deg)" }}
           />
           <span className="text-blue-600 text-sm font-bold">Key Found!</span>
         </div>
@@ -80,7 +81,7 @@ export default function GoOutsideGame({ onCompleteTask }) {
         onClick={handleDoorClick}
       >
         <img
-          src="/placeholder.svg?height=160&width=80&text=door"
+          src={Door}
           alt="Door"
           className="w-full h-full object-contain"
           style={{ filter: "hue-rotate(20deg)" }}
@@ -92,7 +93,7 @@ export default function GoOutsideGame({ onCompleteTask }) {
             keyFound ? "text-green-500" : "text-red-500"
           }`}
         >
-          {keyFound ? "🔓" : "🔒"}
+          {/* {keyFound ? "🔓" : "🔒"} */}
         </div>
       </div>
     </div>
