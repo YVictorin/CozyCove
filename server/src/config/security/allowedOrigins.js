@@ -21,7 +21,7 @@
 
     'https://cozycove-git-yvpages-yonjous-projects.vercel.app/register',
     'https://cozycove-git-yvpages-yonjous-projects.vercel.app/login',
-    'https://cozycove-git-yvpages-yonjous-projects.vercel.app/',
+    'https://cozycove-git-yvpages-yonjous-projects.vercel.app',
     'https://cozycove-git-yvpages-yonjous-projects.vercel.app/api/register',
     'https://cozycove-git-yvpages-yonjous-projects.vercel.app/api/login',
 
