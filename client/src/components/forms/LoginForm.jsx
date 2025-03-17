@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Facebook, Mail, ArrowLeft, Eye, EyeOff, Link } from 'lucide-react';
-
-import { NavLink } from "react-router-dom"
+import { Facebook, Mail, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [step, setStep] = useState('initial');
@@ -9,11 +8,32 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const handleEmailSignIn = (e) => {
+  const handleEmailSignIn = async (e) => {
     e.preventDefault();
-    // Handle email sign in logic here
-    console.log('Signing in with:', { email, password, rememberMe });
+    setError(null);
+    
+    try {
+      const response = await fetch('http://localhost:3001/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Login failed.');
+      } else {
+        console.log('Login successful', data);
+        // Redirect the user to the home page after successful login
+        navigate('/');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+      console.error('Error during login:', err);
+    }
   };
 
   if (step === 'email') {
@@ -30,6 +50,7 @@ function LoginForm() {
 
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Sign in with Email</h2>
           
+          {error && <p className="text-red-500 mb-4">{error}</p>}
           <form onSubmit={handleEmailSignIn} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">

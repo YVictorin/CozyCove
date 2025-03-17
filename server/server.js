@@ -5,18 +5,18 @@ import cors from "cors";
 
 import corsOptions from "./src/config/security/allowedOrigins.js";
 import credentials from "./src/middleware/credentials.js";
-
 import verifyJWT from "./src/middleware/verifyJWT.js";
 import refreshTokenRouter from "./src/routes/refreshToken.js";
-
 import homeRouter from "./src/routes/home.js";
 import loginRoute from "./src/routes/login.js";
 import logoutRouter from "./src/routes/logout.js";
 import registerRoute from "./src/routes/register.js";
 import accountRoute from "./src/routes/account.js";
-
 import dotenv from "dotenv";
 dotenv.config();
+
+// Import the database initialization (db.js) to set up the SQLite database.
+import './db.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -45,10 +45,8 @@ app.use('/api/refreshToken', refreshTokenRouter);  // Token refresh must be publ
 app.use('/api/logout', logoutRouter);
 app.use('/api/account', accountRoute);
 
-
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
 
 export default app;
