@@ -47,7 +47,7 @@ export default function SupportBot() {
 
     async function fetchGeminiResponse(userMessage) {
         try {
-            const prompt = `You are a friendly AI assistant helping parents of children on the spectrum. Provide supportive and informative responses. User's question: "${userMessage}"`;
+            const prompt = `You are a friendly AI assistant helping parents of children on the spectrum. Provide supportive and informative responses please keep answer short no more than five sentences. User's question: "${userMessage}"`;
 
             console.log("Sending message to AI:", userMessage);
 
