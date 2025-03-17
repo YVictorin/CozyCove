@@ -4,7 +4,6 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import corsOptions from "./src/config/security/corsOptions.js";
 import credentials from "./src/middleware/credentials.js";
-import allowedOrigins from "./src/config/security/allowedOrigins.js";
 
 import homeRouter from "./src/routes/home.js";
 import loginRoute from "./src/routes/login.js";
@@ -22,32 +21,8 @@ import './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Handle CORS preflight for all routes
-app.options('*', (req, res) => {
-    const origin = req.headers.origin;
-    
-    if (allowedOrigins.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
-      res.setHeader('Access-Control-Allow-Credentials', 'true');
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-      res.status(200).send();
-    } else {
-      res.status(403).send();
-    }
-  });
-  
-  // For non-OPTIONS requests
-  app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    
-    if (allowedOrigins.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
-      res.setHeader('Access-Control-Allow-Credentials', 'true');
-    }
-    
-    next();
-  });
+app.use(credentials); // Handles preflight 
+app.use(cors(corsOptions)); //Only runs CORS once
 
 app.use(cookieParser());
 app.use(express.json());
