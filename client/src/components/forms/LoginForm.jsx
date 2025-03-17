@@ -34,31 +34,19 @@ function LoginForm() {
   };
 
   return (
-    <>
-       {/* Top Banner */}
-       <div className="bg-[#F4F3FF] py-3 px-6 text-center text-sm">
-          <span className="text-gray-600">
-            Don't have an account yet?
-          </span>
-          <NavLink to="/register" className="ml-3 text-[#6366F1] font-medium hover:text-[#4F46E5] transition-colors">
-            Create an account
-          </NavLink>
-        </div>
-
+    <>     
 
       {/* Form Content */}
-      <div className="min-h-screen flex">
+      <div className="min-h-screen flex ">
       {/* Left Panel */}
       <div className="hidden lg:flex lg:w-[480px] bg-[#1C1B24] text-white p-12 flex-col">
         <div className="mb-20 flex flex-col relative">
-          <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
-            <text x="0" y="30" fill="white" className="text-2xl font-bold">Cozy Cove</text>
-          </svg>
+    
           <hr  className='w-[250%] absolute right-[-15%] top-20 opacity-15'/>
 
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 mt-16">
           <h1 className="text-5xl font-bold leading-tight mb-6">
             Welcome back to your account.
           </h1>
@@ -69,10 +57,13 @@ function LoginForm() {
 
         <div className="bg-[#2A2937] p-6 rounded-xl">
           <p className="text-gray-400 text-sm">
-            <span className="font-semibold text-gray-300">Need help?</span> If you're having trouble signing in, please contact our support team for assistance.
+            <span className="font-semibold text-gray-300 ">  <NavLink className="hover:text-[#4F46E5] transition-colors" to="/register">Don't have an account yet?</NavLink>
+            </span> If you're having trouble signing in, please create an account first
           </p>
         </div>
       </div>
+
+      
 
       
 

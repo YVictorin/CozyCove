@@ -1,7 +1,7 @@
 
-import  { Button }  from "react-bootstrap"
+import { Button }  from "react-bootstrap"
 
-export default function MenuScreen({ onRoutineClick, onBadgesClick, onSafeSpaceClick }) {
+export default function MenuScreen({ onRoutineClick, onBadgesClick }) {
   return (
     <div className="flex flex-col items-center">
       <h2 className="text-4xl font-bold text-blue-600 mb-4">Routine Rush</h2>
@@ -28,7 +28,7 @@ export default function MenuScreen({ onRoutineClick, onBadgesClick, onSafeSpaceC
         </Button>
       </div>
 
-      <div className="mt-8 flex gap-4">
+      {/* <div className="mt-8 flex gap-4">
         <Button 
           variant="outline" 
           onClick={onBadgesClick}
@@ -37,7 +37,7 @@ export default function MenuScreen({ onRoutineClick, onBadgesClick, onSafeSpaceC
           View Badges
         </Button>
        
-      </div>
+      </div> */}
     </div>
   )
 }

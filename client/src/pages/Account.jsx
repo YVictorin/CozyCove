@@ -71,7 +71,7 @@ const Account = () => {
   };
 
   return (
-    <div className="flex min-h-screen" style={{ backgroundColor: "#E3FFFF" }}>
+    <div className="flex min-h-screen pt-32  bg-gray-50">
       <Sidebar 
         user={user}
         activeTab={activeTab}

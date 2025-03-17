@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
  
 const Sidebar = ({ user, activeTab, setActiveTab }) => {
   return (
-    <div className="w-64 p-6 shadow-lg rounded-r-3xl" style={{ backgroundColor: "#C7FCFB" }}>
+    <div className="w-64 p-6 shadow-xl rounded-r-3xl  bg-gray-50">
       <div className="flex flex-col items-center mb-8">
         <img 
           src={user?.avatar} 

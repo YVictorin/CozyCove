@@ -1,53 +1,54 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import GameCard from "../components/GameCard";
-import Game from "../components/game/MainGame";
-import { ChevronLeft } from "lucide-react";
+import Card from "../components/Card";
+import PUZZLETTA from "/src/assets/images/puzzletta.png";
+import { useRef } from "react";
 
 export default function GamesPage() {
-  const [showGame, setShowGame] = useState(false);
+    const gamesRef = useRef(null);
 
-    const handleBackClick = () => {
-        setShowGame(false);
+    const scrollToGames = () => {
+        gamesRef.current?.scrollIntoView({ behavior: "smooth" });
     };
-
-      const handleRoutineGameClick = () => {
-    setShowGame(true);
-  };
 
     return (
         <>
-          <div className="w-screen h-screen flex flex-col items-center justify-center gap-6">
-              {showGame ? (
-                  <>
-                  <h2 className="text-4xl font-bold">Cozy Routines</h2>
+            <div className="pt-26 min-h-screen flex flex-col items-center justify-center bg-[#D3FFFE] pb-26">
+                
+                {/* Card and Image Container */}
+                <div className="scale-90 flex flex-col lg:flex-row items-center justify-center w-full p-6 mb-64">
+                    <Card 
+                        title="PLAY" 
+                        descriptionTop="Get ready for fun with routines that help children thrive! Play our coloring games, emotion-drawing activities, or take our kid-friendly quizzes."
+                        descriptionBottom="Earn special badges for participation and 5-day streaks. Have fun and enjoy all of the games." 
+                        buttonLeftText="START PLAYING"
+                        onButtonLeftClick={scrollToGames}
+                    />
 
-                      <div className="flex flex-col items-center gap-4">
-                          <div className="w-full">
-                              <button onClick={handleBackClick} className="cursor-pointer flex gap-5 px-4 py-2 bg-blue-500 text-white rounded-3xl w-40 justify-self-start">
-                                  <ChevronLeft/>
-                                  Back
-                              </button>
-                          </div>
-                        
-                          <Game />
-                      </div>
-                  </>
-                ) : (
-                    <>
-                    <h2 className="text-4xl font-bold">Online Games</h2>
-                    <div className="flex gap-6">
-                    <GameCard onClick={handleRoutineGameClick} title="Cozy Routines" />
-                    <Link to="/games/emotions-artist">
-                        <GameCard title="Emotions Artist" />
-                   </Link>
+                    {/* Centered Image */}
+                    <div className="relative right-32 scale-90">
+                        <img src={PUZZLETTA} alt="Puzzletta" className="max-w-xs md:max-w-sm lg:max-w-md" />
                     </div>
+                </div>
 
-                    </>
-               
-                )}
-        </div>         
+                {/* Add an anchor point above the actual games section */}
+                <div ref={gamesRef} className="w-0 h-0"></div>
+
+                {/* Games Section */}
+                <div className="w-full flex flex-col items-center justify-center gap-6 mt-16 mb-64">
+                    <h2 className="text-4xl font-bold">Online Games</h2>
+                    
+                    <div className="flex flex-wrap gap-6 justify-center">
+                        <Link to="/games/cozy-routines">
+                            <GameCard title="Cozy Routines" />
+                        </Link>
+
+                        <Link to="/games/emotions-artist">
+                            <GameCard title="Emotions Artist" />
+                        </Link>
+                    </div>
+                </div>
+            </div>
         </>
-      
     );
 }

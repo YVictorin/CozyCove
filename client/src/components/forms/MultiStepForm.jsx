@@ -124,7 +124,7 @@ const MultiStepForm = () => {
     }, [currentStep]);
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 mt-20">
             {/* Header */}
             <div className="w-full max-w-3xl mb-4 px-4 flex items-center justify-between">
                 <div className="">
@@ -152,7 +152,8 @@ const MultiStepForm = () => {
                 {/* Step 1: Type of Service */}
                 <div className={`transition-all duration-300 ${animation} ${currentStep === 1 ? 'block' : 'hidden'}`}>
                     <div className="p-8">
-                        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">What services do you need?</h2>
+                        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">  How can we help your family today?
+                        </h2>
                         <p className="text-center text-gray-500 mb-8">Select the options that best match your needs</p>
 
                         <div className="grid grid-cols-2 gap-6 mb-8">
