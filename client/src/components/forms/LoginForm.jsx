@@ -6,6 +6,7 @@ import { ArrowRight, Eye, EyeOff, Facebook, Mail, ArrowLeft } from 'lucide-react
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
+import axios from '../../api/axios';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,11 +23,10 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('https://cozycove.vercel.app/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await axios.post('https://cozycove.vercel.app/api/login', {
         body: JSON.stringify(data),
       });
+      
       const result = await response.json();
       
       if (!response.ok) {

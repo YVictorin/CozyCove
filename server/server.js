@@ -24,10 +24,7 @@ import './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-//handles checking of options before CORS and makes sure there in the client's fetch credentials: true is required
-app.use(credentials);
-
-// CORS would throw an error without the line above
+app.use(credentials);       // Handle CORS preflight requests - this middleware must run before cors()
 app.use(cors(corsOptions)); 
 
 //middleware for cookies
