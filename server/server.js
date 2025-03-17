@@ -51,7 +51,7 @@ app.use('/api/logout', logoutRouter);
 app.use('/api/account', accountRoute);
 
 // // Preflight cache configuration
-// app.options('*', cors(corsOptions));
+app.options('*', cors());
 
 
 app.listen(PORT, () => {
