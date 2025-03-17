@@ -25,6 +25,12 @@
     'https://cozycove-git-yvpages-yonjous-projects.vercel.app/api/register',
     'https://cozycove-git-yvpages-yonjous-projects.vercel.app/api/login',
 
+    'https://cozycove-git-yvpages-yonjous-projects.vercel.app/register',
+    'https://lowes-capstone-server-git-yvpages-yonjous-projects.vercel.app',
+    'https://lowes-capstone-server-git-yvpages-yonjous-projects.vercel.app/api',
+    'https://lowes-capstone-server-git-yvpages-yonjous-projects.vercel.app/api/register',
+    'https://lowes-capstone-server-git-yvpages-yonjous-projects.vercel.app/api/login'
+
 
 ]
 

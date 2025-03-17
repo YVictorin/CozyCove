@@ -36,25 +36,15 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 
-
-app.options('*', cors(corsOptions));  // Allows preflight checks
-
-
 // Public routes below (no auth required)
 app.use('/api/home', homeRouter);
 
 //Routes needing Joi validation
 // app.use('/api/login', validateRequest(loginSchema), loginRoute);
 // app.use('/api/register', validateRequest(registerSchema), registerRoute);
-app.use('/api/login',  loginRoute);
 
-app.use('/api/register', (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    next();
-  }, registerRoute);
-  
+app.use('/api/login',  loginRoute);
+app.use('/api/register', registerRoute);
 
 // Token refresh must be public
 app.use('/api/refreshToken', refreshTokenRouter);  
