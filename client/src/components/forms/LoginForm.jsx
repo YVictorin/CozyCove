@@ -23,7 +23,7 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-     const response = await fetch('http://localhost:3001/api/login', {
+     const response = await fetch('https://cozycove-server-git-yvpages-yonjous-projects.vercel.app/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',  
