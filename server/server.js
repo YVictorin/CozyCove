@@ -2,8 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from "cors";
-import corsOptions from "./src/config/security/corsOptions.js";
-import credentials from "./src/middleware/credentials.js";
+import allowedOrigins from "./src/config/security/allowedOrigins.js";
 
 import homeRouter from "./src/routes/home.js";
 import loginRoute from "./src/routes/login.js";
@@ -21,10 +20,33 @@ import './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(credentials); // Handles preflight 
-app.use(cors(corsOptions)); //Only runs CORS once
+// Custom CORS middleware
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  }
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  
+  next();
+});
 
-app.use(cors())
+// Debug route to verify CORS configuration
+app.get('/api/cors-test', (req, res) => {
+  res.json({
+    message: 'CORS is configured correctly!',
+    origin: req.headers.origin,
+    allowedOrigins: allowedOrigins
+  });
+});
 
 app.use(cookieParser());
 app.use(express.json());
