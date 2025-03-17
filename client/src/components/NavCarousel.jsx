@@ -1,48 +1,37 @@
 import React, { useState } from 'react';
+import explore from '../assets/images/explore.png';
+import games from '../assets/images/games.png';
+import products from '../assets/images/products.png';
 
 const NavCarousel = () => {
-    // Placeholder images - in a real implementation, you would import these
-    // Note: I'm using placeholder API for demonstration
-    const characterImage = "/api/placeholder/120/120";
-    const remoteImage = "/api/placeholder/120/120";
-    const duckImage = "/api/placeholder/120/120";
-    const gameImage = "/api/placeholder/120/120"; // New image for the games card
-
     // Cards data array
     const cards = [
         {
             id: 1,
-            image: characterImage,
-            alt: "Character",
-            title: "Characters",
-            description: "Learn more about your favourite characters from the wide world of Bluey!",
+            image: explore,
+            alt: "explore",
+            title: "Explore",
+            description: "Learn more about what it means to have autism and how you can snap in your own puzzle piece",
         },
         {
             id: 2,
-            image: remoteImage,
-            alt: "Remote",
-            title: "Watch",
-            description: "Learn more about every episode and relive your favourite moments with clips, fun-facts, related!",
+            image: games,
+            alt: "games",
+            title: "Games",
+            description: "Complete your favorite routine or draw your favorite emotion!",
         },
         {
             id: 3,
-            image: duckImage,
-            alt: "Duck craft",
-            title: "Make",
-            description: "Recipes, crafts and downloadable activities for the whole family to enjoy together.",
-        },
-        {
-            id: 4,
-            image: gameImage,
-            alt: "Games",
-            title: "Games",
-            description: "Fun interactive games featuring your favorite Bluey characters for endless entertainment!",
+            image: products,
+            alt: "products",
+            title: "Products",
+            description: "crafts and diy activities for the whole family to enjoy together.",
         }
     ];
 
     // State to keep track of which cards are visible
     const [startIndex, setStartIndex] = useState(0);
-    const cardsToShow = 3; // Number of cards to display at once
+    const cardsToShow = 2; // Number of cards to display at once
 
     // Navigation functions
     const handlePrevious = () => {
@@ -86,11 +75,14 @@ const NavCarousel = () => {
                 <div className="flex-grow overflow-hidden">
                     <div className="flex flex-col md:flex-row gap-6">
                         {visibleCards().map((card) => (
-                            <div key={card.id} className="bg-[#ffffff] rounded-xl overflow-hidden flex-1 mt-16">
-                                <div className="p-6 flex flex-col items-center">
-                                    <div className="mb-4 -mt-24 relative z-10">
-                                        <img src={card.image} alt={card.alt} className="w-32 h-32" />
-                                    </div>
+                            <div key={card.id} className="relative flex flex-col items-center mt-16">
+                                {/* Floating image that sits above the card */}
+                                <div className="absolute z-20 -top-16">
+                                    <img src={card.image} alt={card.alt} className="w-32 h-32 object-contain" />
+                                </div>
+
+                                {/* The actual card */}
+                                <div className="bg-white rounded-xl w-full pt-20 pb-6 px-6 flex flex-col items-center">
                                     <h2 className="text-3xl font-bold text-[#33a5ce] mb-3">{card.title}</h2>
                                     <p className="text-[#386169] text-center mb-6">{card.description}</p>
                                     <button className="relative overflow-hidden bg-[#33a5ce] text-white font-extrabold text-lg py-3 px-12 rounded-full mb-3 transform transition-all duration-300 hover:scale-105 group">

@@ -9,7 +9,7 @@ import NavCarousel from '../components/NavCarousel';
 const HeroSection = () => {
     return (
         <div className="relative w-full min-h-screen overflow-hidden">
-            {/* Content container with the welcoming text and character images */}
+            {/* container with mission statement and and character image */}
             <div className="relative z-10 flex justify-center items-center w-full h-full px-4 py-16 mt-32">
                 <div className="flex flex-col md:flex-row items-center max-w-6xl mx-auto">
                     {/* Text bubble */}
@@ -38,7 +38,7 @@ const HeroSection = () => {
                         </p>
                     </div>
 
-                    {/* Snappy image positioned to touch the right corner of the text bubble */}
+                    {/* Snappy image positioning*/}
                     <div className="relative h-64 md:h-80 w-64 md:w-80 -ml-16 md:-ml-16 mt-16 md:mt-8">
                         <img
                             src={snappy}
@@ -56,7 +56,7 @@ export default function Home() {
     return (
         <div className="relative flex flex-col min-h-screen bg-gradient-to-b from-[#c7fcfb] via-[#d3fffe] via-[#d3fffe] to-[#fbedca]">
 
-            {/* Background image positioned at the page level to extend behind navbar */}
+            {/* Background image positioning extends behind navbar */}
             <div className="absolute left-0 right-0 h-[40%] top-0 z-0">
                 <img
                     src={cove1}
@@ -65,12 +65,12 @@ export default function Home() {
                 />
             </div>
 
-            {/* Navbar with high z-index to appear above background */}
+            {/* Navbar */}
             <nav className="relative z-50">
                 {/* Your navbar content */}
             </nav>
 
-            {/* Hero section takes remaining space, without its own background */}
+            {/* Hero section */}
             <div>
                 <HeroSection />
             </div>
