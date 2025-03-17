@@ -14,6 +14,9 @@
     'http://localhost:5174/login',
     'http://localhost:5175/login',
 
+    'https://cozycove.vercel.app/',
+    'https://cozycove.vercel.app/api'
+
 ]
 
 export default allowedOrigins
