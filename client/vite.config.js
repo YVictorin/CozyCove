@@ -16,7 +16,6 @@ export default defineConfig({
         target: 'https://cozycove-server.vercel.app',
         changeOrigin: true,
         secure: true, 
-        rewrite: (path) => path.replace(/^\/api/, '') // Adjust if needed
       }
     }
   }

@@ -21,15 +21,19 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Import the database initialization (db.js) to set up the SQLite database.
-import './db.js';
+import './db.js'
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+// app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
+
+app.options('*', cors(), (req, res) => {
+    res.sendStatus(204);
+});
 
 // Public routes below (no auth required)
 app.use('/api/home', homeRouter);
@@ -50,8 +54,7 @@ app.use('/api/refreshToken', refreshTokenRouter);
 app.use('/api/logout', logoutRouter);
 app.use('/api/account', accountRoute);
 
-// // Preflight cache configuration
-app.options('*', cors());
+
 
 
 app.listen(PORT, () => {
