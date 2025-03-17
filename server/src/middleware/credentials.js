@@ -1,4 +1,4 @@
-import allowedOrigins from '../config/security/allowedOrigins.ja';
+import allowedOrigins from '../config/security/allowedOrigins.js';
 
 const credentials = (req, res, next) => {
     const origin = req.headers.origin;
