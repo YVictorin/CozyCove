@@ -1,12 +1,14 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import cors from "cors";
 
-import corsOptions from "./src/config/security/allowedOrigins.js";
+import cors from "cors";
+import corsOptions from "./src/config/security/corsOptions.js";
 import credentials from "./src/middleware/credentials.js";
+
 import verifyJWT from "./src/middleware/verifyJWT.js";
 import refreshTokenRouter from "./src/routes/refreshToken.js";
+
 import validateRequest from "./src/middleware/validateRequest.js";
 import { loginSchema, registerSchema } from "./src/schemas/authSchemas.js";
 
