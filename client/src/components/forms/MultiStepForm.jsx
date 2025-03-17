@@ -109,7 +109,6 @@ const MultiStepForm = () => {
       const response = await fetch('https://cozycove-server.vercel.app/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',  
         body: JSON.stringify(formData),
       });
       const data = await response.json();
