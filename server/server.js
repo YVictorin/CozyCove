@@ -26,7 +26,9 @@ import './db.js'
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// app.use(cors());
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions))
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
