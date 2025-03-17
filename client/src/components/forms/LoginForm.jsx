@@ -26,7 +26,6 @@ function LoginForm() {
      const response = await fetch('https://cozycove-server.vercel.app/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',  
         body: JSON.stringify(data),
       });
 
