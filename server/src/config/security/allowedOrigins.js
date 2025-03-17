@@ -15,7 +15,10 @@
     'http://localhost:5175/login',
 
     'https://cozycove.vercel.app/',
-    'https://cozycove.vercel.app/api'
+    'https://cozycove.vercel.app/api',
+
+    'https://cozycove-git-yvpages-yonjous-projects.vercel.app/register',
+    'https://cozycove-git-yvpages-yonjous-projects.vercel.app/'
 
 ]
 
