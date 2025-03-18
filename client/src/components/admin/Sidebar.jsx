@@ -5,9 +5,7 @@ export default function Sidebar({ activeTab, onTabChange }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const menuItems = [
-    { label: "Dashboard" },
     { label: "Users" },
-    { label: "Sensory" },
   ];
 
   const handleMenuItemClick = (label) => {

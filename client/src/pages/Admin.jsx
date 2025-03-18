@@ -3,7 +3,7 @@ import Sidebar from "../components/admin/Sidebar";
 import MainContent from "../components/admin/MainContent";
 
 export default function Admin() {
-  const [activeTab, setActiveTab] = useState("Dashboard");
+  const [activeTab, setActiveTab] = useState("Users");
   
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);

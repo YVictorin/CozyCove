@@ -22,10 +22,8 @@ const ProfileSection = ({ user }) => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
-            { label: 'Full Name', value: user.name, type: 'text' },
+            { label: 'Name', value: user.name, type: 'text' },
             { label: 'Email Address', value: user.email, type: 'email' },
-            { label: 'Phone Number', value: user.phone, type: 'tel' },
-            { label: 'Location', value: user.location, type: 'text' }
           ].map((field, index) => (
             <div key={index}>
               <label 

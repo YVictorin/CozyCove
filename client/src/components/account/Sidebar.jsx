@@ -17,7 +17,7 @@ const Sidebar = ({ user, activeTab, setActiveTab }) => {
       
       <nav>
         <ul className='flex whitespace-nowrap flex-col'>
-          {['profile', 'saved'].map((tab) => (
+          {['profile'].map((tab) => (
             <li key={tab} className="mb-3">
               <button 
                 onClick={() => setActiveTab(tab)}
