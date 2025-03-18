@@ -23,7 +23,7 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('/api/login', data, {
+      const response = await axios.post('api/login', data, {
         withCredentials: true
       });
 
