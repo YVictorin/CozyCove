@@ -22,9 +22,12 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
-    origin: 'https://cozy-cove-git-yvpages-austins-projects-977ccb2e.vercel.app', // Specific client origin
-    credentials: true, // Allow credentials (cookies, etc.)
-  };
+    origin: 'https://cozy-cove-git-yvpages-austins-projects-977ccb2e.vercel.app',  // Vercel frontend
+    credentials: true,  // Required for cookies to work
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+};
+
 app.use(cors(corsOptions)); 
 
 app.use(cookieParser());

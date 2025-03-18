@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js --inspect",
+    "start": "nodemon server.js",
     "cypress": "cypress open",
     "test": "vitest --run",
     "debug": "node --watch --inspect-brk server.js"
