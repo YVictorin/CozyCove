@@ -22,7 +22,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
-    origin: 'https://cozy-cove-play.vercel.app', // Specific client origin
+    origin: 'https://cozy-cove-git-yvpages-austins-projects-977ccb2e.vercel.app', // Specific client origin
     credentials: true, // Allow credentials (cookies, etc.)
   };
 app.use(cors(corsOptions)); 
