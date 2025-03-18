@@ -21,8 +21,8 @@ import './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(credentials); // Handles preflight 
-app.use(cors()); //Only runs CORS once
+// app.use(credentials); // Handles preflight 
+app.use(cors()); 
 
 app.use(cookieParser());
 app.use(express.json());
