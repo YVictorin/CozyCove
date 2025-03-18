@@ -2,7 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from "cors";
-import corsOptions from "./src/config/security/corsOptions.js";
+// import corsOptions from "./src/config/security/corsOptions.js";
 import credentials from "./src/middleware/credentials.js";
 
 import homeRouter from "./src/routes/home.js";
@@ -21,8 +21,11 @@ import './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// app.use(credentials); // Handles preflight 
-app.use(cors()); 
+const corsOptions = {
+    origin: 'https://cozy-cove-play.vercel.app', // Specific client origin
+    credentials: true, // Allow credentials (cookies, etc.)
+  };
+app.use(cors(corsOptions)); 
 
 app.use(cookieParser());
 app.use(express.json());

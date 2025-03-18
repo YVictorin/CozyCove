@@ -11,8 +11,8 @@ import axios from '../../api/axios';
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   // const { auth, setAuth } = useAuth() || {};
-  const { auth } = useAuth() || {}; // We only use auth for now; setAuth is commented out.
-  const axiosPrivate = useAxiosPrivate();
+  // const { auth } = useAuth() || {}; // We only use auth for now; setAuth is commented out.
+  // const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -35,11 +35,12 @@ function LoginForm() {
       // });
 
       const result = await response.data;
+      console.log(result);
       
-      if (!response.ok) {
-        console.error(result.error || 'Login failed.');
-        return;
-      }
+      // if (!response.ok) {
+      //   console.error(result.error || 'Login failed.');
+      //   return;
+      // }
       
       // setAuth({
       //   email: result.user.email,
