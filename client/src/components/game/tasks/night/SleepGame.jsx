@@ -8,6 +8,7 @@ export default function SleepGame({ onCompleteTask }) {
   const handleLightSwitch = () => {
     // Animate lights turning off
     const gameArea = gameAreaRef.current
+    
     if (gameArea) {
       gameArea.classList.add("transition-all", "duration-1000", "bg-black")
       setTimeout(() => {

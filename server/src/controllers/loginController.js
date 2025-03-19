@@ -8,6 +8,7 @@ export const loginUser = async (req, res) => {
     console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
     const { email, password } = req.body;
+        
     if (!email || !password) {
       return res.status(400).json({ error: "Email and password are required." });
     }
@@ -35,10 +36,11 @@ export const loginUser = async (req, res) => {
     
     // Set the token in an HTTP‑only cookie
     res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // set secure flag in production
+      httpOnly: false,
       maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
+      sameSite: "none" // Allows cross-site cookies
     });
+    res.header('Authorization', `Bearer ${token}`);
     
     res.json({
       message: "Logged in successfully",
