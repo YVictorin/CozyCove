@@ -1,6 +1,3 @@
-
-home.jsx
-
 import React from 'react';
 import cove1 from '../assets/images/cove1.svg';
 import snappy from '../assets/images/snappy.png';
