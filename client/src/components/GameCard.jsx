@@ -1,7 +1,6 @@
 export default function GameCard({ title = "Unknown Title" }) {
     return (
-        <div 
-            className="w-[40rem] h-[30rem] rounded-xl overflow-hidden 
+        <div className="w-[40rem] h-[30rem] rounded-xl overflow-hidden 
             transition-transform duration-300 hover:scale-105 cursor-pointer"
         >
             <div className="bg-blue-400 w-full h-[70%]"></div>

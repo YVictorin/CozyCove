@@ -1,48 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import explore from '../assets/images/explore.png';
+import games from '../assets/images/games.png';
+import products from '../assets/images/products.png';
 
 const NavCarousel = () => {
-    // Placeholder images - in a real implementation, you would import these
-    // Note: I'm using placeholder API for demonstration
-    const characterImage = "/api/placeholder/120/120";
-    const remoteImage = "/api/placeholder/120/120";
-    const duckImage = "/api/placeholder/120/120";
-    const gameImage = "/api/placeholder/120/120"; // New image for the games card
-
     // Cards data array
     const cards = [
         {
             id: 1,
-            image: characterImage,
-            alt: "Character",
-            title: "Characters",
-            description: "Learn more about your favourite characters from the wide world of Bluey!",
+            image: explore,
+            alt: "explore",
+            title: "Explore",
+            description: "Learn more about what it means to have autism and how you can snap in your own puzzle piece",
         },
         {
             id: 2,
-            image: remoteImage,
-            alt: "Remote",
-            title: "Watch",
-            description: "Learn more about every episode and relive your favourite moments with clips, fun-facts, related!",
+            image: games,
+            alt: "games",
+            title: "Games",
+            description: "Complete your favorite routine or draw your favorite emotion!",
         },
         {
             id: 3,
-            image: duckImage,
-            alt: "Duck craft",
-            title: "Make",
-            description: "Recipes, crafts and downloadable activities for the whole family to enjoy together.",
-        },
-        {
-            id: 4,
-            image: gameImage,
-            alt: "Games",
-            title: "Games",
-            description: "Fun interactive games featuring your favorite Bluey characters for endless entertainment!",
+            image: products,
+            alt: "products",
+            title: "Products",
+            description: "crafts and diy activities for the whole family to enjoy together.",
         }
     ];
 
     // State to keep track of which cards are visible
     const [startIndex, setStartIndex] = useState(0);
-    const cardsToShow = 3; // Number of cards to display at once
+    // State to track screen size
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Determine how many cards to show based on screen size
+    const cardsToShow = isMobile ? 1 : 2;
+
+    // Effect to check screen size and update isMobile state
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth < 768); // 768px is common breakpoint for mobile
+        };
+
+        // Initial check
+        checkScreenSize();
+
+        // Add event listener for resize
+        window.addEventListener('resize', checkScreenSize);
+
+        // Cleanup event listener
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
 
     // Navigation functions
     const handlePrevious = () => {
@@ -70,27 +79,36 @@ const NavCarousel = () => {
     };
 
     return (
-        <div className="bg-transparent min-h-fit flex items-center justify-center p-4 py-8">
+        <div className="bg-transparent min-h-fit flex flex-col items-center justify-center p-4 py-8">
+            {/* Section Header */}
+            <div className="text-center mb-10">
+                <h1 className="text-3xl md:text-4xl font-bold text-[#33a5ce] mb-2">Discover Cozy Cove </h1>
+                <p className="text-[#386169] text-lg max-w-2xl mx-auto">Explore our collection of tools, games, and resources designed to support your journey.</p>
+            </div>
+
             <div className="flex items-center w-full max-w-6xl">
                 {/* Left Navigation Arrow */}
                 <button
                     onClick={handlePrevious}
-                    className="flex-shrink-0 mr-6 bg-[#24b2c2] hover:bg-[#26a5b3] text-white rounded-full w-16 h-16 flex items-center justify-center z-10 transition-colors duration-300"
+                    className="flex-shrink-0 mr-4 md:mr-6 bg-[#24b2c2] hover:bg-[#26a5b3] text-white rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center z-10 transition-colors duration-300"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
 
                 {/* Cards Container */}
                 <div className="flex-grow overflow-hidden">
-                    <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex flex-col md:flex-row md:gap-6">
                         {visibleCards().map((card) => (
-                            <div key={card.id} className="bg-[#ffffff] rounded-xl overflow-hidden flex-1 mt-16">
-                                <div className="p-6 flex flex-col items-center">
-                                    <div className="mb-4 -mt-24 relative z-10">
-                                        <img src={card.image} alt={card.alt} className="w-32 h-32" />
-                                    </div>
+                            <div key={card.id} className="relative flex flex-col items-center mt-16 mx-auto w-full max-w-sm md:max-w-none">
+                                {/* Floating image that sits above the card */}
+                                <div className="absolute z-20 -top-16">
+                                    <img src={card.image} alt={card.alt} className="w-32 h-32 object-contain" />
+                                </div>
+
+                                {/* The actual card */}
+                                <div className="bg-white rounded-xl w-full pt-20 pb-6 px-6 flex flex-col items-center">
                                     <h2 className="text-3xl font-bold text-[#33a5ce] mb-3">{card.title}</h2>
                                     <p className="text-[#386169] text-center mb-6">{card.description}</p>
                                     <button className="relative overflow-hidden bg-[#33a5ce] text-white font-extrabold text-lg py-3 px-12 rounded-full mb-3 transform transition-all duration-300 hover:scale-105 group">
@@ -106,9 +124,9 @@ const NavCarousel = () => {
                 {/* Right Navigation Arrow */}
                 <button
                     onClick={handleNext}
-                    className="flex-shrink-0 ml-6 bg-[#24b2c2] hover:bg-[#26a5b3] text-white rounded-full w-16 h-16 flex items-center justify-center z-10 transition-colors duration-300"
+                    className="flex-shrink-0 ml-4 md:ml-6 bg-[#24b2c2] hover:bg-[#26a5b3] text-white rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center z-10 transition-colors duration-300"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                 </button>

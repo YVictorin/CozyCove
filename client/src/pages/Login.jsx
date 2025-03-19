@@ -2,7 +2,7 @@ import LoginForm from "../components/forms/LoginForm";
 
 const Login = () => {
     return (
-        <div>
+        <div className="mt-16 ">
             <LoginForm/>
         </div>
     );

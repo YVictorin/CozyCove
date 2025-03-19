@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from "react"
+import Plate from "../../../../assets/images/plate.png"
+import Sandwich from "../../../../assets/images/sandwich.svg"
 
 export default function EatLunchGame({ onCompleteTask }) {
   const [sandwichBalance, setSandwichBalance] = useState(50)
@@ -23,29 +25,33 @@ export default function EatLunchGame({ onCompleteTask }) {
           return 50
         }
 
-        // Increase difficulty over time
-        if (Math.random() < 0.05) {
-          setSandwichSpeed((s) => Math.min(s + 0.1, 3))
+      // Increase sandwich speed over time, but cap it at 3
+      if (Math.random() < 0.05) {
+          setSandwichSpeed((speed) => Math.min(speed + 0.1, 3)) // is the current speed
         }
 
         // Randomly change direction
         if (Math.random() < 0.03) {
-          setSandwichDirection((d) => d * -1)
+          setSandwichDirection((direction) => direction * -1)  // is the current direction
         }
 
         return newBalance
       })
     }, 100)
 
-    return () => clearInterval(interval)
+    return () => { 
+      clearInterval(interval)
+    }
   }, [sandwichDirection, sandwichSpeed])
 
+  
   const handleSandwichClick = () => {
     // Reverse direction
     setSandwichDirection((prev) => prev * -1)
 
     // Check if sandwich is balanced for 3 seconds
     if (sandwichBalance > 40 && sandwichBalance < 60) {
+     
       // Start a timer to check if it stays balanced
       const balanceTimer = setTimeout(() => {
         if (sandwichBalance > 40 && sandwichBalance < 60) {
@@ -61,7 +67,7 @@ export default function EatLunchGame({ onCompleteTask }) {
   return (
     <div className="relative w-full h-full">
       <div className="absolute text-center w-full bottom-2 text-purple-600 text-sm">
-        Click to balance the sandwich! Keep it centered for 3 seconds.
+        Keep clicking to balance the sandwich for 3 seconds!
       </div>
 
       {/* Balance meter */}
@@ -75,10 +81,10 @@ export default function EatLunchGame({ onCompleteTask }) {
       {/* Plate */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-40 h-10">
         <img
-          src="/placeholder.svg?height=40&width=160&text=plate"
+          src={Plate}
           alt="Plate"
           className="w-full h-full object-contain"
-          style={{ filter: "hue-rotate(180deg)" }}
+          style={{ filter: "hue-rotate(180deg)", scale: "5" }}
         />
       </div>
 
@@ -93,10 +99,10 @@ export default function EatLunchGame({ onCompleteTask }) {
         onClick={handleSandwichClick}
       >
         <img
-          src="/placeholder.svg?height=80&width=80&text=sandwich"
+          src={Sandwich}
           alt="Sandwich"
           className="w-full h-full object-contain"
-          style={{ filter: "hue-rotate(30deg)" }}
+          style={{scale: "0.7"}}
         />
       </div>
     </div>

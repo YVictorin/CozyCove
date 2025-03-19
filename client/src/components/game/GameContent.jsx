@@ -15,11 +15,17 @@ export default function GameContent() {
   // Update progress when screen or task changes
   useEffect(() => {
     if (currentScreen === "menu") {
-      window.dispatchEvent(new CustomEvent("game-progress", { detail: { progress: 0 } }))
+      window.dispatchEvent(new CustomEvent("game-progress", { 
+        detail: { progress: 0 }
+       }))
+       
     } else if (currentScreen === "routine" && currentRoutine) {
       const routineTasks = routines[currentRoutine]
       const progress = currentTask / routineTasks.length
-      window.dispatchEvent(new CustomEvent("game-progress", { detail: { progress } }))
+      
+      window.dispatchEvent(new CustomEvent("game-progress", { 
+        detail: { progress } 
+      }))
     }
   }, [currentScreen, currentRoutine, currentTask])
 

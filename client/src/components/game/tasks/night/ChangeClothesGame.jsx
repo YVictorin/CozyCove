@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 
 export default function ChangeClothesGame({ onCompleteTask }) {
@@ -55,9 +53,9 @@ export default function ChangeClothesGame({ onCompleteTask }) {
 
   return (
     <div className="relative w-full h-full">
-      <div className="absolute text-center w-full bottom-2 text-indigo-200 text-sm">
+      {/* <div className="absolute text-center w-full bottom-2 text-indigo-200 text-sm">
         Find your pajamas among the clothes!
-      </div>
+      </div> */}
 
       {/* Clothes grid */}
       <div className="grid grid-cols-4 gap-2 p-4 h-full">
@@ -71,7 +69,7 @@ export default function ChangeClothesGame({ onCompleteTask }) {
           >
             {item.flipped ? (
               <img
-                src={`/placeholder.svg?height=48&width=48&text=${item.type}`}
+                src={`/src/assets/images/clothes-${item.type}.svg`}
                 alt={item.type}
                 className="w-12 h-12 object-contain"
                 style={{ filter: `hue-rotate(${item.id * 30}deg)` }}
@@ -89,7 +87,7 @@ export default function ChangeClothesGame({ onCompleteTask }) {
           <div className="bg-indigo-800 p-4 rounded-lg shadow-md text-center">
             <p className="text-indigo-100 font-bold text-xl mb-2">Pajamas Found!</p>
             <img
-              src="/placeholder.svg?height=64&width=64&text=pajamas"
+              src="/src/assets/images/pajamas.png"
               alt="Pajamas"
               className="w-16 h-16 mx-auto my-2"
               style={{ filter: "hue-rotate(200deg)" }}
