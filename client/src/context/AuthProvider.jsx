@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
   // Persist auth state changes in localStorage
   useEffect(() => {
     if (auth?.email) {
-      localStorage.setItem("auth", JSON.stringify({ email: auth.email }));
+      localStorage.setItem("auth", JSON.stringify({ email: auth.email, accessToken: auth?.accessToken }));
     } else {
       localStorage.removeItem("auth");
     }

@@ -23,7 +23,10 @@ const Account = () => {
 
         const response = await fetch('http://localhost:3001/api/account', {
           method: 'POST',  // Using POST as per your server implementation
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Authorization': `Bearer ${auth.accessToken}`,
+            'Content-Type': 'application/json' 
+          },
           body: JSON.stringify({ email: auth.email }),
           credentials: 'include'  // Include cookies
 
@@ -42,7 +45,7 @@ const Account = () => {
   }, []);
 
   if (!user) {
-    return <div>Loading user information...</div>;
+    return <div>Token has expired, You must login once again</div>;
   }
 
   // Sample DIY suggestions data

@@ -8,12 +8,16 @@ export default function GamesPage() {
     const gamesRef = useRef(null);
 
     const scrollToGames = () => {
-        gamesRef.current?.scrollIntoView({ behavior: "smooth" });
+        gamesRef.current?.scrollIntoView({ 
+            behavior: "smooth",
+            block: "center" // This will position the element in the center of the viewport
+        });
     };
 
     return (
         <>
-            <div className="pt-26 min-h-screen flex flex-col items-center justify-center bg-[#D3FFFE] pb-26">
+            <div className="pt-26 min-h-screen flex flex-col items-center justify-center bg-[#D3FFFE] pb-26 bg-gradient-to-b from-[#C7FCFB] to-[#FBEDCA]" 
+           >
                 
                 {/* Card and Image Container */}
                 <div className="scale-90 flex flex-col lg:flex-row items-center justify-center w-full p-6 mb-64">
@@ -31,12 +35,9 @@ export default function GamesPage() {
                     </div>
                 </div>
 
-                {/* Add an anchor point above the actual games section */}
-                <div ref={gamesRef} className="w-0 h-0"></div>
-
-                {/* Games Section */}
-                <div className="w-full flex flex-col items-center justify-center gap-6 mt-16 mb-64">
-                    <h2 className="text-4xl font-bold">Online Games</h2>
+                {/* Games Section - Move the ref here instead of having a separate div */}
+                <div ref={gamesRef} className="w-full flex flex-col items-center justify-center gap-6 mb-64 ">
+                    <h2 className="text-4xl font-bold" style={{color: "rgb(36, 178, 194)"}}>Online Games</h2>
                     
                     <div className="flex flex-wrap gap-6 justify-center">
                         <Link to="/games/cozy-routines">

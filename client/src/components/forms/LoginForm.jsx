@@ -43,7 +43,7 @@ function LoginForm() {
       
 
       // navigate(from, { replace: true });
-      navigate("/");
+            navigate("/");
 
     } catch (err) {
       console.error('Error during login:', err);

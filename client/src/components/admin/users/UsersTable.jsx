@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../../api/axios';
 import ConfirmationModal from './ConfirmationModal';
+import useAuth from '../../../hooks/useAuth';
 
 export default function UsersTable({ searchQuery, activeFilter }) {
   const [users, setUsers] = useState([]);
@@ -9,6 +10,7 @@ export default function UsersTable({ searchQuery, activeFilter }) {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [actionInProgress, setActionInProgress] = useState(false);
   const [actionMessage, setActionMessage] = useState(null);
+  const { auth } = useAuth();
 
   const [modalConfig, setModalConfig] = useState({
     isOpen: false,
@@ -24,7 +26,12 @@ export default function UsersTable({ searchQuery, activeFilter }) {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/users');
+      const response = await axios.get('/api/users', {
+        'Authorization': `Bearer ${auth.accessToken}`,
+        'Content-Type': 'application/json',
+        withCredentials: true,
+      });
+
       // Access the users array inside the response object
       setUsers(response.data.users);
       setError(null);

@@ -58,10 +58,11 @@ app.use('/api/refreshToken', refreshTokenRouter);
 
 // Special route for account
 // Note: Make this route handle both auth and non-auth scenarios
-app.use('/api/account', accountRoute);
+// app.use('/api/account', accountRoute);
 
 // Protected routes (require JWT verification)
-app.use('/api/users', verifyJWT, adminRouter);
+app.use('/api/account', verifyJWT, accountRoute);
+app.use('/api/users', adminRouter);
 app.use('/api/admin', verifyJWT, adminRouter);
 app.use('/api/logout', verifyJWT, logoutRouter);
 
