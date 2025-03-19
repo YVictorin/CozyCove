@@ -5,6 +5,7 @@ import ProfileSection from '../components/account/ProfileSection';
 import SavedBoxes from '../components/account/SavedBoxes';
 import Activities from '../components/account/Activities';
 import { useBadges } from '../hooks/useBadges'; // Import the badge hook
+import  useAuth  from '../hooks/useAuth'; // Import the auth hook
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -12,12 +13,20 @@ const Account = () => {
   const { addBadge } = useBadges();
   const [user, setUser] = useState(null);
 
+  const { auth } = useAuth();
+  
+
   // Fetch user information from the database (via an API endpoint)
   useEffect(() => {
     const fetchUser = async () => {
       try {
+
         const response = await fetch('http://localhost:3001/api/account', {
-          headers: { 'Content-Type': 'application/json' }
+          method: 'POST',  // Using POST as per your server implementation
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: auth.email }),
+          credentials: 'include'  // Include cookies
+
         });
         if (!response.ok) {
           throw new Error('Failed to fetch user info');
@@ -98,8 +107,8 @@ const Account = () => {
             <ProfileSection user={user} />
           </>
         )}
-        {activeTab === 'saved' && <SavedBoxes boxes={savedBoxes} onRemove={removeFavorite} />}
-        {activeTab === 'activities' && <Activities />}      
+        {/* {activeTab === 'saved' && <SavedBoxes boxes={savedBoxes} onRemove={removeFavorite} />}
+        {activeTab === 'activities' && <Activities />}       */}
       </div>
     </div>
   );

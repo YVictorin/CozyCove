@@ -15,15 +15,18 @@ import allowedOrigins from "./allowedOrigins.js";
 //   };  
 
 
-  const corsOptionDelegate = (req, callback) => {
-    let corsOptions;
-    if(allowedOrigins.indexOf(req.header('Origin')) !== -1) {
-      corsOptions = { origin: true }
-    } else {
-      corsOptions = { origin: false }
-    }
+const corsOptionDelegate = (req, callback) => {
+  const origin = req.header("Origin");
+  console.log("Incoming request from origin:", origin); // Debug log
 
-    callback(null, corsOptions)
+  let corsOptions;
+  if (allowedOrigins.includes(origin)) {
+    corsOptions = { origin: true, credentials: true }; // Allow requests from allowed origins
+  } else {
+    corsOptions = { origin: false }; // Block requests from disallowed origins
   }
+  callback(null, corsOptions);
+};
 
 export default corsOptionDelegate;
+

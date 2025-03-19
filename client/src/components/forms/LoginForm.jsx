@@ -41,7 +41,10 @@ function LoginForm() {
         accessToken: result?.accessToken
       });
       
-      navigate(from, { replace: true });
+
+      // navigate(from, { replace: true });
+      navigate("/");
+
     } catch (err) {
       console.error('Error during login:', err);
     }

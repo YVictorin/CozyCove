@@ -47,16 +47,12 @@ function App() {
         <Route path="explore" element={<Explore />}/>
         <Route path="unauthorized" element={<Unauthorized/>}></Route>
         
-      <Route path="games/emotions-artist" element={<EmotionDrawing/>}></Route>
+        <Route path="games/emotions-artist" element={<EmotionDrawing/>}></Route>
       
         {/* Protected Routes */}
-        <Route path="admin" 
-          element={
-            <RequireAuth allowedRoles={[ROLES.ADMIN]}>
-              <Admin />
-            </RequireAuth>
-            }
-        />
+        <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
+              <Route path="admin" element={<Admin />} />
+        </Route>
       
         <Route path="account" element={<Account />} />
 
