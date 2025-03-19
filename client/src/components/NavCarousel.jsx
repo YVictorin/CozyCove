@@ -15,7 +15,7 @@ const NavCarousel = () => {
             image: characterImage,
             alt: "Character",
             title: "Characters",
-            description: "Learn more about your favourite characters from the wide world of Bluey!",
+            description: "Learn more about your favourite characters from the wide world!",
         },
         {
             id: 2,
