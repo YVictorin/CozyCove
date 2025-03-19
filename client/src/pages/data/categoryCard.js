@@ -39,7 +39,7 @@ const categoryCards = [
   },
   {
     image: transitionToAdulthoodImage,
-    title: 'Transition to Adulthood',
+    title: 'Adulthood',
     description: 'Resource for developing independent living skills',
     link: 'https://researchautism.org/',
   },
