@@ -10,6 +10,7 @@ console.log("🔑 VITE_API_KEY:", process.env.VITE_API_KEY);
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  assetsInclude: ['**/*.JPG'],
   server: {
     proxy: {
       '/api': {
