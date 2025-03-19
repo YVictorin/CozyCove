@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import explore from '../assets/images/explore.png';
 import games from '../assets/images/games.png';
 import products from '../assets/images/products.png';
@@ -31,7 +31,27 @@ const NavCarousel = () => {
 
     // State to keep track of which cards are visible
     const [startIndex, setStartIndex] = useState(0);
-    const cardsToShow = 2; // Number of cards to display at once
+    // State to track screen size
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Determine how many cards to show based on screen size
+    const cardsToShow = isMobile ? 1 : 2;
+
+    // Effect to check screen size and update isMobile state
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth < 768); // 768px is common breakpoint for mobile
+        };
+
+        // Initial check
+        checkScreenSize();
+
+        // Add event listener for resize
+        window.addEventListener('resize', checkScreenSize);
+
+        // Cleanup event listener
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
 
     // Navigation functions
     const handlePrevious = () => {
@@ -59,23 +79,29 @@ const NavCarousel = () => {
     };
 
     return (
-        <div className="bg-transparent min-h-fit flex items-center justify-center p-4 py-8">
+        <div className="bg-transparent min-h-fit flex flex-col items-center justify-center p-4 py-8">
+            {/* Section Header */}
+            <div className="text-center mb-10">
+                <h1 className="text-3xl md:text-4xl font-bold text-[#33a5ce] mb-2">Discover Cozy Cove </h1>
+                <p className="text-[#386169] text-lg max-w-2xl mx-auto">Explore our collection of tools, games, and resources designed to support your journey.</p>
+            </div>
+
             <div className="flex items-center w-full max-w-6xl">
                 {/* Left Navigation Arrow */}
                 <button
                     onClick={handlePrevious}
-                    className="flex-shrink-0 mr-6 bg-[#24b2c2] hover:bg-[#26a5b3] text-white rounded-full w-16 h-16 flex items-center justify-center z-10 transition-colors duration-300"
+                    className="flex-shrink-0 mr-4 md:mr-6 bg-[#24b2c2] hover:bg-[#26a5b3] text-white rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center z-10 transition-colors duration-300"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
 
                 {/* Cards Container */}
                 <div className="flex-grow overflow-hidden">
-                    <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex flex-col md:flex-row md:gap-6">
                         {visibleCards().map((card) => (
-                            <div key={card.id} className="relative flex flex-col items-center mt-16">
+                            <div key={card.id} className="relative flex flex-col items-center mt-16 mx-auto w-full max-w-sm md:max-w-none">
                                 {/* Floating image that sits above the card */}
                                 <div className="absolute z-20 -top-16">
                                     <img src={card.image} alt={card.alt} className="w-32 h-32 object-contain" />
@@ -98,9 +124,9 @@ const NavCarousel = () => {
                 {/* Right Navigation Arrow */}
                 <button
                     onClick={handleNext}
-                    className="flex-shrink-0 ml-6 bg-[#24b2c2] hover:bg-[#26a5b3] text-white rounded-full w-16 h-16 flex items-center justify-center z-10 transition-colors duration-300"
+                    className="flex-shrink-0 ml-4 md:ml-6 bg-[#24b2c2] hover:bg-[#26a5b3] text-white rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center z-10 transition-colors duration-300"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
