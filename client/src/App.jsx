@@ -22,7 +22,9 @@ import Unauthorized from "./components/Unauthorized"
 import Admin from "./pages/Admin";
 import RequireAuth from "./components/RequireAuth";
 
-
+const ROLES = {
+  ADMIN: "test@gmail.com",
+};
 
 
 function App() {
@@ -39,11 +41,18 @@ function App() {
         <Route path="unauthorized" element={<Unauthorized/>}></Route>
         
       <Route path="games/emotions-artist" element={<EmotionDrawing/>}></Route>
-        {/* Protected Routes */}
-          <Route path="admin" element={<Admin/>}/>
       
-          <Route path="account" element={<Account />} />
-=
+        {/* Protected Routes */}
+        <Route path="admin" 
+          element={
+            <RequireAuth allowedRoles={[ROLES.ADMIN]}>
+              <Admin />
+            </RequireAuth>
+            }
+        />
+      
+        <Route path="account" element={<Account />} />
+
         {/* Catch-All Route */}
         <Route path="*" element={<NotFound />} />
       </Route>

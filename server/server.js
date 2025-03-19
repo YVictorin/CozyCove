@@ -3,6 +3,8 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from "cors";
 
+import corsOptionDelegate from "./src/config/security/corsOptions.js";
+
 import corsOptions from "./src/config/security/allowedOrigins.js";
 import credentials from "./src/middleware/credentials.js";
 import verifyJWT from "./src/middleware/verifyJWT.js";
@@ -25,13 +27,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Handles checking of options before CORS and ensures the client's fetch credentials: true is required
-app.use(credentials);
+app.use(credentials)
+// app.use(cors(corsOptions))
 
 // Handle OPTIONS requests explicitly
-app.options('*', (req, res) => {
-  // The credentials middleware already set the headers
-  res.status(200).end();
-});
+// app.options('*', (req, res) => {
+//   // The credentials middleware already set the headers
+//   res.status(200).end();
+// });
 
 // Add debug middleware
 app.use((req, res, next) => {
@@ -53,8 +56,12 @@ app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 
 // Public routes (no auth required)
 app.use('/api/home', homeRouter);
-app.use('/api/login', loginRoute);
-app.use('/api/register', registerRoute);
+
+// app.options('/api/login', cors());
+app.use('/api/login', cors(corsOptionDelegate), loginRoute);
+
+// app.options('/api/register', cors());
+app.use('/api/register', cors(corsOptionDelegate), registerRoute);
 
 // Token refresh (public route)
 app.use('/api/refreshToken', refreshTokenRouter);

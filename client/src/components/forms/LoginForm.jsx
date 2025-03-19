@@ -9,7 +9,7 @@ import useAuth from '../../hooks/useAuth';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const { auth } = useAuth() || {}; 
+  const { setAuth } = useAuth() || {}; 
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,7 +21,7 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('https://cozycove.vercel.app/api/login', {
+      const response = await fetch('http://localhost:3001/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // Include credentials so cookies are sent/stored
@@ -35,11 +35,10 @@ function LoginForm() {
       }
       
       // Optionally update auth state here if needed
-      // setAuth({
-      //   email: result.user.email,
-      //   roles: result.user.roles,
-      //   accessToken: result.accessToken,
-      // });
+      setAuth({
+        email: result.user.email,
+        accessToken: result?.accessToken
+      });
       
       navigate(from, { replace: true });
     } catch (err) {
