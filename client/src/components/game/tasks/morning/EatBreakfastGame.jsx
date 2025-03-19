@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react"
 import Bowl from "../../../../assets/images/bowl.png"
 import Cereal from "../../../../assets/images/cereal.png"
@@ -9,101 +8,96 @@ export default function EatBreakfastGame({ onCompleteTask }) {
   const [cerealCaught, setCerealCaught] = useState(0)
   const [totalCereal] = useState(5)
 
+  // Flag to track if current cereal piece has been counted
+  const [isCounted, setIsCounted] = useState(false)
+  
   // Breakfast game - falling cereal
   useEffect(() => {
     const interval = setInterval(() => {
       setCerealPosition((prev) => {
-        // Move cereal down
-        const newY = prev.y + 2
 
-        // Check if cereal reached bottom
-        if (newY > 75) {
-          // Check if caught in bowl
-          if (Math.abs(prev.x - bowlPosition.x) < 15) {
-            // Caught!
+        const newY = prev.y + 2     // Move cereal down every interval
+        const bottomOfBowlPos = 75
+
+        // Check if cereal reached bottom of the bowl
+        if (newY > bottomOfBowlPos) {
+
+          // Check if caught in bowl and not already counted
+          if (Math.abs(prev.x - bowlPosition.x) < 15 && !isCounted) {
+            setIsCounted(true)
+            
+            // Caught! Increment count
             setCerealCaught((caught) => {
-              if (caught + 1 >= totalCereal) {
+              if (caught >= totalCereal) {
+
                 // Game completed
                 clearInterval(interval)
                 onCompleteTask()
               }
-              return caught + 1
+              return caught + 1;
             })
           }
-
-          // Reset cereal position
+          
+          // Reset cereal position and counting flag
+          setIsCounted(false)
           return {
-            x: Math.random() * 80 + 10,
+            x: Math.random() * 80 + 10, //cereal will fall from a random point left to right
             y: 10,
           }
         }
-
+        
         return { ...prev, y: newY }
       })
     }, 100)
-
-    return () => clearInterval(interval)
-  }, [bowlPosition, totalCereal, onCompleteTask])
-
+    
+    return () => {
+      clearInterval(interval)
+    } 
+  }, [bowlPosition, totalCereal, onCompleteTask, isCounted])
+  
   const moveBowl = (direction) => {
     setBowlPosition((prev) => ({
       ...prev,
-      x: Math.max(10, Math.min(90, prev.x + direction * 10)),
+      x: Math.max(10, Math.min(90, prev.x + direction * 10)), //clamps the bowl's x position to not go offscreen
     }))
   }
-
+  
   return (
-    <div className="relative w-full h-full">
-
+    <div className="relative h-64 w-full bg-blue-50 rounded-lg p-8">
       {/* Progress */}
-      <div className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-white px-3 py-1 rounded-full">
-        <span className="text-blue-600 font-bold">
-          {cerealCaught} / {totalCereal}
-        </span>
+      <div className="absolute top-2 left-2 text-lg font-bold text-blue-600">
+        {cerealCaught} / {totalCereal}
       </div>
-
+      
       {/* Cereal */}
-      <div
+      <img 
+        src={Cereal} 
+        alt="Cereal" 
         className="absolute w-8 h-8"
-        style={{
-          left: `${cerealPosition.x}%`,
-          top: `${cerealPosition.y}%`,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <img
-          src={Cereal}
-          alt="Cereal"
-          className="w-full h-full object-contain"
-        />
-      </div>
-
+        style={{ left: `${cerealPosition.x}%`, top: `${cerealPosition.y}%` }}
+      />
+      
       {/* Bowl */}
-      <div
-        className="absolute w-20 h-12"
-        style={{
-          left: `${bowlPosition.x}%`,
-          top: `${bowlPosition.y}%`,
-          transform: "translate(-50%, -100%)",
-        }}
-      >
-        <img
-          src={Bowl}
-          alt="Bowl"
-          className="w-full h-full object-contain"
-        />
-      </div>
-
+      <img 
+        src={Bowl} 
+        alt="Bowl" 
+        className="absolute w-16 h-10"
+        style={{ left: `${bowlPosition.x}%`, top: `${bowlPosition.y - 15}%` }}
+      />
+      
       {/* Controls */}
-      <div className="absolute bottom-[2%] left-0 right-0 flex justify-center gap-4">
-        <button className="bg-blue-500 text-white px-4 py-2 mr-15 rounded-full" onClick={() => moveBowl(-1)}>
+      <div className="absolute bottom-0 left-0 w-full flex justify-center gap-8 mb-2">
+        <button 
+          className="bg-blue-500 text-white px-4 py-2 rounded" 
+          onClick={() => moveBowl(-1)}>
           ←
         </button>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-full" onClick={() => moveBowl(1)}>
+        <button 
+          className="bg-blue-500 text-white px-4 py-2 rounded" 
+          onClick={() => moveBowl(1)}>
           →
         </button>
       </div>
     </div>
   )
 }
-

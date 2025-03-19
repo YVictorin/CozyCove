@@ -40,7 +40,7 @@ const Footer = () => {
               target="_blank"
               className="social-link"
             >
-              <i className="bx bxl-instagram"></i>
+              <i className="bx bxl-instagram "></i>
             </a>
             <a href="https://www.x.com" target="_blank" className="social-link">
               <i className="bx bxl-twitter"></i>

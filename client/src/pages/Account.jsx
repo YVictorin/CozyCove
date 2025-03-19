@@ -1,26 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/account/Sidebar';
 import DIYSuggestions from '../components/account/DIYSuggestions';
 import ProfileSection from '../components/account/ProfileSection';
 import SavedBoxes from '../components/account/SavedBoxes';
 import Activities from '../components/account/Activities';
 import { useBadges } from '../hooks/useBadges'; // Import the badge hook
+import  useAuth  from '../hooks/useAuth'; // Import the auth hook
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [showDIYSuggestions, setShowDIYSuggestions] = useState(true);
-  const { addBadge } = useBadges(); // Use the badge hook
+  const { addBadge } = useBadges();
+  const [user, setUser] = useState(null);
 
-  // Sample user data
-  const user = {
-    name: "Emma Thompson",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
-    role: "Parent",
-    location: "Brisbane, Australia",
-    email: "emma@example.com",
-    phone: "+61 123 456 789",
-    joinDate: "January 2023"
-  };
+  const { auth } = useAuth();
+  
+
+  // Fetch user information from the database (via an API endpoint)
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+
+        const response = await fetch('http://localhost:3001/api/account', {
+          method: 'POST',  // Using POST as per your server implementation
+          headers: { 
+            'Authorization': `Bearer ${auth.accessToken}`,
+            'Content-Type': 'application/json' 
+          },
+          body: JSON.stringify({ email: auth.email }),
+          credentials: 'include'  // Include cookies
+
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch user info');
+        }
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  if (!user) {
+    return <div>Token has expired, You must login once again</div>;
+  }
 
   // Sample DIY suggestions data
   const diySuggestions = [
@@ -71,7 +97,7 @@ const Account = () => {
   };
 
   return (
-    <div className="flex min-h-screen" style={{ backgroundColor: "#E3FFFF" }}>
+    <div className="flex min-h-screen pt-32  bg-gray-50">
       <Sidebar 
         user={user}
         activeTab={activeTab}
@@ -84,8 +110,8 @@ const Account = () => {
             <ProfileSection user={user} />
           </>
         )}
-        {activeTab === 'saved' && <SavedBoxes boxes={savedBoxes} onRemove={removeFavorite} />}
-        {activeTab === 'activities' && <Activities />}      
+        {/* {activeTab === 'saved' && <SavedBoxes boxes={savedBoxes} onRemove={removeFavorite} />}
+        {activeTab === 'activities' && <Activities />}       */}
       </div>
     </div>
   );
