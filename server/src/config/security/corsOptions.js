@@ -1,22 +1,29 @@
 import allowedOrigins from "./allowedOrigins.js";
 
-const corsOptions = {
-    origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) {
-            return callback(null, true);
-        }
+// Used for security to allow requests only from approved origins.
+// const corsOptions = {
+//     origin: (origin, callback) => {
+//       console.log("Incoming request from origin:", origin);
 
-        if (allowedOrigins.includes(origin)) {
-            callback(null, origin); // Specify the exact origin instead of true
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-    optionsSuccessStatus: 200,
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-};
+//       if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//         callback(null, true);
 
-export default corsOptions;
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//   };  
+
+
+  const corsOptionDelegate = (req, callback) => {
+    let corsOptions;
+    if(allowedOrigins.indexOf(req.header('Origin')) !== -1) {
+      corsOptions = { origin: true }
+    } else {
+      corsOptions = { origin: false }
+    }
+
+    callback(null, corsOptions)
+  }
+
+export default corsOptionDelegate;

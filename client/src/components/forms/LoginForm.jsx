@@ -10,9 +10,8 @@ import axios from '../../api/axios';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  // const { auth, setAuth } = useAuth() || {};
-  // const { auth } = useAuth() || {}; // We only use auth for now; setAuth is commented out.
-  // const axiosPrivate = useAxiosPrivate();
+  const { setAuth } = useAuth() || {}; 
+  const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -23,30 +22,24 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('api/login', data, {
-        withCredentials: true
+      const response = await fetch('http://localhost:3001/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // Include credentials so cookies are sent/stored
+        body: JSON.stringify(data)
       });
-
-      // const response = await fetch('http://localhost:3001/api/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   credentials: 'include',  
-      //   body: JSON.stringify(data),
-      // });
-
-      const result = await response.data;
-      console.log(result);
+      const result = await response.json();
       
       // if (!response.ok) {
       //   console.error(result.error || 'Login failed.');
       //   return;
       // }
       
-      // setAuth({
-      //   email: result.user.email,
-      //   roles: result.user.roles,
-      //   accessToken: result.accessToken,
-      // });
+      // Optionally update auth state here if needed
+      setAuth({
+        email: result.user.email,
+        accessToken: result?.accessToken
+      });
       
       navigate(from, { replace: true });
     } catch (err) {

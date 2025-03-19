@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/account/Sidebar';
 import DIYSuggestions from '../components/account/DIYSuggestions';
 import ProfileSection from '../components/account/ProfileSection';
@@ -9,18 +9,32 @@ import { useBadges } from '../hooks/useBadges'; // Import the badge hook
 const Account = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [showDIYSuggestions, setShowDIYSuggestions] = useState(true);
-  const { addBadge } = useBadges(); // Use the badge hook
+  const { addBadge } = useBadges();
+  const [user, setUser] = useState(null);
 
-  // Sample user data
-  const user = {
-    name: "Emma Thompson",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
-    role: "Parent",
-    location: "Brisbane, Australia",
-    email: "emma@example.com",
-    phone: "+61 123 456 789",
-    joinDate: "January 2023"
-  };
+  // Fetch user information from the database (via an API endpoint)
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/account', {
+          headers: { 'Content-Type': 'application/json' }
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch user info');
+        }
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  if (!user) {
+    return <div>Loading user information...</div>;
+  }
 
   // Sample DIY suggestions data
   const diySuggestions = [
