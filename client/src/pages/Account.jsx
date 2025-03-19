@@ -21,7 +21,7 @@ const Account = () => {
     const fetchUser = async () => {
       try {
 
-        const response = await fetch('http://localhost:3001/api/account', {
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/account`, {
           method: 'POST',  // Using POST as per your server implementation
           headers: { 
             'Authorization': `Bearer ${auth.accessToken}`,

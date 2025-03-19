@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from '../../../api/axios';
 import ConfirmationModal from './ConfirmationModal';
 import useAuth from '../../../hooks/useAuth';
@@ -19,29 +19,37 @@ export default function UsersTable({ searchQuery, activeFilter }) {
     action: null
   });
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/users', {
-        'Authorization': `Bearer ${auth.accessToken}`,
-        'Content-Type': 'application/json',
-        withCredentials: true,
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/users`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${auth.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
       });
-
-      // Access the users array inside the response object
-      setUsers(response.data.users);
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `Error: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      setUsers(data.users);
       setError(null);
     } catch (err) {
-      setError(err.response?.data?.message || err.message);
+      setError(err.message);
       console.error('Failed to fetch users:', err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [auth.accessToken]); // Add dependencies that fetchUsers relies on
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
   // Filter users based on searchQuery and activeFilter
   const filteredUsers = users.filter(user => {

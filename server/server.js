@@ -1,10 +1,11 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+
 import cors from "cors";
-import corsOptionDelegate from "./src/config/security/corsOptions.js";
-import corsOptions from "./src/config/security/allowedOrigins.js";
+import corsOptions from "./src/config/security/corsOptions.js";
 import credentials from "./src/middleware/credentials.js";
+
 import adminRouter from "./src/routes/admin.js"
 import homeRouter from "./src/routes/home.js";
 import loginRoute from "./src/routes/login.js";
@@ -12,6 +13,7 @@ import logoutRouter from "./src/routes/logout.js";
 import registerRoute from "./src/routes/register.js";
 import refreshTokenRouter from "./src/routes/refreshToken.js";
 import accountRoute from "./src/routes/account.js";
+
 import verifyJWT from "./src/middleware/verifyJWT.js";
 import dotenv from "dotenv";
 dotenv.config();
@@ -26,7 +28,8 @@ const PORT = process.env.PORT || 3001;
 app.use(credentials);
 
 // CORS middleware with proper configuration
-app.use(cors(corsOptionDelegate));
+app.use(cors(corsOptions));
+
 
 // Debug middleware to log incoming requests
 app.use((req, res, next) => {
@@ -38,7 +41,6 @@ app.use((req, res, next) => {
 // Middleware for cookies
 app.use(cookieParser());
 
-// Parse JSON bodies - MAKE SURE THIS IS BEFORE THE ROUTES
 app.use(express.json());
 
 // Parse URL-encoded bodies

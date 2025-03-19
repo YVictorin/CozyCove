@@ -22,7 +22,7 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('http://localhost:3001/api/login', {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // Include credentials so cookies are sent/stored
