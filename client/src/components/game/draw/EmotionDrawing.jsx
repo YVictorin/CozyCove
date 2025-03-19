@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ReactSketchCanvas } from 'react-sketch-canvas';
-import { Smile, Frown, Meh, Heart, Trash2, Medal } from 'lucide-react';
-import backgroundImage from '../../../assets/Background2.JPG'; // Adjust path if needed
+import { Smile, Frown, Meh, Heart, Trash2, Medal, AlertCircle } from 'lucide-react';
+import backgroundImage from '../../../assets/Background2.JPG';
+import { useBadges } from '../../../hooks/useBadges';
 
 const emotions = [
   { name: 'Happy', icon: Smile, color: '#FF9124' },
@@ -17,7 +18,11 @@ const EmotionDrawing = () => {
   const [hasDrawn, setHasDrawn] = useState(false);
   const [completedEmotions, setCompletedEmotions] = useState([]);
   const [showCongrats, setShowCongrats] = useState(false);
-  // const { addBadge } = useGameStore();
+  const [showWarning, setShowWarning] = useState(false);
+  
+  // Add badge integration
+  const { addBadge } = useBadges();
+  const [badgeAwarded, setBadgeAwarded] = useState(false);
 
   // New states for eraser functionality
   const [isEraser, setIsEraser] = useState(false);
@@ -25,6 +30,40 @@ const EmotionDrawing = () => {
 
   const currentEmotion = emotions[currentEmotionIndex];
   const colors = ['#000000', '#FF9124', '#00A5E0', '#6CC24A', '#FF6B98', '#FFFFFF'];
+
+  // Effect to award badge when all emotions are completed
+  useEffect(() => {
+    if (completedEmotions.length === emotions.length && !badgeAwarded) {
+      const emotionArtistBadge = {
+        name: "Emotion Artist",
+        icon: "🎨",
+        color: "#FFD54F",
+        description: "Completed all emotion drawings!"
+      };
+      
+      const badgeAdded = addBadge(emotionArtistBadge);
+      if (badgeAdded) {
+        setBadgeAwarded(true);
+        setShowCongrats(true);
+        
+        // Auto-hide the modal after 3 seconds
+        setTimeout(() => {
+          setShowCongrats(false);
+        }, 2000);
+      }
+    }
+  }, [completedEmotions, badgeAwarded, addBadge]);
+
+  // Auto-hide warning modal after 2 seconds
+  useEffect(() => {
+    let timer;
+    if (showWarning) {
+      timer = setTimeout(() => {
+        setShowWarning(false);
+      }, 1500);
+    }
+    return () => clearTimeout(timer);
+  }, [showWarning]);
 
   const handleClear = () => {
     if (canvasRef.current) {
@@ -52,7 +91,7 @@ const EmotionDrawing = () => {
 
   const handleComplete = async () => {
     if (!hasDrawn) {
-      alert("Please draw something first!");
+      setShowWarning(true);
       return;
     }
 
@@ -62,7 +101,7 @@ const EmotionDrawing = () => {
       setCompletedEmotions(newCompletedEmotions);
     }
 
-    // For demo purposes, simply advance to next emotion:
+    // Find next emotion or complete the game
     const nextIndex = findNextIncompleteEmotion(newCompletedEmotions);
     setCurrentEmotionIndex(nextIndex);
     if (canvasRef.current) {
@@ -90,56 +129,97 @@ const EmotionDrawing = () => {
     }
   };
 
-  if (showCongrats) {
-    return (
-      <div className="p-8 rounded-3xl shadow-lg text-center" style={{ 
-        background: 'linear-gradient(135deg, #FFF9C4 0%, #FFD54F 100%)',
-        border: '6px solid #FF9124',
-        borderRadius: '40px',
-        maxWidth: '900px',
-        margin: '0 auto'
-      }}>
-        <Medal className="w-32 h-32 mx-auto mb-6" style={{ color: '#FF9124' }} />
-        <h1 className="text-4xl font-bold mb-4" style={{ 
-          color: '#0172B0',
-          fontFamily: 'Comic Sans MS, cursive, sans-serif',
-          textShadow: '2px 2px 0px #FFF'
-        }}>
-          Hooray! You're an Emotion Master!
-        </h1>
-        <p className="text-2xl mb-8" style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif' }}>
-          You've drawn all the emotions! What a creative artist you are!
-        </p>
-        <button
-          onClick={resetGame}
-          className="px-10 py-4 font-bold text-white transition-transform hover:scale-105"
-          style={{ 
-            background: "linear-gradient(135deg, #00A5E0 0%, #0172B0 100%)",
-            borderRadius: '30px',
-            boxShadow: '0 6px 0 #005C85, 0 10px 20px rgba(0,0,0,0.15)',
-            fontFamily: 'Comic Sans MS, cursive, sans-serif',
-            fontSize: '1.3rem'
-          }}
-        >
-          Play Again!
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'bottom',
-        minHeight: '120vh', // Full viewport height
+        minHeight: '120vh',
         paddingTop: '10px',
-        paddingBottom: '10px'
+        paddingBottom: '10px',
+        position: 'relative'
       }}
     >
+      {/* Congratulatory Modal */}
+      {showCongrats && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000
+        }}>
+          <div className="p-8 rounded-3xl shadow-lg text-center" style={{ 
+            background: 'linear-gradient(135deg, #FFF9C4 0%, #FFD54F 100%)',
+            border: '6px solid #FF9124',
+            borderRadius: '40px',
+            maxWidth: '500px'
+          }}>
+            <Medal className="w-24 h-24 mx-auto mb-4" style={{ color: '#FF9124' }} />
+            <h1 className="text-3xl font-bold mb-2" style={{ 
+              color: '#0172B0',
+              fontFamily: 'Comic Sans MS, cursive, sans-serif',
+              textShadow: '2px 2px 0px #FFF'
+            }}>
+              Hooray! You're an Emotion Master!
+            </h1>
+            <div className="mb-4 p-3 rounded-xl" style={{ 
+              background: 'rgba(255, 255, 255, 0.5)',
+              border: '3px dashed #0172B0'
+            }}>
+              <p className="text-xl font-bold" style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif', color: '#0172B0' }}>
+                <span className="text-2xl mr-2">🎨</span>
+                You earned the "Emotion Artist" badge!
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Warning Modal */}
+      {showWarning && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000
+        }}>
+          <div className="p-6 rounded-3xl shadow-lg text-center" style={{ 
+            background: 'linear-gradient(135deg, #FFF9C4 0%, #FFD54F 100%)',
+            border: '6px solid #FF6B98',
+            borderRadius: '30px',
+            maxWidth: '400px',
+            animation: 'bounceIn 0.5s'
+          }}>
+            <AlertCircle className="w-16 h-16 mx-auto mb-3" style={{ color: '#FF6B98' }} />
+            <h2 className="text-2xl font-bold mb-2" style={{ 
+              color: '#0172B0',
+              fontFamily: 'Comic Sans MS, cursive, sans-serif',
+              textShadow: '1px 1px 0px #FFF'
+            }}>
+              Oops!
+            </h2>
+            <p className="text-lg" style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif', color: '#333' }}>
+              Please draw something first!
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="p-8 rounded-3xl shadow-lg" style={{ 
-        background: 'rgba(255, 255, 255, 0.9)', // Optional overlay to improve readability
+        background: 'rgba(255, 255, 255, 0.9)',
         border: '6px solid #00A5E0',
         borderRadius: '40px',
         maxWidth: '900px',

@@ -36,7 +36,7 @@ export default function GoOutsideGame({ onCompleteTask }) {
   return (
     <div className="relative w-full h-full" onClick={handleAreaClick} ref={gameAreaRef}>
       <div className="absolute text-center w-full bottom-2 text-blue-600 text-sm">
-        {keyFound ? "Click on the door to unlock it!" : "Find the hidden key in the room!"}
+        {keyFound ? "Click on the door to unlock it!" : "Click to find the hidden key in the blue room!"}
       </div>
 
       {/* Room background */}
@@ -45,11 +45,10 @@ export default function GoOutsideGame({ onCompleteTask }) {
       {/* Hidden key */}
       {!keyFound && (
         <div
-          className="absolute w-6 h-6 opacity-20 hover:opacity-100 transition-opacity cursor-pointer"
+          className="absolute w-36 h-36 opacity-20 hover:opacity-100 transition-opacity cursor-pointer"
           style={{
             left: `${keyPosition.x}%`,
             top: `${keyPosition.y}%`,
-            scale: "3",
             transform: "translate(-50%, -50%)",
           }}
         >
@@ -75,7 +74,7 @@ export default function GoOutsideGame({ onCompleteTask }) {
 
       {/* Door */}
       <div
-        className={`absolute w-20 h-40 right-10 top-1/2 transform -translate-y-1/2 cursor-pointer ${
+        className={`absolute w-20 h-40 right-10 top-1/2 transform -translate-y-1/2 ${
           doorUnlocked ? "opacity-50" : "opacity-100"
         }`}
         onClick={handleDoorClick}
