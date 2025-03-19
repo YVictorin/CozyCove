@@ -85,7 +85,7 @@ export default function SupportBot() {
         <>
             {isDialogVisible && (
                 <dialog ref={dialogRef} className="flex flex-col w-1/4 h-[80%] rounded-lg overflow-hidden translate-y-8 translate-x-[74dvw] fixed z-10 bg-[#FFF9F0]"> 
-                    <div className="h-[6%] bg-[#26A5B3] flex justify-between p-3"> 
+                    <div className="h-[6%] bg-[#fa507e] flex justify-between p-3"> 
                         <p className="text-white">Poppin Online Assistant</p>
                         <div className="flex gap-2">
                             <Minus onClick={handleToggleDialog} className="text-white cursor-pointer" />
@@ -103,7 +103,7 @@ export default function SupportBot() {
                                         </div>
                                     ) : (
                                         <div className="flex gap-2">
-                                            <div className="bg-[#26A5B3] rounded-full w-10 h-10 text-white flex items-center justify-center">P</div>
+                                            <div className="bg-[#fa507e] rounded-full w-10 h-10 text-white flex items-center justify-center">P</div>
                                             <SupportTextBox text={eachMsg || "AI Response Missing"} />
                                         </div>
                                     )}
@@ -118,7 +118,7 @@ export default function SupportBot() {
             )}
 
             {!isDialogVisible && (
-                <div onClick={handleToggleDialog} className="w-[10%] cursor-pointer shadow-lg h-15 p-3 text-white flex justify-center items-center rounded-3xl bg-[#26A5B3] fixed right-[1%] bottom-[1%] z-50"> 
+                <div onClick={handleToggleDialog} className="w-[10%] cursor-pointer shadow-lg h-15 p-3 text-white flex justify-center items-center rounded-3xl bg-[#fa507e] fixed right-[1%] bottom-[1%] z-50"> 
                     <p>Online Assistant</p>
                 </div>
             )}
