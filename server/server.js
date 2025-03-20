@@ -31,7 +31,8 @@ const PORT = process.env.PORT || 3001;
 // Then apply CORS middleware
 app.use(cors({
   origin: "https://cozy-cove-git-yvpages-austins-projects-977ccb2e.vercel.app",
-  credentials: true
+  credentials: true,
+  allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }));
 
 // Handle OPTIONS preflight requests explicitly
