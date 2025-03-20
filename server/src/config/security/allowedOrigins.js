@@ -26,6 +26,11 @@
     'https://cozycove-server-git-dev-yonjous-projects.vercel.app/',
     'https://cozycove-server-git-dev-yonjous-projects.vercel.app/login',
     'https://cozycove-server-git-dev-yonjous-projects.vercel.app/register',
+    'https://cozycove.vercel.app',
+    'https://cozycove.vercel.app/login',
+    'https://cozycove.vercel.app/register',
+    'https://cozycove.vercel.app/account',
+    
 
 ];
 
