@@ -26,10 +26,13 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Apply credentials middleware FIRST - this sets CORS headers
-app.use(credentials);
+// app.use(credentials);
 
 // Then apply CORS middleware
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: "https://cozy-cove-git-yvpages-austins-projects-977ccb2e.vercel.app/",
+  credentials: true
+}));
 
 // Handle OPTIONS preflight requests explicitly
 app.options('*', (req, res) => {

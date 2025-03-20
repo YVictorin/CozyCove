@@ -55,10 +55,7 @@ function LoginForm() {
         accessToken: result?.accessToken
       });
       
-      // Store token in localStorage for persistence
-      localStorage.setItem('authToken', result?.accessToken);
       
-      console.log('Navigating to:', from);
       navigate(from);
     } catch (err) {
       console.error('Error during login:', err);
