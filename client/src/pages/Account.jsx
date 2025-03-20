@@ -16,7 +16,7 @@ const Account = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/account', {
+        const response = await fetch('https://cozycove-server.vercel.app/api/account', {
           method: 'POST',  // Using POST as per your server implementation
           headers: { 
             'Authorization': `Bearer ${auth.accessToken}`,
@@ -45,15 +45,16 @@ const Account = () => {
     if (setAuth) setAuth({});            
   };
 
-  if (!user) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-4xl font-bold text-center">
-          Token has expired, you must login once again.
-        </div>
+ if (!user) {
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="text-4xl font-bold text-center">
+        Token has expired, you must login once again.
       </div>
-    );
-  }
+    </div>
+  );
+}
+
 
   return (
     <div className="flex min-h-screen pt-32 bg-gray-50">
