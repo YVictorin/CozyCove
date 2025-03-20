@@ -2,12 +2,27 @@ import { useState, useEffect } from "react"
 import { Button } from "react-bootstrap"
 
 import ToyBox from "../../../../assets/images/toyBox.png"
-
+import BallImage from "../../../../assets/images/ball.svg"
+import CarImage from "../../../../assets/images/car.svg"
+import DollImage from "../../../../assets/images/doll.svg"
+import BlocksImage from "../../../../assets/images/blocks.svg"
+import RobotImage from "../../../../assets/images/robot.svg"
+import TeddyImage from "../../../../assets/images/teddy.svg"
 
 export default function TidyUpGame({ onCompleteTask }) {
   const [toyPositions, setToyPositions] = useState([])
   const [toyBoxPosition] = useState({ x: 50, y: 80 })
   const [timeLeft, setTimeLeft] = useState(60)
+  
+  // Map of toy types to their imported images
+  const toyImages = {
+    ball: BallImage,
+    car: CarImage,
+    doll: DollImage,
+    blocks: BlocksImage,
+    robot: RobotImage,
+    teddy: TeddyImage
+  }
 
   // Initialize toy positions
   useEffect(() => {
@@ -68,7 +83,6 @@ export default function TidyUpGame({ onCompleteTask }) {
         Time: {timeLeft}s
       </div>
 
-
       {/* Toy box */}
       <div
         className="absolute w-24 h-20"
@@ -102,9 +116,14 @@ export default function TidyUpGame({ onCompleteTask }) {
           onClick={() => handleToyClick(index)}
         >
           <img
-            src={`/src/assets/images/${toy.type}.svg`}
+            src={toyImages[toy.type]}
             alt={toy.type}
             className="w-full h-full object-contain"
+            onError={(e) => {
+              console.error(`Failed to load image for ${toy.type}`)
+              e.target.onerror = null; // Prevent infinite loops
+              e.target.src = `/placeholder.svg?height=48&width=48&text=${toy.type}`
+            }}
           />
         </div>
       ))}
@@ -123,4 +142,3 @@ export default function TidyUpGame({ onCompleteTask }) {
     </div>
   )
 }
-

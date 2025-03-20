@@ -10,7 +10,7 @@ import axios from '../../api/axios';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const { setAuth } = useAuth() || {}; 
+  const { setAuth } = useAuth() || {};
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,69 +22,49 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('http://localhost:3001/api/login', {
+      const response = await fetch('https://cozycove-server.vercel.app/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // Include credentials so cookies are sent/stored
         body: JSON.stringify(data)
       });
       const result = await response.json();
-      
-      // if (!response.ok) {
-      //   console.error(result.error || 'Login failed.');
-      //   return;
-      // }
-      
+
+      if (!response.ok) {
+        console.error(result.error || 'Login failed.');
+        return;
+      }
+
       // Optionally update auth state here if needed
       setAuth({
-        email: result.user.email,
-        accessToken: result?.accessToken
+        email: result.user?.email,
+        accessToken: result?.accessToken,
       });
-      
 
-      // navigate(from, { replace: true });
-            navigate("/");
-
+      navigate(from, { replace: true });
     } catch (err) {
       console.error('Error during login:', err);
     }
   };
 
+
   return (
     <>
-      {/* Top Banner */}
-      <div className="bg-[#F4F3FF] py-3 px-6 text-center text-sm">
-        <span className="text-gray-600">
-          Don't have an account yet?
-        </span>
-        <NavLink to="/register" className="ml-3 text-[#6366F1] font-medium hover:text-[#4F46E5] transition-colors">
-          Create an account
-        </NavLink>
-      </div>
-
       {/* Form Content */}
       <div className="min-h-screen flex">
         {/* Left Panel */}
-        <div className="hidden lg:flex lg:w-[480px] bg-[#1C1B24] text-white p-12 flex-col">
-          <div className="mb-20 flex flex-col relative">
+        <div className="hidden lg:flex lg:w-[480px] bg-[#24b2c2] text-white p-12 flex-col">
+          <div className="mb-40 flex flex-col relative">
             <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
-              <text x="0" y="30" fill="white" className="text-2xl font-bold">Cozy Cove</text>
             </svg>
-            <hr className="w-[250%] absolute right-[-15%] top-20 opacity-15" />
           </div>
 
           <div className="flex-1">
             <h1 className="text-5xl font-bold leading-tight mb-6">
               Welcome back to your account.
             </h1>
-            <p className="text-gray-400 text-lg leading-relaxed">
+            <p className="text-white text-lg leading-relaxed">
               Sign in to access your dashboard, manage your Sensory Boxes, and continue where you left off.
-            </p>
-          </div>
-
-          <div className="bg-[#2A2937] p-6 rounded-xl">
-            <p className="text-gray-400 text-sm">
-              <span className="font-semibold text-gray-300">Need help?</span> If you're having trouble signing in, please contact our support team for assistance.
             </p>
           </div>
         </div>
@@ -102,7 +82,7 @@ function LoginForm() {
               </div>
 
               <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-[#1C1B24] mb-3">
+                <h2 className="text-4xl font-bold text-[#33a5ce] mb-3">
                   Sign in to your account
                 </h2>
                 <p className="text-gray-600">
@@ -148,15 +128,10 @@ function LoginForm() {
                     <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
                   )}
                 </div>
-                <div className="flex items-center justify-between">
-                  <a href="#" className="text-sm text-[#6366F1] hover:underline">
-                    Forgot password?
-                  </a>
-                </div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#6366F1] text-white py-4 rounded-lg font-medium hover:bg-[#4F46E5] transition-colors flex items-center justify-center group disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full bg-[#33a5ce] text-white py-4 rounded-lg font-medium hover:bg-[#4F46E5] transition-colors flex items-center justify-center group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Signing in...' : 'Sign in'}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />

@@ -13,9 +13,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://cozycove-server.vercel.app',
+        target: 'https://cozy-cove-server-git-yvpages-austins-projects-977ccb2e.vercel.app',
         changeOrigin: true,
-        secure: true, 
+        secure: false, 
       }
     }
   }

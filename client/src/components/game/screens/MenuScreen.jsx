@@ -9,7 +9,7 @@ export default function MenuScreen({ onRoutineClick, onBadgesClick }) {
 
       <div className="flex flex-col gap-4 w-64">
         <Button
-          className="bg-blue-500 hover:bg-blue-600 text-white py-3 cursor-pointer"
+          className="bg-blue-500 hover:bg-blue-600 text-white py-3 cursor-pointer hidden sm:block"
           onClick={() => onRoutineClick("Morning Routine")}
         >
           Morning Routine

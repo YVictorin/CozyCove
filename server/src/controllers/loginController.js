@@ -38,14 +38,16 @@ export const loginUser = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: false,
       maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-      sameSite: "none" // Allows cross-site cookies
+      sameSite: "lax" 
     });
-    res.header('Authorization', `Bearer ${token}`);
+    // res.header('Authorization', `Bearer ${token}`);
     
     res.json({
       message: "Logged in successfully",
       user: { id: user.id, name: user.name, email: user.email },
-      accessToken: token // Optional: returning token for flexibility
+      accessToken: token, 
+      
+
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
