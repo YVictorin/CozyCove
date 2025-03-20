@@ -27,8 +27,8 @@ export default function BadgeScreen({ routine, onReturnToMenu }) {
       <h2 className="text-3xl font-bold text-yellow-500 mb-6">You earned a badge!</h2>
 
       <div className="w-32 h-32 rounded-full bg-yellow-100 border-4 border-yellow-500 flex items-center justify-center mb-6">
-        <div className="w-24 h-24 rounded-full bg-yellow-400 flex items-center justify-center">
-          <div className='scale-300 relative left-1.5 top-1'>{badgeInfo.icon}</div>
+        <div className="w-24 h-24 rounded-full bg-yellow-400 flex items-center justify-center relative">
+          <div className='scale-300 absolute'><p>{badgeInfo.icon}</p></div>
         </div>
       </div>
 

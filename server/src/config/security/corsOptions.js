@@ -29,4 +29,3 @@ const corsOptionDelegate = (req, callback) => {
 };
 
 export default corsOptionDelegate;
-

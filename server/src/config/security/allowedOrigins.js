@@ -1,5 +1,5 @@
 //feel free to add any urls you need to fetch to and from to the list
- const allowedOrigins = [
+const allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:3001',
 
@@ -30,8 +30,6 @@
     'https://cozycove.vercel.app/login',
     'https://cozycove.vercel.app/register',
     'https://cozycove.vercel.app/account',
-    
-
 ];
 
 export default allowedOrigins;

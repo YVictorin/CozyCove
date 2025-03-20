@@ -79,7 +79,7 @@ export default function BrushTeethGame({ onCompleteTask }) {
   return (
     <div className="relative w-full h-full" tabIndex={0} onKeyDown={handleKeyDown} ref={gameAreaRef}>
       <div className="absolute text-center w-full bottom-2 text-blue-600 text-sm">
-        Use arrow keys to move and catch the toothbrush!
+        Use WASD keys to move and catch the toothbrush!
       </div>
 
       {/* Character */}
