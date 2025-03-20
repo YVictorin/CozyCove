@@ -24,8 +24,31 @@ import './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+
+
+
 // Enable the credentials middleware for proper CORS handling
 app.use(credentials);
+
+
+app.options('*', (req, res) => {
+  const origin = req.headers.origin;
+  
+  // Check if origin is allowed
+  const isAllowedOrigin = allowedOrigins.some(o => {
+    return typeof o === "string" ? o === origin : o instanceof RegExp && o.test(origin);
+  });
+  
+  if (isAllowedOrigin) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.status(200).end();
+  } else {
+    res.status(403).end();
+  }
+});
 
 // CORS middleware with proper configuration
 app.use(cors(corsOptions));

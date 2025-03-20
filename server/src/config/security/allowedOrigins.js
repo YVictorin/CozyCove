@@ -20,6 +20,7 @@
     'https://cozycove.vercel.app',
     'https://cozy-cove-play.vercel.app',
     'https://cozy-cove-server.vercel.app',
+    'https://cozy-cove-git-yvpages-austins-projects-977ccb2e.vercel.app',
     /^https:\/\/.*\.vercel\.app$/  // Regex to allow any Vercel subdomain
 
 ];

@@ -21,8 +21,12 @@ function LoginForm() {
   });
 
   const onSubmit = async (data) => {
+    const baseUrl = import.meta.env.VITE_BASE_URL.endsWith('/') 
+  ? import.meta.env.VITE_BASE_URL.slice(0, -1) 
+  : import.meta.env.VITE_BASE_URL;
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/login`, {
+      const response = await fetch(`${baseUrl}/api/login`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
