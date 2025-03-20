@@ -5,7 +5,7 @@ import categoryCards from './data/categoryCard';
 import SupportBot from '../components/SupportBot';
 import VisualSchedule from '../components/VisualSchedule';
 
-const Explore = () => {
+const Parents = () => {
     const [activeFaq, setActiveFaq] = useState(null); // Tracks the currently active FAQ item
     const [scrollPosition, setScrollPosition] = useState(0); // Tracks horizontal scroll position of the carousel
     const carouselRef = useRef(null); // Ref for the category carousel container
@@ -175,4 +175,4 @@ const Explore = () => {
     );
 };
 
-export default Explore;
+export default Parents;

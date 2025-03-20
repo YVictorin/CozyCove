@@ -16,7 +16,7 @@ function ResourceCard({ image, title, description, link }) {
         rel="noopener noreferrer"
         className="bg-[#fa507e] text-white px-3 py-1 sm:px-5 sm:py-3 rounded-full hover:bg-cyan-500 transition-colors block w-full text-center text-xs sm:text-base"
       >
-        Explore
+        Parents
       </a>
     </div>
   );
