@@ -22,7 +22,7 @@ export default function UsersTable({ searchQuery, activeFilter }) {
   const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/users`, {
+      const response = await fetch(`https://cozycove-server.vercel.app/api/users`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${auth.accessToken}`,
