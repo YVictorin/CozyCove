@@ -30,8 +30,6 @@ const allowedOrigins = [
     'https://cozycove.vercel.app/login',
     'https://cozycove.vercel.app/register',
     'https://cozycove.vercel.app/account',
-    
-
 ];
 
 export default allowedOrigins;
