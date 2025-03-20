@@ -1,11 +1,23 @@
 import { useState, useEffect, useRef } from "react"
 import ToyBox from "../../../../assets/images/toyBox.png"
+import BallImage from "../../../../assets/images/ball.svg"
+import CarImage from "../../../../assets/images/car.svg"
+import DollImage from "../../../../assets/images/doll.svg"
+import BlocksImage from "../../../../assets/images/blocks.svg"
 
 export default function PlaytimeGame({ onCompleteTask }) {
   const [toyPositions, setToyPositions] = useState([])
   const [toyBoxPosition] = useState({ x: 50, y: 80 })
   const completedRef = useRef(false)
   const initializedRef = useRef(false)
+  
+  // Map of toy types to their imported images
+  const toyImages = {
+    ball: BallImage,
+    car: CarImage,
+    doll: DollImage,
+    blocks: BlocksImage
+  }
 
   // Initialize toy positions only once
   useEffect(() => {
@@ -41,14 +53,12 @@ export default function PlaytimeGame({ onCompleteTask }) {
 
   // Handle toy click 
   const handleToyClick = (index) => {
-
     setToyPositions((prev) => {
       const newPositions = [...prev]
       newPositions[index].placed = true
       return newPositions
     })
   }
-
 
   return (
     <div className="relative w-full h-full">
@@ -86,11 +96,12 @@ export default function PlaytimeGame({ onCompleteTask }) {
           onClick={() => handleToyClick(index)}
         >
           <img
-            src={`/src/assets/images/${toy.type}.svg`}
+            src={toyImages[toy.type]}
             alt={toy.type}
             className="w-full h-full object-contain"
             onError={(e) => {
               console.error(`Failed to load image for ${toy.type}`)
+              e.target.onerror = null; // Prevent infinite loops
               e.target.src = `/placeholder.svg?height=48&width=48&text=${toy.type}`
             }}
           />
@@ -99,4 +110,3 @@ export default function PlaytimeGame({ onCompleteTask }) {
     </div>
   )
 }
-
