@@ -49,7 +49,7 @@ const Account = () => {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="text-4xl font-bold text-center">
-        Token has expired, you must login once again.
+        You must login to continue.
       </div>
     </div>
   );
