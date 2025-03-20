@@ -2,16 +2,14 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../validation/loginSchema';
-import { ArrowRight, Eye, EyeOff, Facebook, Mail, ArrowLeft } from 'lucide-react';
+import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
-import axios from '../../api/axios';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState('');
   const { setAuth } = useAuth() || {}; 
-  const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -21,16 +19,20 @@ function LoginForm() {
   });
 
   const onSubmit = async (data) => {
-    const baseUrl = import.meta.env.VITE_BASE_URL.endsWith('/') 
-  ? import.meta.env.VITE_BASE_URL.slice(0, -1) 
-  : import.meta.env.VITE_BASE_URL;
-
+    setLoginError('');
+    
     try {
+      console.log('Attempting login with data:', data);
+      
+      // Make sure the API URL doesn't have trailing slashes
+      const baseUrl = import.meta.env.VITE_BASE_URL.endsWith('/') 
+        ? import.meta.env.VITE_BASE_URL.slice(0, -1) 
+        : import.meta.env.VITE_BASE_URL;
+      
       const response = await fetch(`${baseUrl}/api/login`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          // Add this header to make Vercel let CORS through
           'X-Requested-With': 'XMLHttpRequest'
         },
         credentials: 'include',
@@ -41,22 +43,28 @@ function LoginForm() {
       if (!response.ok) {
         const errorText = await response.text();
         console.error(`Error response (${response.status}):`, errorText);
+        setLoginError(`Login failed: ${response.status} ${response.statusText}`);
         return;
       }
       
       const result = await response.json();
       
+      console.log('Login successful, storing auth data');
       setAuth({
         email: result.user.email,
         accessToken: result?.accessToken
       });
       
-      navigate("/");
+      // Store token in localStorage for persistence
+      localStorage.setItem('authToken', result?.accessToken);
+      
+      console.log('Navigating to:', from);
+      navigate(from);
     } catch (err) {
       console.error('Error during login:', err);
+      setLoginError('Connection error. Please try again later.');
     }
   };
-
 
   return (
     <>
@@ -117,6 +125,13 @@ function LoginForm() {
                   Enter your credentials below to access your account
                 </p>
               </div>
+
+              {/* Display login errors */}
+              {loginError && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+                  {loginError}
+                </div>
+              )}
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div>
