@@ -1,9 +1,26 @@
 import React from 'react';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
  
-const Sidebar = ({ user, activeTab, setActiveTab }) => {
+const Sidebar = ({ user, activeTab, setActiveTab, onLogout }) => {
+  const navigate = useNavigate();
 
-  const handleLogout = async () => {};
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+      if (!response.ok) {
+        console.error('Logout failed on the server.');
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      // Always clear client-side state regardless of API response
+      if (onLogout) onLogout();
+      navigate('/login', { replace: true });
+    }
+  };
 
   return (
     <div className="w-64 p-6 shadow-xl rounded-r-3xl bg-gray-50">
@@ -18,7 +35,7 @@ const Sidebar = ({ user, activeTab, setActiveTab }) => {
       </div>
       
       <nav>
-        <ul className='flex whitespace-nowrap flex-col'>
+        <ul className='flex flex-col'>
           {['profile'].map((tab) => (
             <li key={tab} className="mb-3">
               <button 
@@ -41,9 +58,7 @@ const Sidebar = ({ user, activeTab, setActiveTab }) => {
           className="w-full font-bold py-3 px-4 rounded-xl shadow"
           style={{ backgroundColor: "#24B2C2", color: "white" }}
         >
-          <Link to="/explore">
-            Resource Hub
-          </Link>
+          <Link to="/explore">Resource Hub</Link>
         </button>
         
         {/* Logout Button */}
