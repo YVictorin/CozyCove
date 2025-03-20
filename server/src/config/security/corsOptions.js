@@ -1,26 +1,31 @@
-import allowedOrigins from './allowedOrigins.js';
+import allowedOrigins from "./allowedOrigins.js";
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    
-    // Check if the origin is allowed
-    const isAllowed = allowedOrigins.some(allowedOrigin => {
-      return typeof allowedOrigin === 'string' 
-        ? allowedOrigin === origin 
-        : allowedOrigin instanceof RegExp && allowedOrigin.test(origin);
-    });
-    
-    if (isAllowed) {
-      callback(null, true);
-    } else {
-      console.log(`Origin ${origin} not allowed by CORS`);
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization']
+// Used for security to allow requests only from approved origins.
+// const corsOptions = {
+//     origin: (origin, callback) => {
+//       console.log("Incoming request from origin:", origin);
+
+//       if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//         callback(null, true);
+
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//   };  
+
+
+const corsOptionDelegate = (req, callback) => {
+  const origin = req.header("Origin");
+  console.log("Incoming request from origin:", origin); // Debug log
+
+  let corsOptions;
+  if (allowedOrigins.includes(origin)) {
+    corsOptions = { origin: true, credentials: true }; // Allow requests from allowed origins
+  } else {
+    corsOptions = { origin: false }; // Block requests from disallowed origins
+  }
+  callback(null, corsOptions);
 };
 
-export default corsOptions;
+export default corsOptionDelegate;
