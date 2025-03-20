@@ -1,8 +1,11 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+
+// Import credentials middleware first
+import credentials from "./src/middleware/credentials.js";
 import cors from "cors";
-import allowedOrigins from "./src/config/security/allowedOrigins.js";
+import corsOptions from "./src/config/security/corsOptions.js";
 
 import adminRouter from "./src/routes/admin.js"
 import homeRouter from "./src/routes/home.js";
@@ -22,44 +25,22 @@ import './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// CORS configuration specifically for Vercel
-const corsOptionsDelegate = (req, callback) => {
-  const origin = req.header('Origin');
-  const isAllowedOrigin = !origin || allowedOrigins.some(allowedOrigin => {
-    return typeof allowedOrigin === 'string' 
-      ? allowedOrigin === origin 
-      : allowedOrigin instanceof RegExp && allowedOrigin.test(origin);
-  });
+// Apply credentials middleware FIRST - this sets CORS headers
+app.use(credentials);
 
-  callback(null, {
-    origin: isAllowedOrigin ? origin : false,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization']
-  });
-};
+// Then apply CORS middleware
+app.use(cors(corsOptions));
 
-// Handle OPTIONS requests explicitly - CRITICAL FOR VERCEL
-app.options('*', cors(corsOptionsDelegate));
-
-// Apply CORS to all routes
-app.use(cors(corsOptionsDelegate));
+// Handle OPTIONS preflight requests explicitly
+app.options('*', (req, res) => {
+  // The credentials middleware has already set the appropriate headers
+  return res.status(200).send();
+});
 
 // Debug middleware to log incoming requests
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url} from origin: ${req.headers.origin || 'unknown'}`);
-  
-  // Check if origin is allowed (for debugging)
-  if (req.headers.origin) {
-    const origin = req.headers.origin;
-    const isAllowed = allowedOrigins.some(allowedOrigin => {
-      return typeof allowedOrigin === 'string' 
-        ? allowedOrigin === origin 
-        : allowedOrigin instanceof RegExp && allowedOrigin.test(origin);
-    });
-    console.log(`Origin ${origin} is ${isAllowed ? 'allowed' : 'NOT allowed'}`);
-  }
-  
+  console.log("Request headers:", req.headers);
   next();
 });
 

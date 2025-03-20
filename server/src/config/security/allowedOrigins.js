@@ -1,4 +1,3 @@
-// Updated to handle all Vercel preview deployments
 const allowedOrigins = [
     // Local development
     'http://localhost:3000',
@@ -15,9 +14,15 @@ const allowedOrigins = [
     'https://cozy-cove-play.vercel.app',
     'https://cozy-cove-server.vercel.app',
     
-    // Match ALL Vercel preview deployments for both frontend and backend
-    /^https:\/\/cozy-cove.*\.vercel\.app$/,
-    /^https:\/\/cozy-cove-.*\.vercel\.app$/
+    // Specific preview URLs (add your exact frontend URL here)
+    'https://cozy-cove-git-yvpages-austins-projects-977ccb2e.vercel.app',
+
+    // Render domain
+    'https://cozycove-r6ih.onrender.com',
+
+    
+    // Match ALL Vercel preview deployments
+    /\.vercel\.app$/
 ];
 
 export default allowedOrigins;
