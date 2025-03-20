@@ -22,33 +22,32 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('http://localhost:3001/api/login', {
+      const response = await fetch('https://cozycove-server-git-dev-yonjous-projects.vercel.app/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // Include credentials so cookies are sent/stored
         body: JSON.stringify(data)
       });
       const result = await response.json();
-      
-      // if (!response.ok) {
-      //   console.error(result.error || 'Login failed.');
-      //   return;
-      // }
+  
+      // Check if the response is not OK
+      if (!response.ok) {
+        console.error(result.error || 'Login failed.');
+        return;
+      }
       
       // Optionally update auth state here if needed
       setAuth({
         email: result.user.email,
-        accessToken: result?.accessToken
+        accessToken: result.accessToken,
       });
       
-
-      // navigate(from, { replace: true });
-            navigate("/");
-
+      navigate("/");
     } catch (err) {
       console.error('Error during login:', err);
     }
   };
+  
 
   return (
     <>
