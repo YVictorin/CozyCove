@@ -28,9 +28,12 @@ const PORT = process.env.PORT || 3001;
 // Apply credentials middleware FIRST - this sets CORS headers
 // app.use(credentials);
 
-// Then apply CORS middleware
+// Then apply CORS middleware 
 app.use(cors({
-  origin: "https://cozy-cove-git-yvpages-austins-projects-977ccb2e.vercel.app",
+  origin: [
+    "http://localhost:5173",
+    /\.vercel\.app$/
+  ],
   credentials: true,
   allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }));
