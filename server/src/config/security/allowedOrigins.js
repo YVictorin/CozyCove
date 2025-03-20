@@ -18,6 +18,8 @@
     'http://localhost:5175/login',
 
     'https://cozycove.vercel.app',
+    'https://cozy-cove-play.vercel.app',
+    'https://cozy-cove-server.vercel.app',
     /^https:\/\/.*\.vercel\.app$/  // Regex to allow any Vercel subdomain
 
 ];

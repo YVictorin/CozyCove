@@ -24,31 +24,35 @@ function LoginForm() {
     try {
       const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/login`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include', // Include credentials so cookies are sent/stored
+        headers: { 
+          'Content-Type': 'application/json',
+          // Add this header to make Vercel let CORS through
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        credentials: 'include',
         body: JSON.stringify(data)
       });
+      
+      // Check if the response is OK before trying to parse JSON
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Error response (${response.status}):`, errorText);
+        return;
+      }
+      
       const result = await response.json();
       
-      // if (!response.ok) {
-      //   console.error(result.error || 'Login failed.');
-      //   return;
-      // }
-      
-      // Optionally update auth state here if needed
       setAuth({
         email: result.user.email,
         accessToken: result?.accessToken
       });
       
-
-      // navigate(from, { replace: true });
-            navigate("/");
-
+      navigate("/");
     } catch (err) {
       console.error('Error during login:', err);
     }
   };
+
 
   return (
     <>

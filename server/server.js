@@ -52,6 +52,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Internal server error", error: err.message });
 });
 
+
+
 // Public routes (no auth required)
 app.use('/api/home', homeRouter);
 app.use('/api/login', loginRoute);
