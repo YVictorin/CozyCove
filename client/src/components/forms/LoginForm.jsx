@@ -36,11 +36,10 @@ function LoginForm() {
       }
 
       // Optionally update auth state here if needed
-      // setAuth({
-      //   email: result.user.email,
-      //   roles: result.user.roles,
-      //   accessToken: result.accessToken,
-      // });
+      setAuth({
+        email: result.user?.email,
+        accessToken: result?.accessToken,
+      });
 
       navigate(from, { replace: true });
     } catch (err) {

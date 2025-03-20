@@ -16,7 +16,7 @@ export default function GamesPage() {
 
     return (
         <>
-            <div className="pt-26 min-h-screen flex flex-col items-center justify-center bg-[#D3FFFE] pb-26 bg-gradient-to-b from-[#C7FCFB] to-[#FBEDCA]" 
+            <div className="pt-26 min-h-screen flex flex-col items-center justify-center pb-26 bg-gradient-to-b from-[#C7FCFB] to-[#FBEDCA]" 
            >
                 
                 {/* Card and Image Container */}
@@ -35,8 +35,7 @@ export default function GamesPage() {
                     </div>
                 </div>
 
-                {/* Games Section - Move the ref here instead of having a separate div */}
-                <div ref={gamesRef} className="w-full flex flex-col items-center justify-center gap-6 mb-64 ">
+                <div ref={gamesRef} className="w-full flex flex-col items-center justify-center gap-6 mb-64 -mt-40">
                     <h2 className="text-4xl font-bold" style={{color: "rgb(36, 178, 194)"}}>Online Games</h2>
                     
                     <div className="flex flex-wrap gap-6 justify-center">
