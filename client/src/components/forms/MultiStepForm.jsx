@@ -107,7 +107,7 @@ const MultiStepForm = () => {
     setError(null);
     setSuccess(null);
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/register`, {
+      const response = await fetch('https://cozycove-server.vercel.app/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

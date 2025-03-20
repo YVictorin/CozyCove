@@ -1,60 +1,53 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../validation/loginSchema';
-import { ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { ArrowRight, Eye, EyeOff, Facebook, Mail, ArrowLeft } from 'lucide-react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
-import useFetchData from '../../hooks/useFetchData';
+import axios from '../../api/axios';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [loginError, setLoginError] = useState('');
   const { setAuth } = useAuth() || {}; 
+  const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
-  // Make sure the API URL doesn't have trailing slashes
-  const baseUrl = import.meta.env.VITE_BASE_URL.endsWith('/') 
-    ? import.meta.env.VITE_BASE_URL.slice(0, -1) 
-    : import.meta.env.VITE_BASE_URL;
-
-  // Initialize the hook with empty posted data
-  const { data, isLoading, isError, error, setPostedData } = useFetchData({
-    url: `${baseUrl}/api/login`,
-    method: 'POST',
-    initialPostedData: null
-  });
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
-  // When data changes (after successful request), handle the response
-  useEffect(() => {
-    if (data && data.user && data.accessToken) {
-      console.log('Login successful, storing auth data');
-      setAuth({
-        email: data.user.email,
-        accessToken: data.accessToken
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch('https://cozycove-server.vercel.app/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // Include credentials so cookies are sent/stored
+        body: JSON.stringify(data)
       });
-      navigate(from);
+      const result = await response.json();
+  
+      // Check if the response is not OK
+      if (!response.ok) {
+        console.error(result.error || 'Login failed.');
+        return;
+      }
+      
+      // Optionally update auth state here if needed
+      setAuth({
+        email: result.user.email,
+        accessToken: result.accessToken,
+      });
+      
+      navigate("/");
+    } catch (err) {
+      console.error('Error during login:', err);
     }
-  }, [data, setAuth, navigate, from]);
-
-  // When error occurs, update the login error state
-  useEffect(() => {
-    if (isError) {
-      console.error('Error during login:', error);
-      setLoginError(error?.message || 'An error occurred during login. Please try again.');
-    }
-  }, [isError, error]);
-
-  const onSubmit = async (formData) => {
-    setLoginError('');
-    setPostedData(formData); // This will trigger the useFetchData hook
   };
+  
 
   return (
     <>
@@ -116,13 +109,6 @@ function LoginForm() {
                 </p>
               </div>
 
-              {/* Display login errors */}
-              {loginError && (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-                  {loginError}
-                </div>
-              )}
-
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -168,10 +154,10 @@ function LoginForm() {
                 </div>
                 <button
                   type="submit"
-                  disabled={isSubmitting || isLoading}
+                  disabled={isSubmitting}
                   className="w-full bg-[#6366F1] text-white py-4 rounded-lg font-medium hover:bg-[#4F46E5] transition-colors flex items-center justify-center group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting || isLoading ? 'Signing in...' : 'Sign in'}
+                  {isSubmitting ? 'Signing in...' : 'Sign in'}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
