@@ -25,7 +25,8 @@ const corsOptions = {
     // For development, allow localhost and Vercel domains
     const allowedOrigins = [
       "http://localhost:5173",
-      "http://localhost:3000"
+      "http://localhost:3000",
+      "https://cozy-cove-git-yvpages-austins-projects-977ccb2e.vercel.app",
     ];
     
     // Also allow Vercel domains dynamically
