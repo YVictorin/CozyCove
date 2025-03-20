@@ -1,8 +1,31 @@
 import { useState, useEffect } from "react"
 
+// Import clothes images
+import ShirtImage from "../../../../assets/images/clothes-shirt.svg"
+import PantsImage from "../../../../assets/images/clothes-pants.svg"
+import HatImage from "../../../../assets/images/clothes-hat.svg"
+import PajamasImage from "../../../../assets/images/pajamas.png"
+import SocksImage from "../../../../assets/images/clothes-socks.svg"
+import ShoesImage from "../../../../assets/images/clothes-shoes.svg"
+import JacketImage from "../../../../assets/images/clothes-jacket.svg"
+import ScarfImage from "../../../../assets/images/clothes-scarf.svg"
+import PajamasFoundImage from "../../../../assets/images/pajamas.png"
+
 export default function ChangeClothesGame({ onCompleteTask }) {
   const [pajamasFound, setPajamasFound] = useState(false)
   const [clothesItems, setClothesItems] = useState([])
+  
+  // Map clothes types to their imported images
+  const clothesImages = {
+    "shirt": ShirtImage,
+    "pants": PantsImage,
+    "hat": HatImage,
+    "pajamas": PajamasImage,
+    "socks": SocksImage,
+    "shoes": ShoesImage,
+    "jacket": JacketImage,
+    "scarf": ScarfImage
+  }
 
   // Initialize clothes items
   useEffect(() => {
@@ -69,10 +92,15 @@ export default function ChangeClothesGame({ onCompleteTask }) {
           >
             {item.flipped ? (
               <img
-                src={`/src/assets/images/clothes-${item.type}.svg`}
+                src={clothesImages[item.type]}
                 alt={item.type}
                 className="w-12 h-12 object-contain"
                 style={{ filter: `hue-rotate(${item.id * 30}deg)` }}
+                onError={(e) => {
+                  console.error(`Failed to load image for ${item.type}`)
+                  e.target.onerror = null;
+                  e.target.src = `/placeholder.svg?height=48&width=48&text=${item.type}`
+                }}
               />
             ) : (
               <span className="text-indigo-300 text-2xl">?</span>
@@ -87,7 +115,7 @@ export default function ChangeClothesGame({ onCompleteTask }) {
           <div className="bg-indigo-800 p-4 rounded-lg shadow-md text-center">
             <p className="text-indigo-100 font-bold text-xl mb-2">Pajamas Found!</p>
             <img
-              src="/src/assets/images/pajamas.png"
+              src={PajamasFoundImage}
               alt="Pajamas"
               className="w-16 h-16 mx-auto my-2"
               style={{ filter: "hue-rotate(200deg)" }}
@@ -98,4 +126,3 @@ export default function ChangeClothesGame({ onCompleteTask }) {
     </div>
   )
 }
-
