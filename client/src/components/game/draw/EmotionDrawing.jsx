@@ -133,18 +133,18 @@ const EmotionDrawing = () => {
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'bottom',
-        minHeight: '120vh', // Full viewport height
-        paddingTop: '10px',
-        paddingBottom: '10px'
+        minHeight: '120vh', 
+        paddingTop: '150px',
+        paddingBottom: '150px'
       }}
     >
       <div className="p-8 rounded-3xl shadow-lg" style={{ 
-        background: 'rgba(255, 255, 255, 0.9)', // Optional overlay to improve readability
+        background: 'rgba(255, 255, 255, 0.9)', 
         border: '6px solid #00A5E0',
         borderRadius: '40px',
         maxWidth: '900px',
         height: '890px',
-        margin: '150px auto'
+        margin: '100px auto'
       }}>
         <h2 className="text-3xl font-bold mb-4 text-center" style={{ 
           color: '#0172B0',
