@@ -17,7 +17,12 @@
     'http://localhost:5174/login',
     'http://localhost:5175/login',
 
-    'https://cozycove.vercel.app'
+    'https://cozycove.vercel.app',
+    'https://cozycove-server.vercel.app',
+    'https://cozycove.vercel.app/login',
+    'https://cozycove-server.vercel.app/login',
+    'https://cozycove.vercel.app/register',
+    'https://cozycove-server.vercel.app/register',
 
 ];
 
