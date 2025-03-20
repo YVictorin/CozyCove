@@ -3,7 +3,7 @@ import AddSensoryBox from './AddSensoryBox';
 const SensoryBoxPage = () => {
 
   return (
-    <div className="flex-1 p-8">
+    <div className="flex pt-32">
         <div className="max-w-6xl mx-auto">
           <AddSensoryBox />
         </div>

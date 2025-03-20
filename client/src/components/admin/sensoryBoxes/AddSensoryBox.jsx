@@ -44,7 +44,7 @@ const AddSensoryBox = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md">
+    <div className="bg-white p-8 rounded-lg shadow-md ml-16 mb-16 w-full">
       <h1 className="text-2xl font-bold mb-6">Add Sensory Box</h1>
       
       <form onSubmit={handleSubmit}>

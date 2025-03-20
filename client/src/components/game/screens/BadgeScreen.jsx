@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Button } from "react-bootstrap";
 import { useBadges } from "../../../hooks/useBadges";
 import { getBadgeDetails } from "../utils/badgeUtils";
@@ -28,11 +28,7 @@ export default function BadgeScreen({ routine, onReturnToMenu }) {
 
       <div className="w-32 h-32 rounded-full bg-yellow-100 border-4 border-yellow-500 flex items-center justify-center mb-6">
         <div className="w-24 h-24 rounded-full bg-yellow-400 flex items-center justify-center">
-          <img
-            src={`/src/assets/images/${badgeInfo?.image || routine.toLowerCase()}.svg`}
-            alt="Badge"
-            className="w-16 h-16 object-contain"
-          />
+          <div className='scale-300 relative left-1.5 top-1'>{badgeInfo.icon}</div>
         </div>
       </div>
 

@@ -6,10 +6,11 @@ import { ArrowRight, Eye, EyeOff, Facebook, Mail, ArrowLeft } from 'lucide-react
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
+import axios from '../../api/axios';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const { auth } = useAuth() || {};
+  const { setAuth } = useAuth() || {};
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,7 +22,7 @@ function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('http://localhost:3001/api/login', {
+      const response = await fetch('https://cozycove-server.vercel.app/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // Include credentials so cookies are sent/stored
@@ -46,6 +47,7 @@ function LoginForm() {
       console.error('Error during login:', err);
     }
   };
+
 
   return (
     <>

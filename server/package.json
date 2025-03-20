@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "cypress": "cypress open",
-    "test": "vitest --run"
+    "test": "vitest --run",
+    "debug": "node --watch --inspect-brk server.js"
   },
   "keywords": [],
   "author": "",
