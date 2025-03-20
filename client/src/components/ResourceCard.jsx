@@ -12,6 +12,8 @@ function ResourceCard({ image, title, description, link }) {
       <p className="text-gray-600 text-xs sm:text-sm md:text-base mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-3">{description}</p>
       <a
         href={link}
+        target="_blank"
+        rel="noopener noreferrer"
         className="bg-[#fa507e] text-white px-3 py-1 sm:px-5 sm:py-3 rounded-full hover:bg-cyan-500 transition-colors block w-full text-center text-xs sm:text-base"
       >
         Explore
