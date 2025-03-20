@@ -25,29 +25,33 @@ export default function EatLunchGame({ onCompleteTask }) {
           return 50
         }
 
-        // Increase difficulty over time
-        if (Math.random() < 0.05) {
-          setSandwichSpeed((s) => Math.min(s + 0.1, 3))
+      // Increase sandwich speed over time, but cap it at 3
+      if (Math.random() < 0.05) {
+          setSandwichSpeed((speed) => Math.min(speed + 0.1, 3)) // is the current speed
         }
 
         // Randomly change direction
         if (Math.random() < 0.03) {
-          setSandwichDirection((d) => d * -1)
+          setSandwichDirection((direction) => direction * -1)  // is the current direction
         }
 
         return newBalance
       })
     }, 100)
 
-    return () => clearInterval(interval)
+    return () => { 
+      clearInterval(interval)
+    }
   }, [sandwichDirection, sandwichSpeed])
 
+  
   const handleSandwichClick = () => {
     // Reverse direction
     setSandwichDirection((prev) => prev * -1)
 
     // Check if sandwich is balanced for 3 seconds
     if (sandwichBalance > 40 && sandwichBalance < 60) {
+     
       // Start a timer to check if it stays balanced
       const balanceTimer = setTimeout(() => {
         if (sandwichBalance > 40 && sandwichBalance < 60) {

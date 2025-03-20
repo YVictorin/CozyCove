@@ -4,7 +4,7 @@ export const getBadgeDetails = (routineName) => {
       case "Morning Routine":
         return { 
           name: "Morning Champion", 
-          icon: "🌞", 
+          icon: "☀️", 
           color: "#FBEDCA",
           description: "Completed all morning routine tasks" 
         };

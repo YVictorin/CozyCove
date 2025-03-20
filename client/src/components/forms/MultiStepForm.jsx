@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { step1, step2, step3, step4 } from '../../validation/registerSchema';
+import axios from '../../api/axios';
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -111,17 +112,16 @@ const MultiStepForm = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      const data = await response.json();
-      if (!response.ok) {
-        setError(data.error || 'Registration failed.');
-      } else {
-        setSuccess('Registration successful!');
-        setTimeout(() => {
-          navigate('/login');
-        }, 1500);
-      }
+
+      console.log(response.data);
+      
+      setSuccess('Registration successful!');
+      setTimeout(() => {
+        navigate('/login');
+      }, 1500);
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      // Error handling for Axios
+      setError(err.response?.data?.error || 'An error occurred. Please try again.');
       console.error(err);
     }
   };

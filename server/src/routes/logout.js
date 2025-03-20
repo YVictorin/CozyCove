@@ -1,8 +1,10 @@
-import express from "express"
+// logout.js
+import express from 'express';
+import { handleLogout } from '../controllers/logoutController.js';
+
 const router = express.Router();
 
-import { handleLogout } from "../controllers/logoutController.js";
-
-router.get("/", handleLogout)
+// Use POST for logout (no authentication required)
+router.post('/', handleLogout);
 
 export default router;

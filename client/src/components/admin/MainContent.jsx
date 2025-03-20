@@ -8,14 +8,15 @@ export default function MainContent({ activeTab }) {
   return (
     <>
       {activeTab === "Dashboard" && (
-        <main className="flex-grow p-8 overflow-y-auto">
+        <main className="flex-grow p-8 overflow-y-auto" style={{width: "90%"}}>
           <PageHeader />
           <StatsGrid />
           <FavoritesSection />
         </main>
       )}
-      {activeTab === "Users" && <UsersPageContent />}
-      {activeTab === "Sensory" && <SensoryBoxPage/>}
+        {activeTab === "Users" && <UsersPageContent />}
+        {activeTab === "Sensory" && <SensoryBoxPage/>}
+     
     </>
   );
 }

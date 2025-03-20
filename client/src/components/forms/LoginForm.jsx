@@ -6,11 +6,11 @@ import { ArrowRight, Eye, EyeOff, Facebook, Mail, ArrowLeft } from 'lucide-react
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
+import axios from '../../api/axios';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  // const { auth, setAuth } = useAuth() || {};
-  const { auth } = useAuth() || {}; // We only use auth for now; setAuth is commented out.
+  const { setAuth } = useAuth() || {}; 
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,22 +25,26 @@ function LoginForm() {
       const response = await fetch('http://localhost:3001/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // Include credentials so cookies are sent/stored
         body: JSON.stringify(data)
       });
       const result = await response.json();
       
-      if (!response.ok) {
-        console.error(result.error || 'Login failed.');
-        return;
-      }
+      // if (!response.ok) {
+      //   console.error(result.error || 'Login failed.');
+      //   return;
+      // }
       
-      // setAuth({
-      //   email: result.user.email,
-      //   roles: result.user.roles,
-      //   accessToken: result.accessToken,
-      // });
+      // Optionally update auth state here if needed
+      setAuth({
+        email: result.user.email,
+        accessToken: result?.accessToken
+      });
       
-      navigate(from, { replace: true });
+
+      // navigate(from, { replace: true });
+            navigate("/");
+
     } catch (err) {
       console.error('Error during login:', err);
     }
