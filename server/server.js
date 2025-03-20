@@ -1,12 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-
-// Import credentials middleware first
-import credentials from "./src/middleware/credentials.js";
 import cors from "cors";
-import corsOptions from "./src/config/security/corsOptions.js";
-
 import adminRouter from "./src/routes/admin.js"
 import homeRouter from "./src/routes/home.js";
 import loginRoute from "./src/routes/login.js";
@@ -14,7 +9,6 @@ import logoutRouter from "./src/routes/logout.js";
 import registerRoute from "./src/routes/register.js";
 import refreshTokenRouter from "./src/routes/refreshToken.js";
 import accountRoute from "./src/routes/account.js";
-
 import verifyJWT from "./src/middleware/verifyJWT.js";
 import dotenv from "dotenv";
 dotenv.config();
@@ -25,38 +19,62 @@ import './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Apply credentials middleware FIRST - this sets CORS headers
-// app.use(credentials);
-
-// Then apply CORS middleware 
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    /\.vercel\.app$/
-  ],
+// CORS Configuration - IMPORTANT: Don't use multiple cors() middleware calls
+const corsOptions = {
+  origin: function(origin, callback) {
+    // For development, allow localhost and Vercel domains
+    const allowedOrigins = [
+      "http://localhost:5173",
+      "http://localhost:3000"
+    ];
+    
+    // Also allow Vercel domains dynamically
+    const vercelPattern = /\.vercel\.app$/;
+    
+    // During development/debugging, log origins
+    console.log("Request origin:", origin);
+    
+    // Allow requests with no origin (like mobile apps, curl, Postman)
+    if (!origin) {
+      callback(null, true);
+      return;
+    }
+    
+    // Check if the origin is allowed
+    if (
+      allowedOrigins.includes(origin) || 
+      vercelPattern.test(origin)
+    ) {
+      // Return the specific origin that was sent (don't use *)
+      callback(null, origin);
+    } else {
+      console.log("Blocked origin:", origin);
+      callback(new Error('CORS not allowed for this origin'));
+    }
+  },
   credentials: true,
-  allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-}));
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+};
 
-// Handle OPTIONS preflight requests explicitly
-app.options('*', (req, res) => {
-  // The credentials middleware has already set the appropriate headers
-  return res.status(200).send();
-});
+// Apply CORS middleware - only once!
+app.use(cors(corsOptions));
+
+// Handle OPTIONS preflight requests explicitly - this helps some browsers
+app.options('*', cors(corsOptions));
 
 // Debug middleware to log incoming requests
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url} from origin: ${req.headers.origin || 'unknown'}`);
-  console.log("Request headers:", req.headers);
   next();
 });
 
 // Middleware for cookies
 app.use(cookieParser());
 
+// Body parsers
 app.use(express.json());
-
-// Parse URL-encoded bodies
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 
 // Error handling middleware

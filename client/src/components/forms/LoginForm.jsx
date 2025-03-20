@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../validation/loginSchema';
 import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import useFetchData from '../../hooks/useFetchData';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,53 +15,45 @@ function LoginForm() {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+  // Make sure the API URL doesn't have trailing slashes
+  const baseUrl = import.meta.env.VITE_BASE_URL.endsWith('/') 
+    ? import.meta.env.VITE_BASE_URL.slice(0, -1) 
+    : import.meta.env.VITE_BASE_URL;
+
+  // Initialize the hook with empty posted data
+  const { data, isLoading, isError, error, setPostedData } = useFetchData({
+    url: `${baseUrl}/api/login`,
+    method: 'POST',
+    initialPostedData: null
+  });
+
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = async (data) => {
-    setLoginError('');
-    
-    try {
-      console.log('Attempting login with data:', data);
-      
-      // Make sure the API URL doesn't have trailing slashes
-      const baseUrl = import.meta.env.VITE_BASE_URL.endsWith('/') 
-        ? import.meta.env.VITE_BASE_URL.slice(0, -1) 
-        : import.meta.env.VITE_BASE_URL;
-      
-      const response = await fetch(`${baseUrl}/api/login`, {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        credentials: 'include',
-        body: JSON.stringify(data)
-      });
-      
-      // Check if the response is OK before trying to parse JSON
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error(`Error response (${response.status}):`, errorText);
-        setLoginError(`Login failed: ${response.status} ${response.statusText}`);
-        return;
-      }
-      
-      const result = await response.json();
-      
+  // When data changes (after successful request), handle the response
+  useEffect(() => {
+    if (data && data.user && data.accessToken) {
       console.log('Login successful, storing auth data');
       setAuth({
-        email: result.user.email,
-        accessToken: result?.accessToken
+        email: data.user.email,
+        accessToken: data.accessToken
       });
-      
-      
       navigate(from);
-    } catch (err) {
-      console.error('Error during login:', err);
-      setLoginError('Connection error. Please try again later.');
     }
+  }, [data, setAuth, navigate, from]);
+
+  // When error occurs, update the login error state
+  useEffect(() => {
+    if (isError) {
+      console.error('Error during login:', error);
+      setLoginError(error?.message || 'An error occurred during login. Please try again.');
+    }
+  }, [isError, error]);
+
+  const onSubmit = async (formData) => {
+    setLoginError('');
+    setPostedData(formData); // This will trigger the useFetchData hook
   };
 
   return (
@@ -175,10 +168,10 @@ function LoginForm() {
                 </div>
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isLoading}
                   className="w-full bg-[#6366F1] text-white py-4 rounded-lg font-medium hover:bg-[#4F46E5] transition-colors flex items-center justify-center group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Signing in...' : 'Sign in'}
+                  {isSubmitting || isLoading ? 'Signing in...' : 'Sign in'}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>

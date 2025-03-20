@@ -1,41 +1,17 @@
 {
-    "installCommand": "npm install --legacy-peer-deps",
-    "version": 2,
-    "builds": [
+  "installCommand": "npm install --legacy-peer-deps",
+  "version": 2,
+  "builds": [
       {
-        "src": "server.js",
-        "use": "@vercel/node",
-        "config": {
-          "buildCommand": "npm run build",
-          "startCommand": "npm run start"
-        }
+          "src": "server.js",
+          "use": "@vercel/node",
+          "config": {
+              "buildCommand": "npm run build",
+              "startCommand": "npm run start"
+            }
       }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "methods": ["OPTIONS"],
-        "dest": "/server.js",
-        "headers": {
-          "Access-Control-Allow-Credentials": "true",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-          "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization"
-        }
-      },
-      {
-        "src": "/api/(.*)",
-        "dest": "/server.js",
-        "headers": {
-          "Access-Control-Allow-Credentials": "true",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-          "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization"
-        }
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/server.js"
-      }
-    ]
-  }
+  ],
+  "routes": [
+      { "src": "/(.*)", "dest": "/server.js" }
+  ]
+}
