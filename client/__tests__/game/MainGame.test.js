@@ -116,5 +116,4 @@ describe('MainGame Component', () => {
     // Should now show Night Routine
     expect(screen.getByText('Night Routine')).toBeInTheDocument();
   });
-  
-  it('removes event listeners on unmount', async () => {
+});
