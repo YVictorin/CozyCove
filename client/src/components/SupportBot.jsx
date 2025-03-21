@@ -17,9 +17,11 @@ export default function SupportBot() {
     const [msgHistory, setMsgHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isFadingOut, setIsFadingOut] = useState(false);
     const dialogRef = useRef(null);
     const inputRef = useRef(null);
     const chatContainerRef = useRef(null);
+    const originalBodyOverflow = useRef("");
 
     const time = new Date();
     const formattedTime = time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -36,17 +38,67 @@ export default function SupportBot() {
         // Add event listener for resize
         window.addEventListener('resize', checkMobile);
         
+        // Store original body overflow on component mount
+        originalBodyOverflow.current = document.body.style.overflow;
+        
         // Cleanup
-        return () => window.removeEventListener('resize', checkMobile);
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+            // Ensure body overflow is restored on component unmount
+            document.body.style.overflow = originalBodyOverflow.current;
+        };
     }, []);
 
     function handleToggleDialog() {
-        setIsDialogVisible((prev) => !prev);
+        if (isDialogVisible) {
+            handleSmoothClose();
+        } else {
+            setIsDialogVisible(true);
+        }
+    }
+    
+    // Function to handle smooth closing with fade effect
+    function handleSmoothClose() {
+        // Start fade out animation
+        setIsFadingOut(true);
+        
+        // Wait for animation to complete before actually closing
+        setTimeout(() => {
+            setIsDialogVisible(false);
+            setIsFadingOut(false);
+            
+            // Fix the scrolling issue by first forcing a layout recalculation
+            document.body.style.overflow = 'hidden';
+            
+            // Force a browser layout recalculation before setting to auto
+            void document.body.offsetHeight;
+            
+            // Now restore scrolling
+            document.body.style.overflow = originalBodyOverflow.current || 'auto';
+            
+            // Additionally, force focus away from dialog elements
+            document.body.focus();
+            
+            // If scrolling is still an issue, force window to scroll to its current position
+            // This trick often helps "unstick" frozen scroll states
+            const currentScroll = window.scrollY;
+            setTimeout(() => {
+                window.scrollTo({
+                    top: currentScroll,
+                    behavior: 'auto'
+                });
+            }, 50);
+        }, 300); // Match this timing with CSS transition duration
     }
 
     useEffect(() => {
         if (dialogRef.current) {
             if (isDialogVisible) {
+                // Store current overflow before changing it
+                if (!originalBodyOverflow.current) {
+                    originalBodyOverflow.current = document.body.style.overflow || '';
+                }
+                
                 dialogRef.current.showModal();
                 inputRef.current?.focus();
                 
@@ -54,9 +106,6 @@ export default function SupportBot() {
                 document.body.style.overflow = 'hidden';
             } else {
                 dialogRef.current.close();
-                
-                // Restore body scrolling when dialog is closed
-                document.body.style.overflow = 'auto';
             }
         }
     }, [isDialogVisible]);
@@ -127,13 +176,15 @@ export default function SupportBot() {
             {isDialogVisible && (
                 <dialog
                     ref={dialogRef}
-                    className={`fixed inset-0 ${isMobile ? 'w-full h-full m-0 rounded-none' : 'w-[95%] sm:w-[80%] md:w-1/2 lg:w-1/3 max-w-md h-[95%] sm:h-[80%] rounded-md sm:rounded-lg m-auto'} overflow-hidden z-50 bg-[#FFF9F0] p-0`}
+                    className={`fixed inset-0 ${isMobile ? 'w-full h-full m-0 rounded-none' : 'w-[95%] sm:w-[80%] md:w-1/2 lg:w-1/3 max-w-md h-[95%] sm:h-[80%] rounded-md sm:rounded-lg m-auto'} 
+                    overflow-hidden z-50 bg-[#FFF9F0] p-0 
+                    transition-opacity duration-300 ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}
                 >
                     <div className="sticky top-0 h-12 sm:h-14 bg-[#fa507e] flex justify-between items-center p-3 px-4 z-10">
                         <p className="text-white text-sm sm:text-base font-medium">Cozy Cove Online Assistant</p>
                         <div className="flex gap-3">
-                            <Minus onClick={handleToggleDialog} className="text-white cursor-pointer w-5 h-5" />
-                            <X onClick={handleToggleDialog} className="text-white cursor-pointer w-5 h-5" />
+                            <Minus onClick={handleSmoothClose} className="text-white cursor-pointer w-5 h-5" />
+                            <X onClick={handleSmoothClose} className="text-white cursor-pointer w-5 h-5" />
                         </div>
                     </div>
                     <div 
@@ -194,18 +245,18 @@ export default function SupportBot() {
                 </dialog>
             )}
 
-{!isDialogVisible && (
-    <div
-        onClick={handleToggleDialog}
-        className="cursor-pointer shadow-lg flex items-center justify-center rounded-full bg-[#fa507e] fixed text-white z-50 
-                  w-auto min-w-24 max-w-36 px-3
-                  h-8 text-xs right-2 bottom-2
-                  sm:h-10 sm:px-4 sm:text-sm sm:right-4 sm:bottom-4
-                  md:h-12 md:right-6 md:bottom-6"
-    >
-        <p>Online Assistant</p>
-    </div>
-)}
+            {!isDialogVisible && (
+                <div
+                    onClick={handleToggleDialog}
+                    className="cursor-pointer shadow-lg flex items-center justify-center rounded-full bg-[#fa507e] fixed text-white z-50 
+                              w-auto min-w-24 max-w-36 px-3
+                              h-8 text-xs right-2 bottom-2
+                              sm:h-10 sm:px-4 sm:text-sm sm:right-4 sm:bottom-4
+                              md:h-12 md:right-6 md:bottom-6"
+                >
+                    <p>Online Assistant</p>
+                </div>
+            )}
         </>
     );
 }

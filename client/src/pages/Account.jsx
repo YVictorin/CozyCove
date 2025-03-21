@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/account/Sidebar';
 import ProfileSection from '../components/account/ProfileSection';
-import { useBadges } from '../hooks/useBadges'; 
 import useAuth from '../hooks/useAuth'; 
+import Unauthorized from '../components/Unauthorized';
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState('profile');
-  const { addBadge, clearBadges } = useBadges(); // Assuming clearBadges is available
   const [user, setUser] = useState(null);
 
   // Destructure both auth and setAuth if available.
   const { auth, setAuth } = useAuth();
 
-  // Fetch user information from the database (via an API endpoint)
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -38,20 +36,16 @@ const Account = () => {
     fetchUser();
   }, [auth]);
 
-  // This function clears user info, badge state, and optionally auth state on logout.
+  // This function clears user info and auth state on logout.
   const handleLogoutFromAccount = () => {
-    if (clearBadges) clearBadges();      
     setUser(null);                      
     if (setAuth) setAuth({});            
   };
 
- if (!user) {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-4xl font-bold text-center">
-        You must login to continue.
-      </div>
-    </div>
+  // If auth token is not available, show the Unauthorized component.
+ if (auth?.accessToken === undefined) {
+  return ( 
+    <Unauthorized/> 
   );
 }
 

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../validation/loginSchema';
 import { ArrowRight, Eye, EyeOff, Facebook, Mail, ArrowLeft } from 'lucide-react';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation, Link } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
 import axios from '../../api/axios';
@@ -123,7 +123,16 @@ function LoginForm() {
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
+                    
                   </div>
+
+                      {/* Don't have an account link */}
+                <div className="text-left mt-4">
+                  <p className="text-gray-600 text-sm">
+                    Don't have an account? <Link to="/register" className="text-[#33a5ce] hover:text-[#4F46E5] font-medium">Sign up</Link>
+                  </p>
+                </div>
+
                   {errors.password && (
                     <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
                   )}
@@ -136,6 +145,9 @@ function LoginForm() {
                   {isSubmitting ? 'Signing in...' : 'Sign in'}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </button>
+                
+            
+
               </form>
             </div>
           </div>
