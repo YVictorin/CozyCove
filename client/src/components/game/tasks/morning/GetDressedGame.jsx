@@ -1,5 +1,10 @@
-
 import { useState, useEffect } from "react"
+
+// Import image assets
+import shirtImage from "/src/assets/images/clothes-shirt.svg"
+import pantsImage from "/src/assets/images/clothes-pants.svg"
+import socksImage from "/src/assets/images/clothes-socks.svg"
+import shoesImage from "/src/assets/images/clothes-shoes.svg"
 
 export default function GetDressedGame({ onCompleteTask }) {
   const [clothesItems, setClothesItems] = useState([])
@@ -7,12 +12,31 @@ export default function GetDressedGame({ onCompleteTask }) {
   // Initialize clothes items
   useEffect(() => {
     const clothesTypes = ["shirt", "pants", "socks", "shoes"]
+    const clothesImages = {
+      shirt: shirtImage,
+      pants: pantsImage,
+      socks: socksImage,
+      shoes: shoesImage
+    }
+    
     const items = []
 
     // Create pairs of clothes
     for (let i = 0; i < clothesTypes.length; i++) {
-      items.push({ id: i * 2, type: clothesTypes[i], matched: false, position: i * 2 })
-      items.push({ id: i * 2 + 1, type: clothesTypes[i], matched: false, position: i * 2 + 1 })
+      items.push({ 
+        id: i * 2, 
+        type: clothesTypes[i], 
+        image: clothesImages[clothesTypes[i]],
+        matched: false, 
+        position: i * 2 
+      })
+      items.push({ 
+        id: i * 2 + 1, 
+        type: clothesTypes[i], 
+        image: clothesImages[clothesTypes[i]],
+        matched: false, 
+        position: i * 2 + 1 
+      })
     }
 
     // Shuffle positions
@@ -49,8 +73,6 @@ export default function GetDressedGame({ onCompleteTask }) {
 
   return (
     <div className="relative w-full h-full">
-    
-
       {/* Clothes grid */}
       <div className="grid grid-cols-4 gap-2 p-4 h-full">
         {clothesItems.map((item) => (
@@ -62,7 +84,7 @@ export default function GetDressedGame({ onCompleteTask }) {
             onClick={() => handleClothesClick(item.id)}
           >
             <img
-              src={`/src/assets/images/clothes-${item.type}.svg`}
+              src={item.image}
               alt={item.type}
               className={`w-12 h-12 object-contain ${item.matched ? "opacity-100" : "opacity-80"}`}
               style={{ filter: `hue-rotate(${item.id * 30}deg)` }}
@@ -73,4 +95,3 @@ export default function GetDressedGame({ onCompleteTask }) {
     </div>
   )
 }
-
