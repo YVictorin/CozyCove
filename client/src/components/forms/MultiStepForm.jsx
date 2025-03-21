@@ -133,7 +133,7 @@ const MultiStepForm = () => {
       {success && <div className="mb-4 text-green-500">{success}</div>}
 
       {/* Step Indicator */}
-      <div className="w-full max-w-3xl mb-4 px-4 flex items-center justify-between">
+      <div className="w-full  mt-16 max-w-3xl mb-4 px-4 flex items-center justify-between">
         <div>
           {currentStep > 1 ? (
             <button onClick={handlePrevStep} className="mr-4 text-gray-500 hover:text-gray-700">
@@ -157,163 +157,163 @@ const MultiStepForm = () => {
       </div>
 
       {/* Main Form Card */}
-      <div className="bg-white rounded-lg shadow-md w-full max-w-3xl overflow-hidden relative">
-        {/* Step 1: Type of Service */}
-        <div className={`transition-all duration-300 ${animation} ${currentStep === 1 ? 'block' : 'hidden'}`}>
-          <div className="p-8">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
-              What services do you need?
-            </h2>
-            <p className="text-center text-gray-500 mb-8">
-              Select the options that best match your needs
+      <div className="bg-white mt-8 rounded-lg shadow-md w-full max-w-3xl overflow-hidden relative">
+      
+      {/* Step 1: Type of Service */}
+    <div className={`transition-all duration-300 ${animation} ${currentStep === 1 ? 'block' : 'hidden'}`}>
+      <div className="p-4 sm:p-6 md:p-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-800 mb-2 sm:mb-4">
+          What services do you need?
+        </h2>
+        <p className="text-center text-gray-500 text-sm sm:text-base mb-4 sm:mb-8">
+          Select the options that best match your needs
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div
+            className={`cursor-pointer p-4 sm:p-6 rounded-lg border transition-all ${
+              formData.needType === 'sensoryBoxes'
+                ? 'border-blue-500 bg-blue-50'
+                : 'border-gray-200 hover:border-blue-300'
+            }`}
+            onClick={() => handleOptionSelect('needType', 'sensoryBoxes')}
+          >
+            <div className="flex items-center mb-2 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10"
+                  ></path>
+                </svg>
+              </div>
+              <h3 className="text-sm sm:text-base font-medium text-gray-800">Sensory Boxes</h3>
+            </div>
+            <p className="text-xs sm:text-sm text-gray-500 pl-11 sm:pl-14">
+              DIY and pre-made sensory kits for children
             </p>
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div
-                className={`cursor-pointer p-6 rounded-lg border transition-all ${
-                  formData.needType === 'sensoryBoxes'
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-blue-300'
-                }`}
-                onClick={() => handleOptionSelect('needType', 'sensoryBoxes')}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-indigo-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10"
-                      ></path>
-                    </svg>
-                  </div>
-                  <h3 className="text-base font-medium text-gray-800">Sensory Boxes</h3>
-                </div>
-                <p className="text-sm text-gray-500 pl-14">
-                  DIY and pre-made sensory kits for children
-                </p>
-              </div>
+          </div>
 
-              <div
-                className={`cursor-pointer p-6 rounded-lg border transition-all ${
-                  formData.needType === 'routineGames'
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-blue-300'
-                }`}
-                onClick={() => handleOptionSelect('needType', 'routineGames')}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-blue-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                      ></path>
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <h3 className="text-base font-medium text-gray-800">Routine Games</h3>
-                </div>
-                <p className="text-sm text-gray-500 pl-14">
-                  Games and activities for daily routines
-                </p>
+          <div
+            className={`cursor-pointer p-4 sm:p-6 rounded-lg border transition-all ${
+              formData.needType === 'routineGames'
+                ? 'border-blue-500 bg-blue-50'
+                : 'border-gray-200 hover:border-blue-300'
+            }`}
+            onClick={() => handleOptionSelect('needType', 'routineGames')}
+          >
+            <div className="flex items-center mb-2 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                  ></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
               </div>
-
-              <div
-                className={`cursor-pointer p-6 rounded-lg border transition-all ${
-                  formData.needType === 'resources'
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-blue-300'
-                }`}
-                onClick={() => handleOptionSelect('needType', 'resources')}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-green-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                      ></path>
-                    </svg>
-                  </div>
-                  <h3 className="text-base font-medium text-gray-800">Resources</h3>
-                </div>
-                <p className="text-sm text-gray-500 pl-14">
-                  Educational materials and guides
-                </p>
-              </div>
-
-              <div
-                className={`cursor-pointer p-6 rounded-lg border transition-all ${
-                  formData.needType === 'safeSpaces'
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-blue-300'
-                }`}
-                onClick={() => handleOptionSelect('needType', 'safeSpaces')}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-red-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1"
-                      ></path>
-                    </svg>
-                  </div>
-                  <h3 className="text-base font-medium text-gray-800">Safe Spaces</h3>
-                </div>
-                <p className="text-sm text-gray-500 pl-14">
-                  Guidance for creating safe environments
-                </p>
-              </div>
+              <h3 className="text-sm sm:text-base font-medium text-gray-800">Routine Games</h3>
             </div>
+            <p className="text-xs sm:text-sm text-gray-500 pl-11 sm:pl-14">
+              Games and activities for daily routines
+            </p>
+          </div>
 
-            {validationErrors.needType && (
-              <p className="text-red-500">{validationErrors.needType}</p>
-            )}
-            <div className="flex justify-end">
-              <button
-                onClick={handleNextStep}
-                disabled={!formData.needType}
-                className="px-6 py-3 rounded-md text-white font-medium transition-all bg-blue-600 hover:bg-blue-700"
-              >
-                Next step
-              </button>
+          <div
+            className={`cursor-pointer p-4 sm:p-6 rounded-lg border transition-all ${
+              formData.needType === 'resources'
+                ? 'border-blue-500 bg-blue-50'
+                : 'border-gray-200 hover:border-blue-300'
+            }`}
+            onClick={() => handleOptionSelect('needType', 'resources')}
+          >
+            <div className="flex items-center mb-2 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-green-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  ></path>
+                </svg>
+              </div>
+              <h3 className="text-sm sm:text-base font-medium text-gray-800">Resources</h3>
             </div>
+            <p className="text-xs sm:text-sm text-gray-500 pl-11 sm:pl-14">
+              Educational materials and guides
+            </p>
+          </div>
+
+          <div
+            className={`cursor-pointer p-4 sm:p-6 rounded-lg border transition-all ${
+              formData.needType === 'safeSpaces'
+                ? 'border-blue-500 bg-blue-50'
+                : 'border-gray-200 hover:border-blue-300'
+            }`}
+            onClick={() => handleOptionSelect('needType', 'safeSpaces')}
+          >
+            <div className="flex items-center mb-2 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-red-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1"
+                  ></path>
+                </svg>
+              </div>
+              <h3 className="text-sm sm:text-base font-medium text-gray-800">Safe Spaces</h3>
+            </div>
+            <p className="text-xs sm:text-sm text-gray-500 pl-11 sm:pl-14">
+              Guidance for creating safe environments
+            </p>
           </div>
         </div>
 
+        {validationErrors.needType && (
+          <p className="text-red-500 text-sm">{validationErrors.needType}</p>
+        )}
+        <div className="flex justify-end">
+          <button
+            onClick={handleNextStep}
+            disabled={!formData.needType}
+            className="px-4 py-2 sm:px-6 sm:py-3 rounded-md text-white text-sm sm:text-base font-medium transition-all bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
+          >
+            Next step
+          </button>
+        </div>
+      </div>
+    </div>
         {/* Step 2: Personal Information */}
         <div className={`transition-all duration-300 ${animation} ${currentStep === 2 ? 'block' : 'hidden'}`}>
           <div className="p-8">
