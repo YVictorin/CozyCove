@@ -12,6 +12,9 @@ export const step2 = Yup.object().shape({
 export const step3 = Yup.object().shape({
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
+      'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
+    )
     .required("Password is required"),
     
   confirmPassword: Yup.string()
