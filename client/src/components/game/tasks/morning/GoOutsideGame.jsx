@@ -18,7 +18,7 @@ export default function GoOutsideGame({ onCompleteTask }) {
       // Check if clicked near key
       const distance = Math.sqrt(Math.pow(x - keyPosition.x, 2) + Math.pow(y - keyPosition.y, 2))
 
-      if (distance < 10) {
+      if (distance < 30) {
         // Found key!
         setKeyFound(true)
       }
