@@ -18,7 +18,7 @@ export default function GamesPage() {
 
     return (
         <>
-            <div className="pt-16 lg:pt-26 min-h-screen flex flex-col items-center justify-center bg-[#D3FFFE] pb-16 lg:pb-26 bg-gradient-to-b from-[#C7FCFB] to-[#FBEDCA]">
+            <div className="pt-24 lg:pt-26 min-h-screen flex flex-col items-center justify-center bg-[#D3FFFE] pb-16 lg:pb-26 bg-gradient-to-b from-[#C7FCFB] to-[#FBEDCA]">
                 {/* Card and Image Container */}
                 <div className="flex flex-col lg:flex-row items-center justify-center w-full p-4 lg:p-6 mb-16 lg:mb-64">
                     {/* Card - Keeping original desktop styling */}
