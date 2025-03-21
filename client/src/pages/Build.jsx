@@ -296,6 +296,7 @@ const Build = () => {
             </button>
           ))}
         </div>
+        <h4 className="more-info">Click any card below for more information</h4>
       </div>
 
       {/* Products grid */}
