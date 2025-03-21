@@ -10,11 +10,9 @@ import Account from "./pages/Account";
 import Parents from "./pages/Parents";
 import Build from "./pages/Build";
 import Games from "./pages/Games";
-import SupportBot from "./components/SupportBot";
-import VisualSchedule from "./components/VisualSchedule";
 
-import './global.css';
-import ScrollToTop from "./components/ScrollToTop"
+import "./global.css";
+import ScrollToTop from "./components/ScrollToTop";
 import EmotionDrawing from "./components/game/draw/EmotionDrawing";
 import RoutineGames from "./components/game/MainGame";
 
@@ -22,46 +20,39 @@ import Unauthorized from "./components/Unauthorized";
 import Admin from "./pages/Admin";
 import RequireAuth from "./components/RequireAuth";
 
-
 const ROLES = {
   ADMIN: "test@gmail.com",
 };
 
-
-
 function App() {
   return (
     <>
-    <ScrollToTop />  
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="build" element={<Build />} />
+          <Route path="parents" element={<Parents />} />
+          <Route path="unauthorized" element={<Unauthorized />} />
 
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="register" element={<Register />} />
-        <Route path="login" element={<Login />} />
-        <Route path="build" element={<Build />}/>
-        
-        {/* Games routes */}
-        <Route path="games" element={<Games />}/>
-        <Route path="games/emotions-artist" element={<EmotionDrawing/>} />
-        <Route path="games/cozy-routines" element={<RoutineGames/>} />
-        
-        <Route path="parents" element={<Parents />}/>
-        <Route path="unauthorized" element={<Unauthorized/>}></Route>
-        
-        <Route path="games/emotions-artist" element={<EmotionDrawing/>}></Route>
-      
-        {/* Protected Routes */}
-        <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
-              <Route path="admin" element={<Admin />} />
+          {/* Games routes */}
+          <Route path="games" element={<Games />} />
+          <Route path="games/emotions-artist" element={<EmotionDrawing />} />
+          <Route path="games/cozy-routines" element={<RoutineGames />} />
+
+          {/* Protected Routes */}
+          <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
+            <Route path="admin" element={<Admin />} />
+          </Route>
+
+          <Route path="account" element={<Account />} />
+
+          {/* Catch-All Route */}
+          <Route path="*" element={<NotFound />} />
         </Route>
-      
-        <Route path="account" element={<Account />} />
-
-        {/* Catch-All Route */}
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+      </Routes>
     </>
   );
 }
