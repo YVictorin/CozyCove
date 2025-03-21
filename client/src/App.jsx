@@ -7,8 +7,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 import Account from "./pages/Account";
-import Explore from "./pages/Explore";
-import Products from "./pages/Products";
+import Parents from "./pages/Parents";
+import Build from "./pages/Build";
 import Games from "./pages/Games";
 import SupportBot from "./components/SupportBot";
 import VisualSchedule from "./components/VisualSchedule";
@@ -39,14 +39,14 @@ function App() {
         <Route index element={<Home />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
-        <Route path="products" element={<Products />}/>
+        <Route path="build" element={<Build />}/>
         
         {/* Games routes */}
         <Route path="games" element={<Games />}/>
         <Route path="games/emotions-artist" element={<EmotionDrawing/>} />
         <Route path="games/cozy-routines" element={<RoutineGames/>} />
         
-        <Route path="explore" element={<Explore />}/>
+        <Route path="parents" element={<Parents />}/>
         <Route path="unauthorized" element={<Unauthorized/>}></Route>
         
         <Route path="games/emotions-artist" element={<EmotionDrawing/>}></Route>
