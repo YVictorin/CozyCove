@@ -64,7 +64,7 @@ app.use('/api/refreshToken', refreshTokenRouter);
 app.use('/api/account', verifyJWT, accountRoute);
 app.use('/api/users', adminRouter);
 app.use('/api/admin', verifyJWT, adminRouter);
-app.use('/api/logout', verifyJWT, logoutRouter);
+app.use('/api/logout', logoutRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -6,7 +6,6 @@ import path from 'path'
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') }) 
 
-console.log("🔑 VITE_API_KEY:", process.env.VITE_API_KEY);
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
@@ -14,9 +13,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://cozycove-server.vercel.app',
+        target: 'https://cozy-cove-server-git-yvpages-austins-projects-977ccb2e.vercel.app',
         changeOrigin: true,
-        secure: true, 
+        secure: false, 
       }
     }
   }

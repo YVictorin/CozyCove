@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import explore from '../assets/images/explore.png';
 import games from '../assets/images/games.png';
-import products from '../assets/images/products.png';
+import tools from '../assets/images/tools.png';
 
 const NavCarousel = () => {
     // Cards data array
@@ -10,7 +10,7 @@ const NavCarousel = () => {
             id: 1,
             image: explore,
             alt: "explore",
-            title: "Explore",
+            title: "Parents",
             description: "Learn more about what it means to have autism and how you can snap in your own puzzle piece",
         },
         {
@@ -22,9 +22,9 @@ const NavCarousel = () => {
         },
         {
             id: 3,
-            image: products,
-            alt: "products",
-            title: "Products",
+            image: tools,
+            alt: "tools",
+            title: "Build",
             description: "crafts and diy activities for the whole family to enjoy together.",
         }
     ];
@@ -81,7 +81,7 @@ const NavCarousel = () => {
     return (
         <div className="bg-transparent min-h-fit flex flex-col items-center justify-center p-4 py-8">
             {/* Section Header */}
-            <div className="text-center mb-10">
+            <div className="text-center mb-10 pt-10">
                 <h1 className="text-3xl md:text-4xl font-bold text-[#33a5ce] mb-2">Discover Cozy Cove </h1>
                 <p className="text-[#386169] text-lg max-w-2xl mx-auto">Explore our collection of tools, games, and resources designed to support your journey.</p>
             </div>
@@ -104,7 +104,7 @@ const NavCarousel = () => {
                             <div key={card.id} className="relative flex flex-col items-center mt-16 mx-auto w-full max-w-sm md:max-w-none">
                                 {/* Floating image that sits above the card */}
                                 <div className="absolute z-20 -top-16">
-                                    <img src={card.image} alt={card.alt} className="w-32 h-32 object-contain" />
+                                    <img src={card.image} alt={card.alt} className="w-36 h-36 object-contain" />
                                 </div>
 
                                 {/* The actual card */}
