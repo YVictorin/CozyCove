@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react"
-
-// Import image assets
-import shirtImage from "/src/assets/images/clothes-shirt.svg"
-import pantsImage from "/src/assets/images/clothes-pants.svg"
-import socksImage from "/src/assets/images/clothes-socks.svg"
-import shoesImage from "/src/assets/images/clothes-shoes.svg"
+import Shirt from "../../../../assets/images/clothes-shirt.svg"
+import Pants from "../../../../assets/images/clothes-pants.svg"
+import Socks from "../../../../assets/images/clothes-socks.svg"
+import Shoes from "../../../../assets/images/clothes-shoes.svg"
 
 export default function GetDressedGame({ onCompleteTask }) {
   const [clothesItems, setClothesItems] = useState([])
@@ -13,10 +11,10 @@ export default function GetDressedGame({ onCompleteTask }) {
   useEffect(() => {
     const clothesTypes = ["shirt", "pants", "socks", "shoes"]
     const clothesImages = {
-      shirt: shirtImage,
-      pants: pantsImage,
-      socks: socksImage,
-      shoes: shoesImage
+      shirt: Shirt,
+      pants: Pants,
+      socks: Socks,
+      shoes: Shoes
     }
     
     const items = []
