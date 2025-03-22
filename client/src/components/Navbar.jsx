@@ -52,7 +52,7 @@ export default function Navbar() {
                 <div className="md:hidden">
                     <button
                         onClick={toggleMenu}
-                        className="text-indigo-900 p-2 focus:outline-none"
+                        className="text-[#24B2C2] p-2 focus:outline-none"
                     >
                         {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
                     </button>
@@ -61,19 +61,19 @@ export default function Navbar() {
                 {/* Desktop Navigation Links */}
                 <nav className="hidden md:flex items-center space-x-6">
                     <NavLink to="/" text="Home" />
-                    <NavLink to="/Products" text="Products" />
+                    <NavLink to="/Build" text="Build" />
                     <NavLink to="/Games" text="Games" />
-                    <NavLink to="/Explore" text="Explore" />
+                    <NavLink to="/Parents" text="Parents" />
 
                     {/* User Account Links */}
                     <div ref={accountDropdownRef} className="relative">
                         <button
                             onClick={toggleAccountDropdown}
-                            className="flex items-center text-indigo-900 font-bold text-lg relative p-2 rounded-full group cursor-pointer"
+                            className="flex items-center text-[#24B2C2]font-bold text-lg relative p-2 rounded-full group cursor-pointer"
                         >
                             <span className="relative z-10">Account</span>
                             <ChevronDown size={20} className="ml-1 relative z-10" />
-                            <span className={`absolute inset-0 bg-purple-100 rounded-full transition-opacity ${isAccountDropdownOpen ? 'opacity-70' : 'opacity-0 group-hover:opacity-70'}`}></span>
+                            <span className={`absolute inset-0 hover:bg-[#E5F6F8] rounded-full transition-opacity ${isAccountDropdownOpen ? 'opacity-70' : 'opacity-0 group-hover:opacity-70'}`}></span>
                         </button>
                         {isAccountDropdownOpen && (
                             <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10">
@@ -91,9 +91,9 @@ export default function Navbar() {
                 <div className="md:hidden absolute top-24 left-0 right-0 px-6 z-40">
                     <div className="bg-white rounded-xl shadow-lg p-4 flex flex-col space-y-3">
                         <MobileNavLink to="/" text="Home" onClick={toggleMenu} />
-                        <MobileNavLink to="/Products" text="Products" onClick={toggleMenu} />
+                        <MobileNavLink to="/Build" text="Build" onClick={toggleMenu} />
                         <MobileNavLink to="/Games" text="Games" onClick={toggleMenu} />
-                        <MobileNavLink to="/Explore" text="Explore" onClick={toggleMenu} />
+                        <MobileNavLink to="/Parents" text="Parents" onClick={toggleMenu} />
 
                         <div className="border-t border-gray-200 pt-2 mt-2">
                             <p className="text-sm text-gray-500 mb-2">Account</p>
@@ -114,7 +114,7 @@ const NavLink = ({ to, text, dropdownItem = false }) => {
         return (
             <Link
                 to={to}
-                className="block px-4 py-2 text-indigo-900 hover:bg-purple-100 hover:text-purple-700"
+                className="block px-4 py-2 text-[#24B2C2] hover:bg-[#E5F6F8] hover:text-[#1A8A97]"
             >
                 {text}
             </Link>
@@ -124,10 +124,10 @@ const NavLink = ({ to, text, dropdownItem = false }) => {
     return (
         <Link
             to={to}
-            className="relative px-3 py-2 text-indigo-900 font-bold text-lg group"
+            className="relative px-3 py-2 text-[#24B2C2] font-bold text-lg group"
         >
             <span className="relative z-10">{text}</span>
-            <span className="absolute inset-0 bg-purple-100 rounded-full opacity-0 transition-opacity group-hover:opacity-100"></span>
+            <span className="absolute inset-0 hover:bg-[#E5F6F8] rounded-full opacity-0 transition-opacity group-hover:opacity-100"></span>
         </Link>
     );
 };
@@ -137,7 +137,7 @@ const MobileNavLink = ({ to, text, onClick }) => {
     return (
         <Link
             to={to}
-            className="block py-2 px-4 text-indigo-900 font-bold text-lg hover:bg-purple-100 rounded-lg"
+            className="block py-2 px-4 text-[#24B2C2] font-bold text-lg hover:bg-[#E5F6F8] rounded-lg"
             onClick={onClick}
         >
             {text}

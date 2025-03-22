@@ -70,13 +70,13 @@ export default function RoutineScreen({ routine, currentTask, taskCompleted, onB
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="flex justify-between w-full mb-4">
-      <div className="bg-red-500 pl-5 pr-5 pt-3 pb-3 rounded-md cursor-pointer">
+      <div className="flex justify-between w-full mb-4 gap-4">
+      <div className="bg-red-500 h-12 pl-5 pr-5 pt-3 pb-3 rounded-md cursor-pointer">
         <Button variant="destructive" onClick={onBackClick} style={{ cursor: "pointer", color: "white" }}>
           Back
         </Button>
         </div>
-        <h2 className={`text-2xl font-bold ${getTextColor(routine)}`}>{routine}</h2>
+        <h2 className={`text-2xl font-bold text-nowrap ${getTextColor(routine)}`}>{routine}</h2>
         <div className="w-20"></div> {/* Spacer for alignment */}
       </div>
 

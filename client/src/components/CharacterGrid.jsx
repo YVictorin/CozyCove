@@ -3,7 +3,6 @@ import snappy from '../assets/images/snappy.png';
 import snuggles from '../assets/images/snuggles.png';
 import puzzletta from '../assets/images/puzzletta.png';
 import link from '../assets/images/link.png';
-import AnimatedButton from '../components/AnimatedButton';
 
 const CharacterCard = ({ image, name, description }) => {
     return (
@@ -19,17 +18,10 @@ const CharacterCard = ({ image, name, description }) => {
             {/* Character info card */}
             <div className="bg-[#f9f5eb] rounded-xl p-3 md:p-4 w-full flex flex-col items-center">
                 {/* Character name */}
-                <h3 className="font-bold text-lg md:text-2xl text-[#5d5c7c] mb-1 md:mb-2">{name}</h3>
+                <h3 className="font-bold text-lg md:text-2xl text-[#f9517e] mb-1 md:mb-2">{name}</h3>
 
                 {/* Character description */}
                 <p className="text-gray-600 text-center text-xs md:text-sm mb-2 md:mb-4">{description}</p>
-
-                {/* button */}
-                <AnimatedButton
-                    text="Learn More"
-                    primaryColor="#fb507e"
-                    size="small"
-                />
             </div>
         </div>
     );
@@ -48,14 +40,14 @@ const CharactersGrid = () => {
             id: 2,
             name: 'SNUGGLES',
             image: snuggles,
-            description: 'Snuggles is Sanppys brother. His only weakness is a freshly-opened bag of chips.',
+            description: 'Snuggles is Sanppys little brother. His only weakness is a freshly-opened bag of chips.',
             color: '#33a5ce',
         },
         {
             id: 3,
             name: 'PUZZLETTA',
             image: puzzletta,
-            description: 'Puzzletta is Snappy and Snuggle\'s mommy, who recently started a garden.',
+            description: 'Puzzletta is Snappy and Snuggle\'s mommy, who loves to play soccer and recently started a garden.',
             color: '#fd975f',
         },
         {
@@ -71,7 +63,7 @@ const CharactersGrid = () => {
         <div className="w-full py-8 md:py-10 px-4 bg-transparent">
             {/* Section title */}
             <div className="w-full text-center mb-6 md:mb-10">
-                <h2 className="text-2xl md:text-4xl font-bold text-[#5d5c7c] py-2 px-4 md:px-8 rounded-full inline-block bg-white shadow-sm">
+                <h2 className="text-2xl md:text-4xl font-bold text-[#33a5ce] py-2 px-4 md:px-8 rounded-full inline-block bg-white shadow-sm">
                     Meet Snappys Family
                 </h2>
             </div>
@@ -84,7 +76,6 @@ const CharactersGrid = () => {
                         image={character.image}
                         name={character.name}
                         description={character.description}
-                        color={character.color}
                     />
                 ))}
             </div>

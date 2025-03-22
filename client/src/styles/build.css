@@ -289,6 +289,13 @@
   color: white;
 }
 
+.more-info {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 10px;
+  text-align: center;
+}
+
 /* Category tags styling */
 .product-categories {
   display: flex;
@@ -306,22 +313,18 @@
 }
 
 .category-tag.calming {
-  background-color: #9c27b0;
   display: none;
 }
 
 .category-tag.tactile {
-  background-color: #ff9800;
   display: none;
 }
 
 .category-tag.motor {
-  background-color: #4caf50;
   display: none;
 }
 
 .category-tag.visual {
-  background-color: #2196f3;
   display: none;
 }
 

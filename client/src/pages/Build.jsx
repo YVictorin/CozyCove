@@ -11,7 +11,7 @@ import colorSortingJars from "../assets/color-sorting-jars.png";
 import calmingGlitterJars from "../assets/calming-glitter-jars.jpg";
 import foamSensoryPlay from "../assets/foam-sensory-play.png";
 
-const Products = () => {
+const Build = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -296,6 +296,7 @@ const Products = () => {
             </button>
           ))}
         </div>
+        <h4 className="more-info">Click any card below for more information</h4>
       </div>
 
       {/* Products grid */}
@@ -360,4 +361,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Build;
