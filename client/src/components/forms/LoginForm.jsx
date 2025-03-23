@@ -77,7 +77,7 @@ function LoginForm() {
               {/* Logo (mobile only) */}
               <div className="mb-16 lg:hidden">
                 <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
-                  <text x="0" y="30" fill="#1C1B24" className="text-2xl font-bold">Cozy Cove</text>
+                  <text x="0" y="30" fill="#1C1B24" className="text-2xl font-bold scale-75">Cozy Cove</text>
                 </svg>
               </div>
 
