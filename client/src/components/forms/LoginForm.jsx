@@ -4,14 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../validation/loginSchema';
 import { ArrowRight, Eye, EyeOff, Facebook, Mail, ArrowLeft } from 'lucide-react';
 import { NavLink, useNavigate, useLocation, Link } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
-import axios from '../../api/axios';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { setAuth } = useAuth() || {};
-  const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { step1, step2, step3, step4 } from '../../validation/registerSchema';
-import axios from '../../api/axios';
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
