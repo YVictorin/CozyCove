@@ -15,7 +15,7 @@ export const routines = {
       { name: "Tidy Up Toys", description: "Collect all the toys before time runs out!" },
     ],
     "Night Routine": [
-      { name: "Brush Teeth", description: "Answer the toothbrush's questions!" },
+      { name: "Brush Teeth", description: "Try answering the toothbrush's questions" },
       { name: "Change Clothes", description: "Find your pajamas among the clothes!" },
       { name: "Story Time", description: "Choose a story to read before bed!" },
       { name: "Sleep", description: "Turn off the lights and go to sleep." },
