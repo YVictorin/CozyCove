@@ -4,7 +4,7 @@ import { Button }  from "react-bootstrap"
 export default function MenuScreen({ onRoutineClick, onBadgesClick }) {
   return (
     <div className="flex flex-col items-center">
-      <h2 className="text-4xl font-bold text-blue-600 mb-4">Routine Rush</h2>
+      <h2 className="text-4xl font-bold text-blue-600 mb-4">Cozy Routines</h2>
       <p className="text-xl text-blue-500 mb-8">Build Your Best Day!</p>
 
       <div className="flex flex-col gap-4 w-64">

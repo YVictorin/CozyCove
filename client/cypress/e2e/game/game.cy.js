@@ -2,8 +2,7 @@
 
 describe('Game Application', () => {
     beforeEach(() => {
-      // Visit the game page before each test
-      cy.visit('/game'); // Adjust this path to match your route to the game
+      cy.visit('/games/cozy-routines');
       
       // Wait for the game to load completely
       cy.get('[data-testid="menu-screen"]', { timeout: 10000 }).should('be.visible');

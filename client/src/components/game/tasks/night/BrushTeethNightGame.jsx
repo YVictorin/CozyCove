@@ -32,7 +32,7 @@ export default function BrushTeethNightGame({ onCompleteTask }) {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-4">
       <div className="absolute top-2 right-2 text-indigo-200 font-bold">
-        Question {currentQuestion + 1}/{brushTeethQuestions.length}
+         {currentQuestion + 1}/{brushTeethQuestions.length}
       </div>
 
       {/* Toothbrush character */}
@@ -46,7 +46,7 @@ export default function BrushTeethNightGame({ onCompleteTask }) {
       </div>
 
       {/* Question */}
-      <div className="bg-indigo-800 p-4 rounded-lg mb-6 w-full max-w-xs text-nowrap">
+      <div className="bg-indigo-800 p-4 rounded-lg mb-6 w-full max-w-xs">
         <p className="text-indigo-100 text-center font-bold">{brushTeethQuestions[currentQuestion].question}</p>
       </div>
 
