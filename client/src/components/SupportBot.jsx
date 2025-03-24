@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { X, Minus, Send } from "lucide-react";
 import SupportTextBox from "./SupportTextBox";
@@ -31,16 +32,16 @@ export default function SupportBot() {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 640);
         };
-        
+
         // Initial check
         checkMobile();
-        
+
         // Add event listener for resize
         window.addEventListener('resize', checkMobile);
-        
+
         // Store original body overflow on component mount
         originalBodyOverflow.current = document.body.style.overflow;
-        
+
         // Cleanup
         return () => {
             window.removeEventListener('resize', checkMobile);
@@ -56,29 +57,29 @@ export default function SupportBot() {
             setIsDialogVisible(true);
         }
     }
-    
+
     // Function to handle smooth closing with fade effect
     function handleSmoothClose() {
         // Start fade out animation
         setIsFadingOut(true);
-        
+
         // Wait for animation to complete before actually closing
         setTimeout(() => {
             setIsDialogVisible(false);
             setIsFadingOut(false);
-            
+
             // Fix the scrolling issue by first forcing a layout recalculation
             document.body.style.overflow = 'hidden';
-            
+
             // Force a browser layout recalculation before setting to auto
             void document.body.offsetHeight;
-            
+
             // Now restore scrolling
             document.body.style.overflow = originalBodyOverflow.current || 'auto';
-            
+
             // Additionally, force focus away from dialog elements
             document.body.focus();
-            
+
             // If scrolling is still an issue, force window to scroll to its current position
             // This trick often helps "unstick" frozen scroll states
             const currentScroll = window.scrollY;
@@ -98,12 +99,18 @@ export default function SupportBot() {
                 if (!originalBodyOverflow.current) {
                     originalBodyOverflow.current = document.body.style.overflow || '';
                 }
-                
+
                 dialogRef.current.showModal();
                 inputRef.current?.focus();
-                
+
                 // Prevent body scrolling when dialog is open
                 document.body.style.overflow = 'hidden';
+
+                // Add the "Hello" message to the message history when dialog is opened
+                setMsgHistory((prev) => [
+                    ...prev,
+                    "Hello how can I assist you?"
+                ]);
             } else {
                 dialogRef.current.close();
             }
@@ -131,7 +138,7 @@ export default function SupportBot() {
 
     async function fetchGeminiResponse(userMessage) {
         try {
-            const prompt = `You are a friendly AI assistant helping parents of children on the spectrum. Provide supportive and informative responses in no more than five sentences. User's question: "${userMessage}"`;
+            const prompt = `You are a friendly AI assistant, help parents of children on the spectrum. Provide supportive and informative responses in no more than three sentences. User's question: "${userMessage}"`;
 
             console.log("Sending message to AI:", userMessage);
 
