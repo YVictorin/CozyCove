@@ -4,14 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../validation/loginSchema';
 import { ArrowRight, Eye, EyeOff, Facebook, Mail, ArrowLeft } from 'lucide-react';
 import { NavLink, useNavigate, useLocation, Link } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
-import axios from '../../api/axios';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { setAuth } = useAuth() || {};
-  const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -77,7 +74,7 @@ function LoginForm() {
               {/* Logo (mobile only) */}
               <div className="mb-16 lg:hidden">
                 <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
-                  <text x="0" y="30" fill="#1C1B24" className="text-2xl font-bold">Cozy Cove</text>
+                  <text x="0" y="30" fill="#1C1B24" className="text-2xl font-bold scale-75">Cozy Cove</text>
                 </svg>
               </div>
 

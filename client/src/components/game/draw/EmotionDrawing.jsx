@@ -163,7 +163,7 @@ const EmotionDrawing = () => {
             <Medal className="w-24 h-24 mx-auto mb-4" style={{ color: '#FF9124' }} />
             <h1 className="text-3xl font-bold mb-2" style={{ 
               color: '#0172B0',
-              fontFamily: 'Comic Sans MS, cursive, sans-serif',
+              fontFamily: 'Comic Sans MS, sans-serif',
               textShadow: '2px 2px 0px #FFF'
             }}>
               Hooray! You're an Emotion Master!
@@ -172,7 +172,7 @@ const EmotionDrawing = () => {
               background: 'rgba(255, 255, 255, 0.5)',
               border: '3px dashed #0172B0'
             }}>
-              <p className="text-xl font-bold" style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif', color: '#0172B0' }}>
+              <p className="text-xl font-bold" style={{ fontFamily: 'Comic Sans MS, sans-serif', color: '#0172B0' }}>
                 <span className="text-2xl mr-2">🎨</span>
                 You earned the "Emotion Artist" badge!
               </p>
@@ -205,12 +205,12 @@ const EmotionDrawing = () => {
             <AlertCircle className="w-16 h-16 mx-auto mb-3" style={{ color: '#FF6B98' }} />
             <h2 className="text-2xl font-bold mb-2" style={{ 
               color: '#0172B0',
-              fontFamily: 'Comic Sans MS, cursive, sans-serif',
+              fontFamily: 'Comic Sans MS, sans-serif',
               textShadow: '1px 1px 0px #FFF'
             }}>
               Oops!
             </h2>
-            <p className="text-lg" style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif', color: '#333' }}>
+            <p className="text-lg" style={{ fontFamily: 'Comic Sans MS, sans-serif', color: '#333' }}>
               Please draw something first!
             </p>
           </div>
@@ -227,7 +227,7 @@ const EmotionDrawing = () => {
       }}>
         <h2 className="text-3xl font-bold mb-4 text-center" style={{ 
           color: '#0172B0',
-          fontFamily: 'Comic Sans MS, cursive, sans-serif',
+          fontFamily: 'Comic Sans MS, sans-serif',
           textShadow: '2px 2px 0px #FFF'
         }}>Draw the Emotion</h2>
         
@@ -261,7 +261,7 @@ const EmotionDrawing = () => {
         <div className="text-center mb-6">
           <h3 className="text-2xl font-bold" style={{ 
             color: currentEmotion.color,
-            fontFamily: 'Comic Sans MS, cursive, sans-serif'
+            fontFamily: 'Comic Sans MS, sans-serif'
           }}>
             Draw a {currentEmotion.name} face!
           </h3>
@@ -282,7 +282,7 @@ const EmotionDrawing = () => {
           />
         </div>
         
-        <div className="flex justify-center mt-6 gap-4">
+        <div className="flex justify-center mt-6 gap-2 md:gap-4">
           {colors.map(color => (
             <button
               key={color}
@@ -295,39 +295,35 @@ const EmotionDrawing = () => {
                 backgroundColor: color,
                 border: '3px solid #333',
                 borderRadius: '50%',
-                width: '40px',
-                height: '40px',
+                width: '35px',
+                height: '35px',
                 boxShadow: strokeColor === color ? '0 0 0 3px #FFF, 0 0 0 6px #00A5E0' : '0 4px 8px rgba(0,0,0,0.15)'
               }}
             />
           ))}
         </div>
 
-        <div className="flex justify-center gap-4 mt-8">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mt-6 md:mt-8">
           <button
             onClick={handleClear}
-            className="px-8 py-4 font-bold text-white transition-transform hover:scale-105"
+            className="px-4 py-2 md:px-8 md:py-4 font-bold text-white transition-transform hover:scale-105 text-sm md:text-base"
             style={{ 
               background: '#FF6B98',
               borderRadius: '30px',
-              boxShadow: '0 6px 0 #D84A79, 0 10px 20px rgba(0,0,0,0.15)',
-              fontFamily: 'Comic Sans MS, cursive, sans-serif',
-              fontSize: '1.3rem'
+              boxShadow: '0 4px 0 #D84A79, 0 6px 10px rgba(0,0,0,0.15)'
             }}
           >
-            <Trash2 className="w-6 h-6 inline-block mr-2" />
+            <Trash2 className="w-4 h-4 md:w-6 md:h-6 inline-block mr-1 md:mr-2" />
             Clear
           </button>
           
           <button
             onClick={handleUndo}
-            className="px-8 py-4 font-bold text-white transition-transform hover:scale-105"
+            className="px-4 py-2 md:px-8 md:py-4 font-bold text-white transition-transform hover:scale-105 text-sm md:text-base"
             style={{ 
               background: '#CCCCCC',
               borderRadius: '30px',
-              boxShadow: '0 6px 0 #AAAAAA, 0 10px 20px rgba(0,0,0,0.15)',
-              fontFamily: 'Comic Sans MS, cursive, sans-serif',
-              fontSize: '1.3rem'
+              boxShadow: '0 4px 0 #AAAAAA, 0 6px 10px rgba(0,0,0,0.15)'
             }}
           >
             Undo
@@ -335,13 +331,11 @@ const EmotionDrawing = () => {
 
           <button
             onClick={handleToggleEraser}
-            className="px-8 py-4 font-bold text-white transition-transform hover:scale-105"
+            className="px-4 py-2 md:px-8 md:py-4 font-bold text-white transition-transform hover:scale-105 text-sm md:text-base"
             style={{ 
               background: isEraser ? '#FF9124' : '#00A5E0',
               borderRadius: '30px',
-              boxShadow: isEraser ? '0 6px 0 #CC7000, 0 10px 20px rgba(0,0,0,0.15)' : '0 6px 0 #005C85, 0 10px 20px rgba(0,0,0,0.15)',
-              fontFamily: 'Comic Sans MS, cursive, sans-serif',
-              fontSize: '1.3rem'
+              boxShadow: isEraser ? '0 4px 0 #CC7000, 0 6px 10px rgba(0,0,0,0.15)' : '0 4px 0 #005C85, 0 6px 10px rgba(0,0,0,0.15)'
             }}
           >
             {isEraser ? "Disable Eraser" : "Eraser"}
@@ -349,13 +343,11 @@ const EmotionDrawing = () => {
 
           <button
             onClick={handleComplete}
-            className="px-10 py-4 font-bold text-white transition-transform hover:scale-105"
+            className="px-4 py-2 md:px-10 md:py-4 font-bold text-white transition-transform hover:scale-105 text-sm md:text-base mt-2 md:mt-0"
             style={{ 
               background: 'linear-gradient(135deg, #FF9124 0%, #FF6B98 100%)',
               borderRadius: '30px',
-              boxShadow: '0 6px 0 #CC7000, 0 10px 20px rgba(0,0,0,0.15)',
-              fontFamily: 'Comic Sans MS, cursive, sans-serif',
-              fontSize: '1.3rem'
+              boxShadow: '0 4px 0 #CC7000, 0 6px 10px rgba(0,0,0,0.15)'
             }}
           >
             {completedEmotions.length === emotions.length - 1 && !completedEmotions.includes(currentEmotionIndex) 
