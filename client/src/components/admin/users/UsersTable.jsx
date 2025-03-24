@@ -94,7 +94,7 @@ export default function UsersTable({ searchQuery, activeFilter }) {
       setActionInProgress(true);
       setActionMessage(null);
 
-      const response = await axios.post('/api/admin', {
+      const response = await axios.post('https://cozycove-server.vercel.app/api/admin', {
         action,
         userIds: selectedUsers,
         ...additionalData
