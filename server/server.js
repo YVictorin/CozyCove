@@ -63,7 +63,7 @@ app.use('/api/refreshToken', refreshTokenRouter);
 // Protected routes (require JWT verification)
 app.use('/api/account', verifyJWT, accountRoute);
 app.use('/api/users', adminRouter);
-app.use('/api/admin', verifyJWT, adminRouter);
+app.use('/api/admin', adminRouter);
 app.use('/api/logout', logoutRouter);
 
 app.listen(PORT, () => {
