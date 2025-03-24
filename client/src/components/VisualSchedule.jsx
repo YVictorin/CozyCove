@@ -80,13 +80,13 @@ const VisualSchedule = () => {
 
   const handleTouchMove = (e, index) => {
     if (draggedIndex === null || draggedIndex === index) return;
-    
+
     const newSchedule = [...schedule];
     const draggedItem = newSchedule[draggedIndex];
-    
+
     newSchedule.splice(draggedIndex, 1);
     newSchedule.splice(index, 0, draggedItem);
-    
+
     setDraggedIndex(index);
     setSchedule(newSchedule);
   };
@@ -150,12 +150,14 @@ const VisualSchedule = () => {
             onClick={() => handleAddItem(item.id)} // For mobile tap
             className="flex flex-col items-center p-1 sm:p-2 border rounded cursor-pointer border-[#999999] hover:bg-gray-100 transition-colors"
           >
-            <img 
-              src={item.imageUrl} 
-              alt={item.title} 
+            <img
+              src={item.imageUrl}
+              alt={item.title}
               className="w-8 h-8 sm:w-16 sm:h-16 object-cover rounded"
             />
-            <p className="text-center text-[#666666] text-xs sm:text-sm mt-1 line-clamp-1">{item.title}</p>
+            <p className="text-center text-[#666666] text-xs sm:text-sm mt-1 line-clamp-1">
+              {item.title}
+            </p>
           </div>
         ))}
       </div>
@@ -180,12 +182,14 @@ const VisualSchedule = () => {
               onTouchStart={(e) => handleTouchStart(e, index)}
               onTouchMove={(e) => handleTouchMove(e, index)}
             >
-              <img 
-                src={item.imageUrl} 
-                alt={item.title} 
-                className="w-8 h-8 sm:w-16 sm:h-16 object-cover rounded" 
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                className="w-8 h-8 sm:w-16 sm:h-16 object-cover rounded"
               />
-              <p className="text-center text-[#666666] text-xs sm:text-sm mt-1 line-clamp-1">{item.title}</p>
+              <p className="text-center text-[#666666] text-xs sm:text-sm mt-1 line-clamp-1">
+                {item.title}
+              </p>
               <button
                 className="absolute -top-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-red-500 text-white rounded-full text-xs flex items-center justify-center print-hidden"
                 onClick={() => handleRemoveItem(index)}
@@ -200,7 +204,7 @@ const VisualSchedule = () => {
       {/* Print Button */}
       <div className="flex justify-center mt-3 sm:mt-6">
         <button
-          className="bg-[#fa507e] text-white px-3 sm:px-6 py-1 sm:py-2 rounded-full hover:bg-cyan-500 transition-colors text-xs sm:text-base"
+          className="bg-[#fa507e] text-white px-3 sm:px-6 py-1 sm:py-2 rounded-full hover:bg-cyan-500 transition-colors text-xs sm:text-base cursor-pointer"
           onClick={printSchedule}
         >
           Print Schedule
