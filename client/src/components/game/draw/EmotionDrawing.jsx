@@ -163,7 +163,7 @@ const EmotionDrawing = () => {
             <Medal className="w-24 h-24 mx-auto mb-4" style={{ color: '#FF9124' }} />
             <h1 className="text-3xl font-bold mb-2" style={{ 
               color: '#0172B0',
-              fontFamily: 'Comic Sans MS, cursive, sans-serif',
+              fontFamily: 'Comic Sans MS, sans-serif',
               textShadow: '2px 2px 0px #FFF'
             }}>
               Hooray! You're an Emotion Master!
@@ -172,7 +172,7 @@ const EmotionDrawing = () => {
               background: 'rgba(255, 255, 255, 0.5)',
               border: '3px dashed #0172B0'
             }}>
-              <p className="text-xl font-bold" style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif', color: '#0172B0' }}>
+              <p className="text-xl font-bold" style={{ fontFamily: 'Comic Sans MS, sans-serif', color: '#0172B0' }}>
                 <span className="text-2xl mr-2">🎨</span>
                 You earned the "Emotion Artist" badge!
               </p>
@@ -205,12 +205,12 @@ const EmotionDrawing = () => {
             <AlertCircle className="w-16 h-16 mx-auto mb-3" style={{ color: '#FF6B98' }} />
             <h2 className="text-2xl font-bold mb-2" style={{ 
               color: '#0172B0',
-              fontFamily: 'Comic Sans MS, cursive, sans-serif',
+              fontFamily: 'Comic Sans MS, sans-serif',
               textShadow: '1px 1px 0px #FFF'
             }}>
               Oops!
             </h2>
-            <p className="text-lg" style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif', color: '#333' }}>
+            <p className="text-lg" style={{ fontFamily: 'Comic Sans MS, sans-serif', color: '#333' }}>
               Please draw something first!
             </p>
           </div>
@@ -261,7 +261,7 @@ const EmotionDrawing = () => {
         <div className="text-center mb-6">
           <h3 className="text-2xl font-bold" style={{ 
             color: currentEmotion.color,
-            fontFamily: 'Comic Sans MS, cursive, sans-serif'
+            fontFamily: 'Comic Sans MS, sans-serif'
           }}>
             Draw a {currentEmotion.name} face!
           </h3>
