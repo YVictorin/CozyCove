@@ -25,7 +25,7 @@ export default function GamesPage() {
                     <Card
                         title="PLAY"
                         descriptionTop="Get ready for fun with routines that help children thrive! Play our coloring games, emotion-drawing activities, or take our kid-friendly quizzes."
-                        descriptionBottom="Earn special badges for participation and 5-day streaks. Have fun and enjoy all of the games."
+                        descriptionBottom=""
                         buttonLeftText="START PLAYING"
                         onButtonLeftClick={scrollToGames}
                     />
